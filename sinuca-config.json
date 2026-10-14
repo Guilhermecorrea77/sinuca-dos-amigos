@@ -1,0 +1,626 @@
+{
+  "app": {
+    "nome": "Sinuca dos Amigos",
+    "versao": "1.0.0",
+    "idioma": "pt-BR",
+    "layout": {
+      "semScroll": true,
+      "orientacao": "auto",
+      "girarMesaEmRetrato": true,
+      "larguraMaxima": 900
+    }
+  },
+  "mesa": {
+    "largura": 1000,
+    "altura": 500,
+    "raioBola": 12,
+    "espessuraTabela": 40,
+    "posicaoBranca": {
+      "x": 0.25,
+      "y": 0.5
+    },
+    "posicaoTriangulo": {
+      "x": 0.72,
+      "y": 0.5
+    },
+    "cacapas": {
+      "canto": {
+        "raio": 26,
+        "boca": 34
+      },
+      "meio": {
+        "raio": 22,
+        "boca": 24,
+        "recuo": 6
+      }
+    },
+    "fisica": {
+      "subpassos": 10,
+      "atrito": 0.988,
+      "atritoLinear": 0.012,
+      "velMinima": 0.04,
+      "restituicaoBolas": 0.95,
+      "restituicaoTabela": 0.78,
+      "velMinTacada": 1.5,
+      "velMaxTacada": 36
+    }
+  },
+  "bolas": [
+    {
+      "n": 0,
+      "cor": "#f7f3e8",
+      "tipo": "branca"
+    },
+    {
+      "n": 1,
+      "cor": "#f2c014",
+      "tipo": "lisa"
+    },
+    {
+      "n": 2,
+      "cor": "#1f4fbf",
+      "tipo": "lisa"
+    },
+    {
+      "n": 3,
+      "cor": "#d6282a",
+      "tipo": "lisa"
+    },
+    {
+      "n": 4,
+      "cor": "#5b2a86",
+      "tipo": "lisa"
+    },
+    {
+      "n": 5,
+      "cor": "#f07a1a",
+      "tipo": "lisa"
+    },
+    {
+      "n": 6,
+      "cor": "#1d8a4a",
+      "tipo": "lisa"
+    },
+    {
+      "n": 7,
+      "cor": "#7a1f1f",
+      "tipo": "lisa"
+    },
+    {
+      "n": 8,
+      "cor": "#141414",
+      "tipo": "oito"
+    },
+    {
+      "n": 9,
+      "cor": "#f2c014",
+      "tipo": "listrada"
+    },
+    {
+      "n": 10,
+      "cor": "#1f4fbf",
+      "tipo": "listrada"
+    },
+    {
+      "n": 11,
+      "cor": "#d6282a",
+      "tipo": "listrada"
+    },
+    {
+      "n": 12,
+      "cor": "#5b2a86",
+      "tipo": "listrada"
+    },
+    {
+      "n": 13,
+      "cor": "#f07a1a",
+      "tipo": "listrada"
+    },
+    {
+      "n": 14,
+      "cor": "#1d8a4a",
+      "tipo": "listrada"
+    },
+    {
+      "n": 15,
+      "cor": "#7a1f1f",
+      "tipo": "listrada"
+    }
+  ],
+  "temas": [
+    {
+      "id": "boteco",
+      "nome": "Boteco",
+      "cores": {
+        "fundo": "#1b2620",
+        "painel": "#26352c",
+        "painel2": "#31453a",
+        "texto": "#f3e9cf",
+        "suave": "#a9b39a",
+        "destaque": "#f2b632",
+        "feltro": "#1e7048",
+        "feltro2": "#134a30",
+        "madeira": "#8a4b24",
+        "madeira2": "#52280f",
+        "cacapa": "#070807",
+        "mira": "#fff7d6"
+      }
+    },
+    {
+      "id": "torneio",
+      "nome": "Torneio",
+      "cores": {
+        "fundo": "#0e1a2b",
+        "painel": "#16263d",
+        "painel2": "#1f3452",
+        "texto": "#e8eef7",
+        "suave": "#8ea3bf",
+        "destaque": "#5fb3ff",
+        "feltro": "#1c5fa8",
+        "feltro2": "#123f72",
+        "madeira": "#2a2d33",
+        "madeira2": "#0d0f12",
+        "cacapa": "#000000",
+        "mira": "#e6f3ff"
+      }
+    },
+    {
+      "id": "neon",
+      "nome": "Neon",
+      "cores": {
+        "fundo": "#120a1f",
+        "painel": "#1d1233",
+        "painel2": "#2a1a4a",
+        "texto": "#f6e8ff",
+        "suave": "#b39ccc",
+        "destaque": "#ff3fb4",
+        "feltro": "#1a3d4f",
+        "feltro2": "#0d2230",
+        "madeira": "#3a1d57",
+        "madeira2": "#140a22",
+        "cacapa": "#000000",
+        "mira": "#3ff0ff"
+      }
+    },
+    {
+      "id": "adega",
+      "nome": "Adega",
+      "cores": {
+        "fundo": "#24110f",
+        "painel": "#341915",
+        "painel2": "#45221c",
+        "texto": "#f5e3d3",
+        "suave": "#c09d8a",
+        "destaque": "#e9b872",
+        "feltro": "#7a1e28",
+        "feltro2": "#4e1119",
+        "madeira": "#5a2f17",
+        "madeira2": "#2e160a",
+        "cacapa": "#0a0404",
+        "mira": "#ffe9c9"
+      }
+    },
+    {
+      "id": "quiosque",
+      "nome": "Quiosque",
+      "cores": {
+        "fundo": "#0f3b43",
+        "painel": "#155059",
+        "painel2": "#1c6570",
+        "texto": "#fff6e0",
+        "suave": "#a8d4d0",
+        "destaque": "#ff8a3d",
+        "feltro": "#129a9a",
+        "feltro2": "#0b6b70",
+        "madeira": "#c89a5b",
+        "madeira2": "#8a6232",
+        "cacapa": "#0b1f22",
+        "mira": "#fffbe8"
+      }
+    },
+    {
+      "id": "grafite",
+      "nome": "Grafite",
+      "cores": {
+        "fundo": "#d9d6cf",
+        "painel": "#ecebe6",
+        "painel2": "#ffffff",
+        "texto": "#1d1d1b",
+        "suave": "#6b6a64",
+        "destaque": "#c2272d",
+        "feltro": "#55595e",
+        "feltro2": "#3a3d41",
+        "madeira": "#262626",
+        "madeira2": "#000000",
+        "cacapa": "#000000",
+        "mira": "#ffffff"
+      }
+    }
+  ],
+  "modos": [
+    {
+      "id": "bola8",
+      "nome": "Bola 8",
+      "icone": "🎱",
+      "descricao": "Lisas contra listradas. Limpe seu grupo e feche com a 8.",
+      "jogadores": {
+        "min": 2,
+        "max": 6,
+        "somentePar": true,
+        "equipes": true
+      },
+      "opcoes": {
+        "quebraReposicionaOito": true
+      },
+      "pontuacao": {
+        "tipo": "vitoria",
+        "pontosVitoria": 1
+      },
+      "regras": [
+        "Com 4 ou 6 jogadores forma-se Equipe A contra Equipe B, alternando a vez.",
+        "Mesa aberta até alguém encaçapar só lisas (1–7) ou só listradas (9–15).",
+        "Encaçapou uma bola sua sem falta, continua jogando.",
+        "Falta: branca na caçapa, não tocar em nenhuma bola ou tocar primeiro na bola errada. O adversário ganha bola na mão.",
+        "Quem encaçapar a 8 depois de limpar o grupo vence. A 8 antes da hora, ou com falta, é derrota."
+      ]
+    },
+    {
+      "id": "garrafinha",
+      "nome": "Garrafinha",
+      "icone": "🍾",
+      "descricao": "Cada um sorteia números secretos. Derrube as bolas dos outros e proteja as suas.",
+      "jogadores": {
+        "min": 2,
+        "max": 7
+      },
+      "opcoes": {
+        "numerosPorJogador": {
+          "padrao": 2,
+          "min": 1,
+          "max": 5
+        },
+        "incluirBola8": true,
+        "pontosPorBolaAdversaria": 1,
+        "pontosPorBolaPropria": 0,
+        "continuaAoEncacapar": true
+      },
+      "pontuacao": {
+        "tipo": "sobrevivencia",
+        "desempate": "maiorPontuacao"
+      },
+      "regras": [
+        "No início o celular passa de mão em mão: cada jogador vê só os próprios números.",
+        "Qualquer bola pode ser a primeira tocada. Encaçapou, continua jogando.",
+        "Derrubou a bola de outro jogador: +1 ponto. A bola dele sai do jogo.",
+        "Derrubou a própria bola: ela sai do jogo e ninguém pontua.",
+        "Quem fica sem nenhuma bola na mesa é eliminado. O último vivo vence.",
+        "Branca na caçapa ou tacada sem tocar bola: passa a vez e o próximo ganha bola na mão."
+      ]
+    },
+    {
+      "id": "bolaDaVez",
+      "nome": "Bola da Vez",
+      "icone": "🔢",
+      "descricao": "Toque sempre primeiro na menor bola da mesa. Cada bola vale o seu número.",
+      "jogadores": {
+        "min": 2,
+        "max": 8
+      },
+      "opcoes": {
+        "penalidadeFalta": "valorBolaDaVez"
+      },
+      "pontuacao": {
+        "tipo": "pontos",
+        "valorBola": "numero"
+      },
+      "regras": [
+        "A bola da vez é sempre a de menor número ainda na mesa.",
+        "A branca precisa tocar nela primeiro. Depois disso, qualquer bola que cair vale pontos.",
+        "Cada bola vale o próprio número (a 15 vale 15).",
+        "Falta: perde pontos iguais ao valor da bola da vez e o próximo ganha bola na mão.",
+        "Mesa limpa, vence quem tiver mais pontos."
+      ]
+    },
+    {
+      "id": "treino",
+      "nome": "Treino",
+      "icone": "🎯",
+      "descricao": "Sozinho, sem regras. Limpe a mesa com o menor número de tacadas.",
+      "jogadores": {
+        "min": 1,
+        "max": 1
+      },
+      "opcoes": {},
+      "pontuacao": {
+        "tipo": "tacadas"
+      },
+      "regras": [
+        "Qualquer bola vale. Branca na caçapa volta com bola na mão.",
+        "O placar mostra quantas tacadas você precisou para limpar a mesa."
+      ]
+    }
+  ],
+  "cronometro": {
+    "mostrarTempoDePartida": true,
+    "tempoPorTacada": {
+      "padrao": 0,
+      "opcoes": [
+        0,
+        30,
+        45,
+        60
+      ]
+    },
+    "avisoSegundos": 10,
+    "estouroEhFalta": true,
+    "pausaComMenuAberto": true,
+    "visual": {
+      "anel": true,
+      "barraNaMesa": true,
+      "bipesFinais": 5,
+      "cores": {
+        "tranquilo": "#4cc26b",
+        "atencao": "#f2b632",
+        "urgente": "#e0573e"
+      }
+    }
+  },
+  "inicio": {
+    "metodo": "caraOuCoroa",
+    "maisDeDoisJogadores": "sorteio",
+    "repetirNaRevanche": true,
+    "faces": {
+      "cara": "Cara",
+      "coroa": "Coroa"
+    }
+  },
+  "orientacao": {
+    "padrao": "auto",
+    "opcoes": [
+      {
+        "id": "auto",
+        "nome": "Automática"
+      },
+      {
+        "id": "retrato",
+        "nome": "Em pé"
+      },
+      {
+        "id": "paisagem",
+        "nome": "Deitada"
+      }
+    ]
+  },
+  "efeito": {
+    "ativo": true,
+    "seguimento": 0.65,
+    "lateral": 0.3,
+    "decaimento": 0.992,
+    "raioMaximo": 0.85,
+    "resetarAposTacada": true,
+    "legenda": {
+      "cima": "Seguimento: a branca continua andando depois da batida",
+      "centro": "Bola parada: a branca para na batida",
+      "baixo": "Puxada: a branca volta depois da batida",
+      "lados": "Efeito lateral: muda o ângulo ao bater na tabela"
+    }
+  },
+  "online": {
+    "ativo": true,
+    "tecnologia": "WebRTC ponto a ponto via PeerJS. O celular de quem cria a sala (anfitrião) calcula a física e manda o estado para os outros.",
+    "prefixo": "sinuca-amigos-v1-",
+    "tamanhoCodigo": 5,
+    "alfabetoCodigo": "ABCDEFGHJKMNPQRSTUVWXYZ23456789",
+    "maxJogadores": 8,
+    "servidor": null,
+    "caminho": "/",
+    "bibliotecas": [
+      "peerjs.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js",
+      "https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"
+    ],
+    "iceServers": [
+      {
+        "urls": "stun:stun.l.google.com:19302"
+      },
+      {
+        "urls": "stun:stun1.l.google.com:19302"
+      }
+    ],
+    "quadrosPorEnvio": 2,
+    "tempoLimiteSegundos": 10,
+    "tempoLimiteConexao": 15,
+    "escolhaAutomaticaMoedaSegundos": 20,
+    "convite": "🎱 Bora jogar sinuca online! Entre na sala *{codigo}*: {link}"
+  },
+  "controles": {
+    "mira": "tocar ou arrastar na mesa aponta a tacada",
+    "ajusteFinoRad": 0.003,
+    "botoesAjusteFino": false,
+    "forca": "arrastar a barra para a direita e soltar",
+    "teclado": {
+      "girar": [
+        "ArrowLeft",
+        "ArrowRight"
+      ],
+      "forca": [
+        "ArrowUp",
+        "ArrowDown"
+      ],
+      "tacar": "Space"
+    },
+    "linhaGuia": true,
+    "mostrarDesvioBranca": true
+  },
+  "som": {
+    "ativo": true,
+    "volumeMax": 0.3
+  },
+  "placar": {
+    "serie": {
+      "guardarHistorico": 30,
+      "campos": [
+        "vitorias",
+        "jogos",
+        "pontos"
+      ]
+    },
+    "medalhas": [
+      "🥇",
+      "🥈",
+      "🥉"
+    ]
+  },
+  "whatsapp": {
+    "urlEnvio": "https://api.whatsapp.com/send",
+    "observacao": "wa.me perde emojis no redirecionamento; api.whatsapp.com/send preserva",
+    "ddiPadrao": "55",
+    "cabecalho": "🎱 *Sinuca dos Amigos*",
+    "incluirPlacarDaSerie": true,
+    "revelarNumerosGarrafinha": true
+  },
+  "telas": [
+    {
+      "id": "home",
+      "elementos": [
+        "logo",
+        "novoJogo",
+        "placar",
+        "temas",
+        "regras"
+      ]
+    },
+    {
+      "id": "scrModo",
+      "elementos": [
+        "listaModos"
+      ]
+    },
+    {
+      "id": "scrJog",
+      "elementos": [
+        "listaJogadores",
+        "telefoneWhatsApp",
+        "opcoesDoModo",
+        "comecar"
+      ]
+    },
+    {
+      "id": "scrOnline",
+      "elementos": [
+        "seuNome",
+        "seuWhatsApp",
+        "criarSala",
+        "codigoDaSala",
+        "entrar"
+      ]
+    },
+    {
+      "id": "scrSala",
+      "elementos": [
+        "codigo",
+        "convidarWhatsApp",
+        "copiarLink",
+        "listaJogadores",
+        "trocarJogo",
+        "opcoesDoModo",
+        "comecar"
+      ]
+    },
+    {
+      "id": "game",
+      "elementos": [
+        "menu",
+        "chipsJogadores",
+        "verNumeros",
+        "status",
+        "mesa",
+        "caraOuCoroa",
+        "mapaDaBola",
+        "barraForca",
+        "bolaNaMao",
+        "cronometroPartida",
+        "cronometroTacada"
+      ]
+    },
+    {
+      "id": "overlays",
+      "elementos": [
+        "pausa",
+        "temas",
+        "regras",
+        "passarCelular",
+        "fimDeJogo",
+        "enviarPlacar",
+        "placarDaTurma"
+      ]
+    }
+  ],
+  "armazenamento": {
+    "chaves": {
+      "preferencias": "sinuca.prefs",
+      "jogadores": "sinuca.jogadores",
+      "serie": "sinuca.serie",
+      "cliente": "sinuca.cliente"
+    }
+  },
+  "esquemas": {
+    "jogador": {
+      "nome": "string",
+      "telefone": "string (só dígitos, com DDI)",
+      "pts": "number",
+      "vivo": "boolean",
+      "nums": "number[] (garrafinha)",
+      "equipe": "0|1 (bola 8)"
+    },
+    "partida": {
+      "modo": "id do modo",
+      "jogadores": "jogador[]",
+      "vez": "índice",
+      "fase": "aim|moving|place|deal|over",
+      "grupos": "[lisas|listradas|null, …]",
+      "tacadas": "number"
+    },
+    "resultado": {
+      "data": "ISO",
+      "duracao": "segundos",
+      "modo": "string",
+      "vencedores": "string[]",
+      "ranking": "[{nome, pts, extra}]"
+    },
+    "serie": {
+      "jogadores": "{ [nome]: { vitorias, jogos, pontos } }",
+      "historico": "resultado[]"
+    },
+    "efeito": {
+      "x": "-1 (esquerda) a 1 (direita)",
+      "y": "-1 (puxada) a 1 (seguimento)"
+    },
+    "mensagensOnline": {
+      "convidadoParaAnfitriao": {
+        "hello": "{ nome, tel, cid } ao conectar; cid identifica o aparelho para reconectar no mesmo lugar",
+        "hb": "sinal de vida a cada 2 s",
+        "cue": "{ a, p, sx, sy } mira, força e efeito enquanto mira",
+        "place": "{ x, y } posição da branca com bola na mão",
+        "placeOk": "{ x, y } confirma a branca",
+        "shot": "{ a, p, sx, sy } tacada",
+        "coinPick": "{ f: cara|coroa }",
+        "bye": "saiu da sala"
+      },
+      "anfitriaoParaConvidados": {
+        "welcome": "{ code, seat, nome }",
+        "reject": "{ m } motivo",
+        "lobby": "{ code, modo, numeros, relogio, players[], seat }",
+        "state": "{ me, s: partida sem os números secretos dos outros, msg }",
+        "balls": "[x, y, caiu, ...] posições durante a tacada",
+        "cue": "mira do jogador da vez",
+        "place": "posição da branca",
+        "clk": "{ te, tt } tempo de partida e da tacada",
+        "coin / coinRes": "cara ou coroa",
+        "draw / drawRes": "sorteio com 3+ jogadores",
+        "end": "{ r: resultado }",
+        "closed": "anfitrião fechou a sala"
+      }
+    }
+  }
+}
