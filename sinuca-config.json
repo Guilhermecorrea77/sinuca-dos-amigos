@@ -433,6 +433,885 @@
     "escolhaAutomaticaMoedaSegundos": 20,
     "convite": "🎱 Bora jogar sinuca online! Entre na sala *{codigo}*: {link}"
   },
+  "personagens": [
+    {
+      "id": "ze",
+      "num": 1,
+      "nome": "Seu Zé do Balcão",
+      "curto": "Seu Zé",
+      "raridade": "comum",
+      "local": "Boteco do Zé",
+      "especialidade": "Dono da casa",
+      "frase": "Aqui a casa sempre ganha. Às vezes.",
+      "atributos": {
+        "mira": 34,
+        "forca": 40,
+        "efeito": 15,
+        "nervos": 50
+      },
+      "visual": {
+        "pele": "#e0ac7e",
+        "cabelo": "#cfcac0",
+        "corte": "lados",
+        "bigode": "bigodao",
+        "camisa": "#f4f1e8",
+        "roupa": "regata",
+        "expressao": "sorriso",
+        "fundo": "#f2b632"
+      },
+      "falas": {
+        "acerto": [
+          "Essa é da casa!",
+          "Trinta anos de balcão, meu filho."
+        ],
+        "erro": [
+          "Opa, escorregou o giz.",
+          "Foi o chão que mexeu."
+        ],
+        "elogio": [
+          "Olha só, sabe segurar o taco!",
+          "Essa foi bonita."
+        ],
+        "provoca": [
+          "Calma, a mesa não foge.",
+          "Quer um cafezinho pra acalmar?"
+        ]
+      }
+    },
+    {
+      "id": "tiao",
+      "num": 2,
+      "nome": "Tião Marreta",
+      "curto": "Tião",
+      "raridade": "comum",
+      "local": "Boteco do Zé",
+      "especialidade": "Força bruta",
+      "frase": "Se não entra no jeito, entra na força.",
+      "atributos": {
+        "mira": 40,
+        "forca": 92,
+        "efeito": 10,
+        "nervos": 35
+      },
+      "visual": {
+        "pele": "#8d5a3b",
+        "cabelo": "#1d1410",
+        "corte": "crespoCurto",
+        "barba": "cheia",
+        "chapeu": "bone",
+        "chapeuCor": "#d6282a",
+        "camisa": "#2f3a4a",
+        "roupa": "camiseta",
+        "expressao": "serio",
+        "fundo": "#e0573e"
+      },
+      "falas": {
+        "acerto": [
+          "PÁ! Sentiu?",
+          "Na marretada!"
+        ],
+        "erro": [
+          "Bati forte demais de novo...",
+          "Essa mesa é pequena."
+        ],
+        "elogio": [
+          "Hum. Até que foi bem.",
+          "Tá bom, tá bom."
+        ],
+        "provoca": [
+          "Bate com vontade, rapaz!",
+          "Tá com medo da branca?"
+        ]
+      }
+    },
+    {
+      "id": "cida",
+      "num": 3,
+      "nome": "Dona Cida Tabelinha",
+      "curto": "Dona Cida",
+      "raridade": "comum",
+      "local": "Bar da Esquina",
+      "especialidade": "Tabelas",
+      "frase": "Na tabela, meu filho. Sempre na tabela.",
+      "atributos": {
+        "mira": 50,
+        "forca": 30,
+        "efeito": 45,
+        "nervos": 72
+      },
+      "visual": {
+        "pele": "#f0c9a4",
+        "cabelo": "#d9d4cc",
+        "corte": "coque",
+        "oculos": "meialua",
+        "batom": true,
+        "brinco": true,
+        "camisa": "#7a4fa0",
+        "roupa": "florida",
+        "expressao": "sorriso",
+        "fundo": "#c79ad8"
+      },
+      "falas": {
+        "acerto": [
+          "Viu? Tabelinha.",
+          "Aprendi com o finado."
+        ],
+        "erro": [
+          "Ai, meus óculos.",
+          "Essa tabela me traiu."
+        ],
+        "elogio": [
+          "Que menino jeitoso!",
+          "Igualzinho meu neto."
+        ],
+        "provoca": [
+          "Quer que eu te ensine, querido?",
+          "Devagar se vai longe."
+        ]
+      }
+    },
+    {
+      "id": "rafa",
+      "num": 4,
+      "nome": "Rafa Mão Leve",
+      "curto": "Rafa",
+      "raridade": "rara",
+      "local": "Bar da Esquina",
+      "especialidade": "Toque suave",
+      "frase": "Bola lenta, caçapa certa.",
+      "atributos": {
+        "mira": 62,
+        "forca": 42,
+        "efeito": 58,
+        "nervos": 55
+      },
+      "visual": {
+        "pele": "#c68a5e",
+        "cabelo": "#2b1c14",
+        "corte": "topete",
+        "barba": "cavanhaque",
+        "camisa": "#1b1b1f",
+        "roupa": "camisa",
+        "expressao": "debochado",
+        "fundo": "#5fb3ff"
+      },
+      "falas": {
+        "acerto": [
+          "Suave, suave.",
+          "Nem precisou de força."
+        ],
+        "erro": [
+          "Leve demais. Acontece.",
+          "Quase, quase."
+        ],
+        "elogio": [
+          "Respeito.",
+          "Boa mão, hein."
+        ],
+        "provoca": [
+          "Sem pressa, parceiro.",
+          "Respira antes de bater."
+        ]
+      }
+    },
+    {
+      "id": "marquinho",
+      "num": 5,
+      "nome": "Marquinho Efeito",
+      "curto": "Marquinho",
+      "raridade": "rara",
+      "local": "Clube Recreativo",
+      "especialidade": "Efeito na branca",
+      "frase": "A branca faz o que eu mando.",
+      "atributos": {
+        "mira": 58,
+        "forca": 55,
+        "efeito": 88,
+        "nervos": 45
+      },
+      "visual": {
+        "pele": "#e8b88f",
+        "cabelo": "#6b3a1e",
+        "corte": "longo",
+        "chapeu": "bandana",
+        "chapeuCor": "#f07a1a",
+        "camisa": "#1d8a4a",
+        "roupa": "regata",
+        "expressao": "debochado",
+        "fundo": "#7fd18a"
+      },
+      "falas": {
+        "acerto": [
+          "Viu a curva?",
+          "Efeito puro."
+        ],
+        "erro": [
+          "Exagerei no efeito.",
+          "A branca não me obedeceu."
+        ],
+        "elogio": [
+          "Pô, essa foi boa!",
+          "Tá aprendendo."
+        ],
+        "provoca": [
+          "Bate embaixo, bate embaixo!",
+          "Sem efeito não tem graça."
+        ]
+      }
+    },
+    {
+      "id": "lurdes",
+      "num": 6,
+      "nome": "Professora Lurdes",
+      "curto": "Prof. Lurdes",
+      "raridade": "rara",
+      "local": "Clube Recreativo",
+      "especialidade": "Geometria",
+      "frase": "Ângulo de entrada, ângulo de saída.",
+      "atributos": {
+        "mira": 76,
+        "forca": 40,
+        "efeito": 60,
+        "nervos": 75
+      },
+      "visual": {
+        "pele": "#a8704a",
+        "cabelo": "#1d1410",
+        "corte": "curtoF",
+        "oculos": "redondo",
+        "brinco": true,
+        "camisa": "#2f5fa8",
+        "roupa": "colete",
+        "expressao": "serio",
+        "fundo": "#9fc4f0"
+      },
+      "falas": {
+        "acerto": [
+          "Exatamente como calculei.",
+          "Matemática pura."
+        ],
+        "erro": [
+          "Errei a conta. Raro.",
+          "Faltou uma casa decimal."
+        ],
+        "elogio": [
+          "Nota dez.",
+          "Muito bem, sente-se."
+        ],
+        "provoca": [
+          "Você fez a conta?",
+          "Isso cai na prova, viu?"
+        ]
+      }
+    },
+    {
+      "id": "bia",
+      "num": 7,
+      "nome": "Bia Relâmpago",
+      "curto": "Bia",
+      "raridade": "rara",
+      "local": "Torneio do Bairro",
+      "especialidade": "Velocidade",
+      "frase": "Piscou, perdeu.",
+      "atributos": {
+        "mira": 72,
+        "forca": 72,
+        "efeito": 55,
+        "nervos": 60
+      },
+      "visual": {
+        "pele": "#f1c7a0",
+        "cabelo": "#151515",
+        "corte": "rabo",
+        "chapeu": "bone",
+        "chapeuCor": "#141414",
+        "camisa": "#d6e84a",
+        "roupa": "jaqueta",
+        "brinco": true,
+        "expressao": "sorriso",
+        "fundo": "#3ff0ff"
+      },
+      "falas": {
+        "acerto": [
+          "Próxima!",
+          "Rapidinho."
+        ],
+        "erro": [
+          "Fui rápida demais.",
+          "Ops!"
+        ],
+        "elogio": [
+          "Eita, gostei!",
+          "Mandou bem!"
+        ],
+        "provoca": [
+          "Vai, vai, vai!",
+          "Tô esperando, hein."
+        ]
+      }
+    },
+    {
+      "id": "coronel",
+      "num": 8,
+      "nome": "Coronel Bigode",
+      "curto": "Coronel",
+      "raridade": "lendaria",
+      "local": "Torneio do Bairro",
+      "especialidade": "Paciência",
+      "frase": "Sinuca é paciência, rapaz.",
+      "atributos": {
+        "mira": 84,
+        "forca": 58,
+        "efeito": 66,
+        "nervos": 82
+      },
+      "visual": {
+        "pele": "#e5b48c",
+        "cabelo": "#e9e6e0",
+        "corte": "curto",
+        "bigode": "bigodao",
+        "chapeu": "panama",
+        "chapeuCor": "#efe6cf",
+        "camisa": "#f2efe6",
+        "roupa": "terno",
+        "expressao": "serio",
+        "fundo": "#c08a4a"
+      },
+      "falas": {
+        "acerto": [
+          "Como nos velhos tempos.",
+          "Hm. Previsível."
+        ],
+        "erro": [
+          "A idade, a idade.",
+          "Deixei de propósito."
+        ],
+        "elogio": [
+          "Tem futuro, rapaz.",
+          "Bela jogada."
+        ],
+        "provoca": [
+          "Pressa é coisa de amador.",
+          "Pense duas vezes."
+        ]
+      }
+    },
+    {
+      "id": "neide",
+      "num": 9,
+      "nome": "Dona Neide, Rainha da Caçapa",
+      "curto": "Dona Neide",
+      "raridade": "lendaria",
+      "local": "Grande Final",
+      "especialidade": "Caçapas impossíveis",
+      "frase": "Toda caçapa tem dona.",
+      "atributos": {
+        "mira": 89,
+        "forca": 55,
+        "efeito": 76,
+        "nervos": 86
+      },
+      "visual": {
+        "pele": "#6e4027",
+        "cabelo": "#151010",
+        "corte": "crespo",
+        "chapeu": "coroa",
+        "chapeuCor": "#f2c014",
+        "brinco": true,
+        "batom": true,
+        "camisa": "#b3122a",
+        "roupa": "vestido",
+        "expressao": "debochado",
+        "fundo": "#ff3fb4"
+      },
+      "falas": {
+        "acerto": [
+          "Essa caçapa é minha.",
+          "Majestade não erra."
+        ],
+        "erro": [
+          "Hoje eu deixo.",
+          "Foi só pra te animar."
+        ],
+        "elogio": [
+          "Hum, tem talento.",
+          "Gostei, gostei."
+        ],
+        "provoca": [
+          "Ajoelha, que é a rainha.",
+          "Tá nervoso, meu bem?"
+        ]
+      }
+    },
+    {
+      "id": "mestre",
+      "num": 10,
+      "nome": "Mestre Sete Tacos",
+      "curto": "Mestre",
+      "raridade": "lendaria",
+      "local": "Grande Final",
+      "especialidade": "Tudo",
+      "frase": "Já vi essa bola cair antes de você nascer.",
+      "atributos": {
+        "mira": 94,
+        "forca": 78,
+        "efeito": 86,
+        "nervos": 93
+      },
+      "visual": {
+        "pele": "#d7a27a",
+        "cabelo": "#f3f1ec",
+        "corte": "careca",
+        "barba": "longa",
+        "oculos": "escuro",
+        "camisa": "#121212",
+        "roupa": "camisa",
+        "expressao": "serio",
+        "fundo": "#7a1f1f",
+        "taco": true
+      },
+      "falas": {
+        "acerto": [
+          "Como sempre.",
+          "Inevitável."
+        ],
+        "erro": [
+          "Interessante.",
+          "Até o mestre tropeça."
+        ],
+        "elogio": [
+          "Você aprendeu.",
+          "Isso. Assim."
+        ],
+        "provoca": [
+          "O taco sente o seu medo.",
+          "Respire. Ou não."
+        ]
+      }
+    }
+  ],
+  "historia": {
+    "titulo": "De boteco em boteco",
+    "estrelas": [
+      "Vencer a partida",
+      "Não cometer nenhuma falta",
+      "Vencer com até {par} tacadas suas"
+    ],
+    "locais": [
+      {
+        "id": "boteco",
+        "nome": "Boteco do Zé",
+        "tema": "boteco",
+        "musica": "samba",
+        "descricao": "Onde tudo começa: mesa torta, cerveja gelada."
+      },
+      {
+        "id": "esquina",
+        "nome": "Bar da Esquina",
+        "tema": "adega",
+        "musica": "bossa",
+        "descricao": "Luz baixa, jogo fino."
+      },
+      {
+        "id": "clube",
+        "nome": "Clube Recreativo",
+        "tema": "quiosque",
+        "musica": "forro",
+        "descricao": "Sábado de forró e sinuca."
+      },
+      {
+        "id": "torneio",
+        "nome": "Torneio do Bairro",
+        "tema": "neon",
+        "musica": "lofi",
+        "descricao": "Agora vale troféu."
+      },
+      {
+        "id": "final",
+        "nome": "Grande Final",
+        "tema": "torneio",
+        "musica": "samba",
+        "descricao": "Os dois melhores da cidade te esperam."
+      }
+    ],
+    "capitulos": [
+      {
+        "id": "c1",
+        "local": "boteco",
+        "titulo": "Primeira ficha",
+        "personagem": "ze",
+        "modo": "bola8",
+        "par": 16,
+        "intro": [
+          [
+            "ele",
+            "Novo por aqui? A mesa é minha, mas hoje eu empresto."
+          ],
+          [
+            "voce",
+            "Só uma partidinha, Seu Zé."
+          ],
+          [
+            "ele",
+            "Ganhou de mim, ganha respeito no bairro."
+          ]
+        ],
+        "vitoria": "Tá bom, tá bom. Volta amanhã que o Tião quer te conhecer.",
+        "derrota": "A casa venceu! Pega uma ficha e tenta de novo."
+      },
+      {
+        "id": "c2",
+        "local": "boteco",
+        "titulo": "O braço mais forte",
+        "personagem": "tiao",
+        "modo": "bola8",
+        "par": 15,
+        "intro": [
+          [
+            "ele",
+            "Fiquei sabendo que você bateu o Zé."
+          ],
+          [
+            "voce",
+            "Foi sorte."
+          ],
+          [
+            "ele",
+            "Então reza pra sorte aguentar a minha tacada."
+          ]
+        ],
+        "vitoria": "Força não é tudo... Vai lá no Bar da Esquina. A Dona Cida vai gostar de você.",
+        "derrota": "PÁ! Volta quando tiver braço."
+      },
+      {
+        "id": "c3",
+        "local": "esquina",
+        "titulo": "Bola da vez com a vovó",
+        "personagem": "cida",
+        "modo": "bolaDaVez",
+        "par": 22,
+        "intro": [
+          [
+            "ele",
+            "Senta, querido. Aqui a gente joga bola da vez."
+          ],
+          [
+            "ele",
+            "Sempre a menor primeiro. Educação é tudo."
+          ],
+          [
+            "voce",
+            "Pode deixar, Dona Cida."
+          ]
+        ],
+        "vitoria": "Que orgulho! Toma um bolo de fubá. E cuidado com o Rafa.",
+        "derrota": "Ai, que pena! Volta outro dia que eu passo um café."
+      },
+      {
+        "id": "c4",
+        "local": "esquina",
+        "titulo": "Mão leve",
+        "personagem": "rafa",
+        "modo": "bola8",
+        "par": 14,
+        "intro": [
+          [
+            "ele",
+            "Aqui ninguém bate forte. A gente encosta."
+          ],
+          [
+            "voce",
+            "Encosta como?"
+          ],
+          [
+            "ele",
+            "Assim. Olha e aprende."
+          ]
+        ],
+        "vitoria": "Respeito. O Clube Recreativo tá precisando de sangue novo.",
+        "derrota": "Leveza, parceiro. Treina mais."
+      },
+      {
+        "id": "c5",
+        "local": "clube",
+        "titulo": "Garrafinha no clube",
+        "personagem": "marquinho",
+        "modo": "garrafinha",
+        "numeros": 3,
+        "par": 18,
+        "intro": [
+          [
+            "ele",
+            "Aqui no clube o povo gosta de garrafinha."
+          ],
+          [
+            "ele",
+            "Cada um tem 3 números secretos. Derruba os meus e protege os seus."
+          ],
+          [
+            "voce",
+            "E se eu derrubar uma minha?"
+          ],
+          [
+            "ele",
+            "Aí eu agradeço."
+          ]
+        ],
+        "vitoria": "Que isso! A Professora vai querer te testar.",
+        "derrota": "Viu a curva? A branca faz o que eu mando."
+      },
+      {
+        "id": "c6",
+        "local": "clube",
+        "titulo": "Aula de geometria",
+        "personagem": "lurdes",
+        "modo": "bolaDaVez",
+        "par": 20,
+        "intro": [
+          [
+            "ele",
+            "Toda tacada é uma equação."
+          ],
+          [
+            "voce",
+            "Eu nunca fui bom em matemática."
+          ],
+          [
+            "ele",
+            "Então hoje tem aula. Bola da vez, sem cola."
+          ]
+        ],
+        "vitoria": "Aprovado. O Torneio do Bairro está com inscrições abertas.",
+        "derrota": "Reprovado. Mas tem recuperação."
+      },
+      {
+        "id": "c7",
+        "local": "torneio",
+        "titulo": "Quartas de final",
+        "personagem": "bia",
+        "modo": "bola8",
+        "par": 13,
+        "intro": [
+          [
+            "ele",
+            "Quartas de final! Bora que eu tenho pressa."
+          ],
+          [
+            "voce",
+            "Bora."
+          ],
+          [
+            "ele",
+            "Piscou, perdeu."
+          ]
+        ],
+        "vitoria": "Uau. Ninguém me segura assim. Boa sorte com o Coronel.",
+        "derrota": "Rapidinho, né? Próximo!"
+      },
+      {
+        "id": "c8",
+        "local": "torneio",
+        "titulo": "Semifinal",
+        "personagem": "coronel",
+        "modo": "bola8",
+        "par": 13,
+        "intro": [
+          [
+            "ele",
+            "Joguei esse torneio quarenta vezes."
+          ],
+          [
+            "ele",
+            "Ganhei trinta e nove."
+          ],
+          [
+            "voce",
+            "E a outra?"
+          ],
+          [
+            "ele",
+            "Estava gripado."
+          ]
+        ],
+        "vitoria": "Hm. Rapaz de valor. A Rainha vai te receber na final.",
+        "derrota": "Paciência, rapaz. Paciência."
+      },
+      {
+        "id": "c9",
+        "local": "final",
+        "titulo": "A Rainha da Caçapa",
+        "personagem": "neide",
+        "modo": "garrafinha",
+        "numeros": 3,
+        "par": 16,
+        "intro": [
+          [
+            "ele",
+            "Então você é o famoso do bairro."
+          ],
+          [
+            "ele",
+            "Garrafinha com a Rainha. Três números cada."
+          ],
+          [
+            "voce",
+            "Pode sortear."
+          ],
+          [
+            "ele",
+            "Toda caçapa tem dona, meu bem."
+          ]
+        ],
+        "vitoria": "Ninguém tirava minha coroa há anos. O Mestre está te esperando.",
+        "derrota": "Ajoelha e volta quando estiver pronto."
+      },
+      {
+        "id": "c10",
+        "local": "final",
+        "titulo": "Sete tacos",
+        "personagem": "mestre",
+        "modo": "bola8",
+        "par": 12,
+        "intro": [
+          [
+            "ele",
+            "Sete tacos. Um para cada mesa que eu venci."
+          ],
+          [
+            "voce",
+            "Hoje é o oitavo?"
+          ],
+          [
+            "ele",
+            "Hoje é o primeiro que eu posso perder."
+          ],
+          [
+            "ele",
+            "Mostre."
+          ]
+        ],
+        "vitoria": "Pegue este taco. É seu agora. A cidade tem um novo mestre.",
+        "derrota": "Ainda não. Mas está perto."
+      }
+    ]
+  },
+  "figurinhas": {
+    "raridades": {
+      "comum": "Comum",
+      "rara": "Rara",
+      "lendaria": "Lendária"
+    },
+    "brilhante": "Ganhe as 3 estrelas no capítulo para a figurinha virar brilhante.",
+    "atributos": {
+      "mira": "Mira",
+      "forca": "Força",
+      "efeito": "Efeito",
+      "nervos": "Nervos"
+    }
+  },
+  "cpu": {
+    "pensarMs": [
+      500,
+      1200
+    ],
+    "erroMinRad": 0.002,
+    "erroMaxRad": 0.032,
+    "orcamentoMsPorQuadro": 9,
+    "candidatos": 14,
+    "chanceDeFala": 0.45
+  },
+  "torcida": {
+    "ativa": true,
+    "larguraPorPessoa": 24,
+    "gritos": {
+      "acerto": [
+        "Uhuu!",
+        "Boa!",
+        "Que bola!",
+        "Lindo!",
+        "Na caçapa!"
+      ],
+      "dupla": [
+        "Duas!",
+        "Que isso?!",
+        "Show de bola!"
+      ],
+      "falta": [
+        "Ihhh!",
+        "Buuu!",
+        "Errou feio!",
+        "Falta!"
+      ],
+      "quase": [
+        "Uuuh!",
+        "Quase!",
+        "Por pouco!",
+        "Raspou!"
+      ],
+      "erro": [
+        "Hmm...",
+        "Calma!",
+        "Vai na próxima"
+      ],
+      "vitoria": [
+        "É campeão!",
+        "Olé, olé!",
+        "Uhuuuul!",
+        "Campeão!"
+      ]
+    },
+    "reacoes": [
+      "👏",
+      "🔥",
+      "😱",
+      "😂",
+      "💪",
+      "🍺",
+      "🎉",
+      "😬"
+    ]
+  },
+  "musica": {
+    "ativa": true,
+    "volume": 0.45,
+    "modo": "todas",
+    "barrasPorFaixa": 48,
+    "faixas": [
+      {
+        "id": "samba",
+        "titulo": "Samba do Taco",
+        "estilo": "Samba",
+        "autor": "Sinuca dos Amigos",
+        "licenca": "CC0 1.0",
+        "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+      },
+      {
+        "id": "bossa",
+        "titulo": "Bossa da Madrugada",
+        "estilo": "Bossa nova",
+        "autor": "Sinuca dos Amigos",
+        "licenca": "CC0 1.0",
+        "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+      },
+      {
+        "id": "forro",
+        "titulo": "Forró da Caçapa",
+        "estilo": "Baião",
+        "autor": "Sinuca dos Amigos",
+        "licenca": "CC0 1.0",
+        "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+      },
+      {
+        "id": "lofi",
+        "titulo": "Lo-fi do Feltro",
+        "estilo": "Lo-fi",
+        "autor": "Sinuca dos Amigos",
+        "licenca": "CC0 1.0",
+        "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+      }
+    ],
+    "arquivos": []
+  },
   "controles": {
     "mira": "tocar ou arrastar na mesa aponta a tacada",
     "ajusteFinoRad": 0.003,
@@ -483,8 +1362,12 @@
     {
       "id": "home",
       "elementos": [
+        "musica",
         "logo",
+        "modoHistoria",
         "novoJogo",
+        "online",
+        "album",
         "placar",
         "temas",
         "regras"
@@ -503,6 +1386,24 @@
         "telefoneWhatsApp",
         "opcoesDoModo",
         "comecar"
+      ]
+    },
+    {
+      "id": "scrHist",
+      "elementos": [
+        "estrelas",
+        "figurinhasColetadas",
+        "locais",
+        "capitulos"
+      ]
+    },
+    {
+      "id": "scrAlbum",
+      "elementos": [
+        "contador",
+        "gradeDeFigurinhas",
+        "figurinhaAmpliada",
+        "compartilhar"
       ]
     },
     {
@@ -538,6 +1439,9 @@
         "caraOuCoroa",
         "mapaDaBola",
         "barraForca",
+        "torcida",
+        "reacoes",
+        "falaDoAdversario",
         "bolaNaMao",
         "cronometroPartida",
         "cronometroTacada"
@@ -561,7 +1465,8 @@
       "preferencias": "sinuca.prefs",
       "jogadores": "sinuca.jogadores",
       "serie": "sinuca.serie",
-      "cliente": "sinuca.cliente"
+      "cliente": "sinuca.cliente",
+      "historia": "sinuca.historia"
     }
   },
   "esquemas": {

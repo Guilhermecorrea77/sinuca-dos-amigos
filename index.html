@@ -178,7 +178,7 @@ input{font:inherit}
 .tbl td:not(:first-child),.tbl th:not(:first-child){text-align:right}
 /* online */
 #waitMsg{display:none;flex:1;align-items:center;justify-content:center;margin:0;height:52px;border-radius:14px;background:var(--panel);color:var(--muted);font-weight:600;font-size:15px;text-align:center;padding:0 10px}
-.controls.wait > :not(#waitMsg){display:none!important}
+.controls.wait > :not(#waitMsg):not(#reactBtn):not(#reactPop){display:none!important}
 .controls.wait #waitMsg{display:flex}
 .chip.me b::after{content:" •";color:var(--accent)}
 .chip.off{opacity:.55}
@@ -206,6 +206,114 @@ input{font:inherit}
 .netdot{position:absolute;right:4px;top:4px;width:9px;height:9px;border-radius:50%;background:#4cc26b;box-shadow:0 0 0 2px var(--bg)}
 .netdot.bad{background:var(--danger)}
 #btnPause{position:relative}
+/* home v3 */
+#home{gap:16px}
+.homeMus{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:12px;font-size:20px}
+.homeMus.on{background:var(--accent);color:#1a1206}
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.home-grid .btn{min-height:44px;font-size:16px}
+@media (max-height:720px){.rackdeco{display:none}}
+@media (max-height:600px){.logo{font-size:clamp(34px,9vw,52px)}.home-btns .btn{min-height:42px}#home{gap:10px}}
+/* figurinhas */
+.fig{--fc:#888;position:relative;width:15em;aspect-ratio:5/7;border-radius:1em;padding:.55em;background:linear-gradient(135deg,#f4ead2,#d8c9a4 50%,#f4ead2);color:#1d1d1b;display:flex;flex-direction:column;gap:.22em;box-shadow:0 .35em 1em rgba(0,0,0,.35);overflow:hidden;font-family:var(--body);text-align:left;line-height:1.15}
+.fig.r-rara{background:linear-gradient(135deg,#eef2f6,#9aa5b1 50%,#eef2f6)}
+.fig.r-lendaria{background:linear-gradient(135deg,#ffe17a,#c48b12 45%,#fff0b3 62%,#c48b12)}
+.fig>*{position:relative;z-index:1}
+.fig-top{display:flex;justify-content:space-between;align-items:baseline;padding:0 .15em}
+.fig-top b{font-family:var(--display);font-weight:400;font-size:1.25em;line-height:1}
+.fig-top span{font-size:.75em;font-weight:700}
+.fig-art{flex:1;min-height:0;border-radius:.6em;background:repeating-linear-gradient(135deg,rgba(255,255,255,.17) 0 .5em,transparent .5em 1.4em),var(--fc);display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
+.fig-art svg{width:88%;height:auto;max-height:100%;display:block}
+.fig-name{font-family:var(--display);font-size:.98em;line-height:1.05;margin-top:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fig-sub{font-size:.68em;color:#5a564c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fig-stats{display:grid;gap:.1em;font-size:.62em;font-weight:700}
+.fig-stats div{display:grid;grid-template-columns:3.4em 1fr 1.7em;align-items:center;gap:.4em}
+.fig-stats i{height:.6em;border-radius:1em;background:#e3dccb;overflow:hidden}
+.fig-stats i b{display:block;height:100%;background:var(--fc);filter:brightness(.72) saturate(1.2)}
+.fig-stats em{font-style:normal;text-align:right}
+.fig q{font-size:.64em;font-style:italic;color:#3a372f}
+.fig-foil{position:absolute!important;inset:0;z-index:2!important;pointer-events:none;border-radius:inherit}
+.fig.r-lendaria .fig-foil{background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.5) 47%,transparent 60%);background-size:260% 100%;animation:foil 3.6s ease-in-out infinite}
+.fig.shiny .fig-foil{background:linear-gradient(115deg,rgba(255,0,150,.2),rgba(0,220,255,.2),rgba(255,240,0,.2),rgba(120,255,120,.2),rgba(255,0,150,.2));background-size:300% 300%;animation:holo 5s linear infinite}
+@keyframes foil{0%{background-position:160% 0}60%,100%{background-position:-60% 0}}
+@keyframes holo{to{background-position:300% 300%}}
+.fig.locked{background:repeating-linear-gradient(135deg,var(--panel2) 0 .6em,var(--panel) .6em 1.2em);color:var(--muted);box-shadow:none;outline:.12em dashed var(--muted);outline-offset:-.3em}
+.fig.locked .fig-art{background:rgba(0,0,0,.22)}
+.fig.locked .fig-sub{color:var(--muted)}
+.fig-back{background:radial-gradient(circle at 50% 40%,#2a7a52,#0f3a25);display:grid;place-items:center;color:#f3e9cf;text-align:center}
+.fig-back div{display:grid;gap:.3em}.fig-back b{font-size:4em;line-height:1}.fig-back span{font-family:var(--display);font-size:1.1em}.fig-back small{font-size:.8em;opacity:.8}
+#albumGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(102px,1fr));gap:12px 8px;justify-items:center;padding:4px 0 6px}
+.figslot{font-size:6.6px;padding:0;border-radius:1em;display:block}
+.figslot:active{transform:scale(.97)}
+.figbig{font-size:min(19px,4.6vw,3vh);display:grid;place-items:center}
+.card.figcard{align-items:stretch}
+.flip{perspective:1200px;cursor:pointer}
+.flipin{position:relative;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.flip.open .flipin{transform:rotateY(180deg)}
+.flipin .ff,.flipin .fb{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flipin .ff{position:absolute;inset:0;transform:rotateY(180deg)}
+.flip:not(.open) .flipin{animation:wob 1.3s ease-in-out infinite}
+@keyframes wob{50%{transform:rotateY(-14deg) scale(1.03)}}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:20}
+.confetti i{position:absolute;top:-12px;width:8px;height:12px;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+.gtoast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(0,0,0,.85);color:#fff;padding:10px 16px;border-radius:12px;font-weight:600;z-index:50;max-width:90%;text-align:center}
+/* história */
+#histStats,#albumCount{font-weight:700;font-size:15px;white-space:nowrap}
+.venue{margin-bottom:14px}
+.vhead{display:grid;margin:4px 2px 8px}.vhead b{font-family:var(--display);font-weight:400;font-size:20px}.vhead span{color:var(--muted);font-size:14px}
+.venue.closed .vhead{opacity:.5}
+.capcard{display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:12px;width:100%;padding:10px;border-radius:14px;background:var(--panel);margin-bottom:8px;text-align:left}
+.capcard.lock{opacity:.5;cursor:default}
+.cav{display:block;border-radius:50%;overflow:hidden}.cav svg{width:100%;height:100%;display:block}
+.capcard .cav{width:56px;height:56px}
+.cinfo{display:grid;min-width:0}.cinfo small{color:var(--muted);font-size:13px}.cinfo b{font-family:var(--display);font-weight:400;font-size:17px;line-height:1.15}.cinfo em{font-style:normal;font-size:14px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cstars{white-space:nowrap}.cstars i{font-style:normal;font-size:18px;color:var(--panel2)}.cstars i.on{color:var(--accent)}
+.card.story{gap:14px}
+.vsLocal{margin:0;text-align:center;color:var(--muted);font-weight:600;font-size:14px}
+.vs{display:flex;align-items:center;justify-content:center;gap:14px}
+.vsP{display:grid;justify-items:center;gap:4px;transition:transform .2s,opacity .2s;opacity:.5}.vsP.talk{opacity:1;transform:scale(1.06)}
+.vsP .cav{width:84px;height:84px;box-shadow:0 0 0 3px var(--panel2)}.vsP.talk .cav{box-shadow:0 0 0 3px var(--accent)}
+.vsP b{font-size:15px}
+.vsX{font-family:var(--display);font-size:26px;color:var(--accent)}
+.vs.small{justify-content:flex-start}.vs.small .vsP{opacity:1;transform:none}.vs.small .cav{width:56px;height:56px}
+.bubble{background:var(--text);color:var(--bg);padding:12px 14px;border-radius:14px;font-weight:600;font-size:17px;line-height:1.25;min-height:3.4em}
+.bubble.l{border-top-left-radius:4px}.bubble.r{border-top-right-radius:4px}
+.goals{display:grid;gap:4px;padding:10px 12px;border-radius:12px;background:var(--panel2);font-size:15px}
+.goals small{color:var(--muted);font-weight:700}
+.goals span{color:var(--muted)}.goals span.on{color:var(--text)}
+.goals i{font-style:normal;color:var(--panel)}.goals .on i{color:var(--accent)}
+.goals .new{animation:pop .6s ease-out}
+@keyframes pop{0%{transform:scale(.8);opacity:0}60%{transform:scale(1.06)}100%{transform:none;opacity:1}}
+#talk{position:absolute;left:8px;bottom:8px;max-width:80%;display:flex;align-items:flex-end;gap:6px;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .25s;pointer-events:none;z-index:3}
+#talk.show{opacity:1;transform:none}
+#talk .cav{width:40px;height:40px;flex:none;box-shadow:0 0 0 2px var(--panel)}
+#talk p{margin:0;background:var(--text);color:var(--bg);padding:7px 11px;border-radius:12px 12px 12px 3px;font-weight:600;font-size:14px;line-height:1.2}
+.chip .cav{display:inline-block;width:18px;height:18px;vertical-align:-4px;margin-right:4px}
+/* torcida */
+#crowd{position:relative;flex:none;height:44px;background:linear-gradient(to bottom,transparent,rgba(0,0,0,.22))}
+#crowd[hidden]{display:none}
+#crowdCv{position:absolute;inset:0;width:100%;height:100%;display:block}
+#shout{position:absolute;bottom:calc(100% - 6px);left:50%;transform:translateX(-50%) scale(.6);background:var(--text);color:var(--bg);font-weight:700;font-size:14px;padding:4px 10px;border-radius:12px;opacity:0;pointer-events:none;white-space:nowrap;transition:transform .2s,opacity .2s;z-index:4}
+#shout.show{opacity:1;transform:translateX(-50%) scale(1)}
+.controls{position:relative}
+#reactBtn{font-size:22px}
+#reactPop{position:absolute;right:10px;bottom:calc(100% + 6px);display:none;grid-template-columns:repeat(4,46px);gap:6px;padding:8px;background:var(--panel);border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.45);z-index:6}
+#reactPop.on{display:grid}
+#reactPop button{height:46px;border-radius:10px;font-size:24px;background:var(--panel2)}
+.femoji{position:absolute;bottom:0;transform:translateX(-50%);display:grid;justify-items:center;pointer-events:none;animation:rise 2.5s ease-out forwards;z-index:4}
+.femoji b{font-size:34px;line-height:1}
+.femoji small{font-size:11px;font-weight:700;background:rgba(0,0,0,.6);color:#fff;padding:1px 6px;border-radius:8px;white-space:nowrap}
+@keyframes rise{0%{transform:translate(-50%,0) scale(.6);opacity:0}12%{opacity:1;transform:translate(-50%,-20px) scale(1.1)}100%{transform:translate(calc(-50% + 20px),calc(-1 * var(--h))) scale(1);opacity:0}}
+/* música */
+.mlist{display:grid;gap:6px}
+.mtrack{display:grid;text-align:left;padding:10px 12px;border-radius:12px;background:var(--panel2);gap:2px}
+.mtrack.on{background:var(--accent);color:#1a1206}
+.mtrack small{font-size:13px;opacity:.85}.mtrack a{color:inherit}
+.vol{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-weight:600}
+.vol input{width:100%;accent-color:var(--accent)}
+@media (max-height:480px){#crowd{display:none!important}}
+@media (prefers-reduced-motion: reduce){.fig-foil,.flipin,.femoji,#ring.low{animation:none!important}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 </head>
@@ -214,15 +322,32 @@ input{font:inherit}
 
   <!-- HOME -->
   <section class="screen on" id="home">
+    <button class="iconbtn homeMus" id="hMus" aria-label="Música">♪</button>
     <div class="logo">Sinuca<small>dos Amigos</small></div>
     <div class="rackdeco" id="rackdeco" aria-hidden="true"></div>
     <div class="home-btns">
+      <button class="btn primary" id="hHist">Modo História</button>
       <button class="btn primary" id="hPlay">Jogar neste celular</button>
       <button class="btn primary" id="hOnline">Jogar online</button>
-      <button class="btn" id="hScore">Placar da turma</button>
-      <button class="btn" id="hTheme">Temas</button>
-      <button class="btn ghost" id="hRules">Regras</button>
+      <div class="home-grid">
+        <button class="btn" id="hAlbum">Álbum</button>
+        <button class="btn" id="hScore">Placar</button>
+        <button class="btn" id="hTheme">Temas</button>
+        <button class="btn ghost" id="hRules">Regras</button>
+      </div>
     </div>
+  </section>
+
+  <!-- HISTÓRIA -->
+  <section class="screen" id="scrHist">
+    <div class="bar"><button class="iconbtn" data-go="home" aria-label="Voltar">‹</button><h2>Modo História</h2><span id="histStats"></span></div>
+    <div class="body" id="histList"></div>
+  </section>
+
+  <!-- ÁLBUM -->
+  <section class="screen" id="scrAlbum">
+    <div class="bar"><button class="iconbtn" data-go="home" aria-label="Voltar">‹</button><h2>Álbum</h2><span id="albumCount"></span></div>
+    <div class="body"><div id="albumGrid"></div><p class="note">Vença os capítulos do Modo História para colar as figurinhas. Com as 3 estrelas do capítulo, a figurinha fica brilhante.</p></div>
   </section>
 
   <!-- MODE -->
@@ -279,12 +404,15 @@ input{font:inherit}
       <span id="matchClock" aria-label="Tempo de partida"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="8" cy="9" r="6"/><path d="M8 6v3l2 1.5M6.5 1.5h3"/></svg><span id="mcTxt">00:00</span></span>
       <div id="ring" hidden aria-label="Tempo da tacada"><svg viewBox="0 0 36 36"><circle class="trk" cx="18" cy="18" r="15.5"/><circle id="ringArc" cx="18" cy="18" r="15.5"/></svg><b id="ringNum">30</b></div>
     </div>
-    <div id="stage"><div id="shotBar" hidden><i id="shotFill"></i></div><canvas id="cv"></canvas><div id="toast"></div></div>
+    <div id="stage"><div id="shotBar" hidden><i id="shotFill"></i></div><canvas id="cv"></canvas><div id="toast"></div><div id="talk" aria-live="polite"></div></div>
+    <div id="crowd" aria-hidden="true"><canvas id="crowdCv"></canvas><div id="shout"></div></div>
     <div class="controls" id="controls">
       <button class="iconbtn aimbtn spinbtn" id="spinBtn" aria-label="Onde bater na branca"><i id="spinDot"></i></button>
       <div id="power" role="slider" aria-label="Força da tacada" tabindex="0"><div id="powerFill"></div><span id="powerTxt">Arraste para a direita e solte</span></div>
       <div id="placeBar"><p>Bola na mão: toque na mesa para posicionar a branca.</p><button class="btn small primary" id="placeOk">Confirmar</button></div>
       <p id="waitMsg"></p>
+      <button class="iconbtn" id="reactBtn" aria-label="Torcer">📣</button>
+      <div id="reactPop" role="menu" aria-label="Reações"></div>
     </div>
   </section>
 
@@ -473,6 +601,882 @@ input{font:inherit}
     "escolhaAutomaticaMoedaSegundos": 20,
     "convite": "🎱 Bora jogar sinuca online! Entre na sala *{codigo}*: {link}"
   },
+  "personagens": [
+    {
+      "id": "ze",
+      "num": 1,
+      "nome": "Seu Zé do Balcão",
+      "curto": "Seu Zé",
+      "raridade": "comum",
+      "local": "Boteco do Zé",
+      "especialidade": "Dono da casa",
+      "frase": "Aqui a casa sempre ganha. Às vezes.",
+      "atributos": {
+        "mira": 34,
+        "forca": 40,
+        "efeito": 15,
+        "nervos": 50
+      },
+      "visual": {
+        "pele": "#e0ac7e",
+        "cabelo": "#cfcac0",
+        "corte": "lados",
+        "bigode": "bigodao",
+        "camisa": "#f4f1e8",
+        "roupa": "regata",
+        "expressao": "sorriso",
+        "fundo": "#f2b632"
+      },
+      "falas": {
+        "acerto": [
+          "Essa é da casa!",
+          "Trinta anos de balcão, meu filho."
+        ],
+        "erro": [
+          "Opa, escorregou o giz.",
+          "Foi o chão que mexeu."
+        ],
+        "elogio": [
+          "Olha só, sabe segurar o taco!",
+          "Essa foi bonita."
+        ],
+        "provoca": [
+          "Calma, a mesa não foge.",
+          "Quer um cafezinho pra acalmar?"
+        ]
+      }
+    },
+    {
+      "id": "tiao",
+      "num": 2,
+      "nome": "Tião Marreta",
+      "curto": "Tião",
+      "raridade": "comum",
+      "local": "Boteco do Zé",
+      "especialidade": "Força bruta",
+      "frase": "Se não entra no jeito, entra na força.",
+      "atributos": {
+        "mira": 40,
+        "forca": 92,
+        "efeito": 10,
+        "nervos": 35
+      },
+      "visual": {
+        "pele": "#8d5a3b",
+        "cabelo": "#1d1410",
+        "corte": "crespoCurto",
+        "barba": "cheia",
+        "chapeu": "bone",
+        "chapeuCor": "#d6282a",
+        "camisa": "#2f3a4a",
+        "roupa": "camiseta",
+        "expressao": "serio",
+        "fundo": "#e0573e"
+      },
+      "falas": {
+        "acerto": [
+          "PÁ! Sentiu?",
+          "Na marretada!"
+        ],
+        "erro": [
+          "Bati forte demais de novo...",
+          "Essa mesa é pequena."
+        ],
+        "elogio": [
+          "Hum. Até que foi bem.",
+          "Tá bom, tá bom."
+        ],
+        "provoca": [
+          "Bate com vontade, rapaz!",
+          "Tá com medo da branca?"
+        ]
+      }
+    },
+    {
+      "id": "cida",
+      "num": 3,
+      "nome": "Dona Cida Tabelinha",
+      "curto": "Dona Cida",
+      "raridade": "comum",
+      "local": "Bar da Esquina",
+      "especialidade": "Tabelas",
+      "frase": "Na tabela, meu filho. Sempre na tabela.",
+      "atributos": {
+        "mira": 50,
+        "forca": 30,
+        "efeito": 45,
+        "nervos": 72
+      },
+      "visual": {
+        "pele": "#f0c9a4",
+        "cabelo": "#d9d4cc",
+        "corte": "coque",
+        "oculos": "meialua",
+        "batom": true,
+        "brinco": true,
+        "camisa": "#7a4fa0",
+        "roupa": "florida",
+        "expressao": "sorriso",
+        "fundo": "#c79ad8"
+      },
+      "falas": {
+        "acerto": [
+          "Viu? Tabelinha.",
+          "Aprendi com o finado."
+        ],
+        "erro": [
+          "Ai, meus óculos.",
+          "Essa tabela me traiu."
+        ],
+        "elogio": [
+          "Que menino jeitoso!",
+          "Igualzinho meu neto."
+        ],
+        "provoca": [
+          "Quer que eu te ensine, querido?",
+          "Devagar se vai longe."
+        ]
+      }
+    },
+    {
+      "id": "rafa",
+      "num": 4,
+      "nome": "Rafa Mão Leve",
+      "curto": "Rafa",
+      "raridade": "rara",
+      "local": "Bar da Esquina",
+      "especialidade": "Toque suave",
+      "frase": "Bola lenta, caçapa certa.",
+      "atributos": {
+        "mira": 62,
+        "forca": 42,
+        "efeito": 58,
+        "nervos": 55
+      },
+      "visual": {
+        "pele": "#c68a5e",
+        "cabelo": "#2b1c14",
+        "corte": "topete",
+        "barba": "cavanhaque",
+        "camisa": "#1b1b1f",
+        "roupa": "camisa",
+        "expressao": "debochado",
+        "fundo": "#5fb3ff"
+      },
+      "falas": {
+        "acerto": [
+          "Suave, suave.",
+          "Nem precisou de força."
+        ],
+        "erro": [
+          "Leve demais. Acontece.",
+          "Quase, quase."
+        ],
+        "elogio": [
+          "Respeito.",
+          "Boa mão, hein."
+        ],
+        "provoca": [
+          "Sem pressa, parceiro.",
+          "Respira antes de bater."
+        ]
+      }
+    },
+    {
+      "id": "marquinho",
+      "num": 5,
+      "nome": "Marquinho Efeito",
+      "curto": "Marquinho",
+      "raridade": "rara",
+      "local": "Clube Recreativo",
+      "especialidade": "Efeito na branca",
+      "frase": "A branca faz o que eu mando.",
+      "atributos": {
+        "mira": 58,
+        "forca": 55,
+        "efeito": 88,
+        "nervos": 45
+      },
+      "visual": {
+        "pele": "#e8b88f",
+        "cabelo": "#6b3a1e",
+        "corte": "longo",
+        "chapeu": "bandana",
+        "chapeuCor": "#f07a1a",
+        "camisa": "#1d8a4a",
+        "roupa": "regata",
+        "expressao": "debochado",
+        "fundo": "#7fd18a"
+      },
+      "falas": {
+        "acerto": [
+          "Viu a curva?",
+          "Efeito puro."
+        ],
+        "erro": [
+          "Exagerei no efeito.",
+          "A branca não me obedeceu."
+        ],
+        "elogio": [
+          "Pô, essa foi boa!",
+          "Tá aprendendo."
+        ],
+        "provoca": [
+          "Bate embaixo, bate embaixo!",
+          "Sem efeito não tem graça."
+        ]
+      }
+    },
+    {
+      "id": "lurdes",
+      "num": 6,
+      "nome": "Professora Lurdes",
+      "curto": "Prof. Lurdes",
+      "raridade": "rara",
+      "local": "Clube Recreativo",
+      "especialidade": "Geometria",
+      "frase": "Ângulo de entrada, ângulo de saída.",
+      "atributos": {
+        "mira": 76,
+        "forca": 40,
+        "efeito": 60,
+        "nervos": 75
+      },
+      "visual": {
+        "pele": "#a8704a",
+        "cabelo": "#1d1410",
+        "corte": "curtoF",
+        "oculos": "redondo",
+        "brinco": true,
+        "camisa": "#2f5fa8",
+        "roupa": "colete",
+        "expressao": "serio",
+        "fundo": "#9fc4f0"
+      },
+      "falas": {
+        "acerto": [
+          "Exatamente como calculei.",
+          "Matemática pura."
+        ],
+        "erro": [
+          "Errei a conta. Raro.",
+          "Faltou uma casa decimal."
+        ],
+        "elogio": [
+          "Nota dez.",
+          "Muito bem, sente-se."
+        ],
+        "provoca": [
+          "Você fez a conta?",
+          "Isso cai na prova, viu?"
+        ]
+      }
+    },
+    {
+      "id": "bia",
+      "num": 7,
+      "nome": "Bia Relâmpago",
+      "curto": "Bia",
+      "raridade": "rara",
+      "local": "Torneio do Bairro",
+      "especialidade": "Velocidade",
+      "frase": "Piscou, perdeu.",
+      "atributos": {
+        "mira": 72,
+        "forca": 72,
+        "efeito": 55,
+        "nervos": 60
+      },
+      "visual": {
+        "pele": "#f1c7a0",
+        "cabelo": "#151515",
+        "corte": "rabo",
+        "chapeu": "bone",
+        "chapeuCor": "#141414",
+        "camisa": "#d6e84a",
+        "roupa": "jaqueta",
+        "brinco": true,
+        "expressao": "sorriso",
+        "fundo": "#3ff0ff"
+      },
+      "falas": {
+        "acerto": [
+          "Próxima!",
+          "Rapidinho."
+        ],
+        "erro": [
+          "Fui rápida demais.",
+          "Ops!"
+        ],
+        "elogio": [
+          "Eita, gostei!",
+          "Mandou bem!"
+        ],
+        "provoca": [
+          "Vai, vai, vai!",
+          "Tô esperando, hein."
+        ]
+      }
+    },
+    {
+      "id": "coronel",
+      "num": 8,
+      "nome": "Coronel Bigode",
+      "curto": "Coronel",
+      "raridade": "lendaria",
+      "local": "Torneio do Bairro",
+      "especialidade": "Paciência",
+      "frase": "Sinuca é paciência, rapaz.",
+      "atributos": {
+        "mira": 84,
+        "forca": 58,
+        "efeito": 66,
+        "nervos": 82
+      },
+      "visual": {
+        "pele": "#e5b48c",
+        "cabelo": "#e9e6e0",
+        "corte": "curto",
+        "bigode": "bigodao",
+        "chapeu": "panama",
+        "chapeuCor": "#efe6cf",
+        "camisa": "#f2efe6",
+        "roupa": "terno",
+        "expressao": "serio",
+        "fundo": "#c08a4a"
+      },
+      "falas": {
+        "acerto": [
+          "Como nos velhos tempos.",
+          "Hm. Previsível."
+        ],
+        "erro": [
+          "A idade, a idade.",
+          "Deixei de propósito."
+        ],
+        "elogio": [
+          "Tem futuro, rapaz.",
+          "Bela jogada."
+        ],
+        "provoca": [
+          "Pressa é coisa de amador.",
+          "Pense duas vezes."
+        ]
+      }
+    },
+    {
+      "id": "neide",
+      "num": 9,
+      "nome": "Dona Neide, Rainha da Caçapa",
+      "curto": "Dona Neide",
+      "raridade": "lendaria",
+      "local": "Grande Final",
+      "especialidade": "Caçapas impossíveis",
+      "frase": "Toda caçapa tem dona.",
+      "atributos": {
+        "mira": 89,
+        "forca": 55,
+        "efeito": 76,
+        "nervos": 86
+      },
+      "visual": {
+        "pele": "#6e4027",
+        "cabelo": "#151010",
+        "corte": "crespo",
+        "chapeu": "coroa",
+        "chapeuCor": "#f2c014",
+        "brinco": true,
+        "batom": true,
+        "camisa": "#b3122a",
+        "roupa": "vestido",
+        "expressao": "debochado",
+        "fundo": "#ff3fb4"
+      },
+      "falas": {
+        "acerto": [
+          "Essa caçapa é minha.",
+          "Majestade não erra."
+        ],
+        "erro": [
+          "Hoje eu deixo.",
+          "Foi só pra te animar."
+        ],
+        "elogio": [
+          "Hum, tem talento.",
+          "Gostei, gostei."
+        ],
+        "provoca": [
+          "Ajoelha, que é a rainha.",
+          "Tá nervoso, meu bem?"
+        ]
+      }
+    },
+    {
+      "id": "mestre",
+      "num": 10,
+      "nome": "Mestre Sete Tacos",
+      "curto": "Mestre",
+      "raridade": "lendaria",
+      "local": "Grande Final",
+      "especialidade": "Tudo",
+      "frase": "Já vi essa bola cair antes de você nascer.",
+      "atributos": {
+        "mira": 94,
+        "forca": 78,
+        "efeito": 86,
+        "nervos": 93
+      },
+      "visual": {
+        "pele": "#d7a27a",
+        "cabelo": "#f3f1ec",
+        "corte": "careca",
+        "barba": "longa",
+        "oculos": "escuro",
+        "camisa": "#121212",
+        "roupa": "camisa",
+        "expressao": "serio",
+        "fundo": "#7a1f1f",
+        "taco": true
+      },
+      "falas": {
+        "acerto": [
+          "Como sempre.",
+          "Inevitável."
+        ],
+        "erro": [
+          "Interessante.",
+          "Até o mestre tropeça."
+        ],
+        "elogio": [
+          "Você aprendeu.",
+          "Isso. Assim."
+        ],
+        "provoca": [
+          "O taco sente o seu medo.",
+          "Respire. Ou não."
+        ]
+      }
+    }
+  ],
+  "historia": {
+    "titulo": "De boteco em boteco",
+    "estrelas": [
+      "Vencer a partida",
+      "Não cometer nenhuma falta",
+      "Vencer com até {par} tacadas suas"
+    ],
+    "locais": [
+      {
+        "id": "boteco",
+        "nome": "Boteco do Zé",
+        "tema": "boteco",
+        "musica": "samba",
+        "descricao": "Onde tudo começa: mesa torta, cerveja gelada."
+      },
+      {
+        "id": "esquina",
+        "nome": "Bar da Esquina",
+        "tema": "adega",
+        "musica": "bossa",
+        "descricao": "Luz baixa, jogo fino."
+      },
+      {
+        "id": "clube",
+        "nome": "Clube Recreativo",
+        "tema": "quiosque",
+        "musica": "forro",
+        "descricao": "Sábado de forró e sinuca."
+      },
+      {
+        "id": "torneio",
+        "nome": "Torneio do Bairro",
+        "tema": "neon",
+        "musica": "lofi",
+        "descricao": "Agora vale troféu."
+      },
+      {
+        "id": "final",
+        "nome": "Grande Final",
+        "tema": "torneio",
+        "musica": "samba",
+        "descricao": "Os dois melhores da cidade te esperam."
+      }
+    ],
+    "capitulos": [
+      {
+        "id": "c1",
+        "local": "boteco",
+        "titulo": "Primeira ficha",
+        "personagem": "ze",
+        "modo": "bola8",
+        "par": 16,
+        "intro": [
+          [
+            "ele",
+            "Novo por aqui? A mesa é minha, mas hoje eu empresto."
+          ],
+          [
+            "voce",
+            "Só uma partidinha, Seu Zé."
+          ],
+          [
+            "ele",
+            "Ganhou de mim, ganha respeito no bairro."
+          ]
+        ],
+        "vitoria": "Tá bom, tá bom. Volta amanhã que o Tião quer te conhecer.",
+        "derrota": "A casa venceu! Pega uma ficha e tenta de novo."
+      },
+      {
+        "id": "c2",
+        "local": "boteco",
+        "titulo": "O braço mais forte",
+        "personagem": "tiao",
+        "modo": "bola8",
+        "par": 15,
+        "intro": [
+          [
+            "ele",
+            "Fiquei sabendo que você bateu o Zé."
+          ],
+          [
+            "voce",
+            "Foi sorte."
+          ],
+          [
+            "ele",
+            "Então reza pra sorte aguentar a minha tacada."
+          ]
+        ],
+        "vitoria": "Força não é tudo... Vai lá no Bar da Esquina. A Dona Cida vai gostar de você.",
+        "derrota": "PÁ! Volta quando tiver braço."
+      },
+      {
+        "id": "c3",
+        "local": "esquina",
+        "titulo": "Bola da vez com a vovó",
+        "personagem": "cida",
+        "modo": "bolaDaVez",
+        "par": 22,
+        "intro": [
+          [
+            "ele",
+            "Senta, querido. Aqui a gente joga bola da vez."
+          ],
+          [
+            "ele",
+            "Sempre a menor primeiro. Educação é tudo."
+          ],
+          [
+            "voce",
+            "Pode deixar, Dona Cida."
+          ]
+        ],
+        "vitoria": "Que orgulho! Toma um bolo de fubá. E cuidado com o Rafa.",
+        "derrota": "Ai, que pena! Volta outro dia que eu passo um café."
+      },
+      {
+        "id": "c4",
+        "local": "esquina",
+        "titulo": "Mão leve",
+        "personagem": "rafa",
+        "modo": "bola8",
+        "par": 14,
+        "intro": [
+          [
+            "ele",
+            "Aqui ninguém bate forte. A gente encosta."
+          ],
+          [
+            "voce",
+            "Encosta como?"
+          ],
+          [
+            "ele",
+            "Assim. Olha e aprende."
+          ]
+        ],
+        "vitoria": "Respeito. O Clube Recreativo tá precisando de sangue novo.",
+        "derrota": "Leveza, parceiro. Treina mais."
+      },
+      {
+        "id": "c5",
+        "local": "clube",
+        "titulo": "Garrafinha no clube",
+        "personagem": "marquinho",
+        "modo": "garrafinha",
+        "numeros": 3,
+        "par": 18,
+        "intro": [
+          [
+            "ele",
+            "Aqui no clube o povo gosta de garrafinha."
+          ],
+          [
+            "ele",
+            "Cada um tem 3 números secretos. Derruba os meus e protege os seus."
+          ],
+          [
+            "voce",
+            "E se eu derrubar uma minha?"
+          ],
+          [
+            "ele",
+            "Aí eu agradeço."
+          ]
+        ],
+        "vitoria": "Que isso! A Professora vai querer te testar.",
+        "derrota": "Viu a curva? A branca faz o que eu mando."
+      },
+      {
+        "id": "c6",
+        "local": "clube",
+        "titulo": "Aula de geometria",
+        "personagem": "lurdes",
+        "modo": "bolaDaVez",
+        "par": 20,
+        "intro": [
+          [
+            "ele",
+            "Toda tacada é uma equação."
+          ],
+          [
+            "voce",
+            "Eu nunca fui bom em matemática."
+          ],
+          [
+            "ele",
+            "Então hoje tem aula. Bola da vez, sem cola."
+          ]
+        ],
+        "vitoria": "Aprovado. O Torneio do Bairro está com inscrições abertas.",
+        "derrota": "Reprovado. Mas tem recuperação."
+      },
+      {
+        "id": "c7",
+        "local": "torneio",
+        "titulo": "Quartas de final",
+        "personagem": "bia",
+        "modo": "bola8",
+        "par": 13,
+        "intro": [
+          [
+            "ele",
+            "Quartas de final! Bora que eu tenho pressa."
+          ],
+          [
+            "voce",
+            "Bora."
+          ],
+          [
+            "ele",
+            "Piscou, perdeu."
+          ]
+        ],
+        "vitoria": "Uau. Ninguém me segura assim. Boa sorte com o Coronel.",
+        "derrota": "Rapidinho, né? Próximo!"
+      },
+      {
+        "id": "c8",
+        "local": "torneio",
+        "titulo": "Semifinal",
+        "personagem": "coronel",
+        "modo": "bola8",
+        "par": 13,
+        "intro": [
+          [
+            "ele",
+            "Joguei esse torneio quarenta vezes."
+          ],
+          [
+            "ele",
+            "Ganhei trinta e nove."
+          ],
+          [
+            "voce",
+            "E a outra?"
+          ],
+          [
+            "ele",
+            "Estava gripado."
+          ]
+        ],
+        "vitoria": "Hm. Rapaz de valor. A Rainha vai te receber na final.",
+        "derrota": "Paciência, rapaz. Paciência."
+      },
+      {
+        "id": "c9",
+        "local": "final",
+        "titulo": "A Rainha da Caçapa",
+        "personagem": "neide",
+        "modo": "garrafinha",
+        "numeros": 3,
+        "par": 16,
+        "intro": [
+          [
+            "ele",
+            "Então você é o famoso do bairro."
+          ],
+          [
+            "ele",
+            "Garrafinha com a Rainha. Três números cada."
+          ],
+          [
+            "voce",
+            "Pode sortear."
+          ],
+          [
+            "ele",
+            "Toda caçapa tem dona, meu bem."
+          ]
+        ],
+        "vitoria": "Ninguém tirava minha coroa há anos. O Mestre está te esperando.",
+        "derrota": "Ajoelha e volta quando estiver pronto."
+      },
+      {
+        "id": "c10",
+        "local": "final",
+        "titulo": "Sete tacos",
+        "personagem": "mestre",
+        "modo": "bola8",
+        "par": 12,
+        "intro": [
+          [
+            "ele",
+            "Sete tacos. Um para cada mesa que eu venci."
+          ],
+          [
+            "voce",
+            "Hoje é o oitavo?"
+          ],
+          [
+            "ele",
+            "Hoje é o primeiro que eu posso perder."
+          ],
+          [
+            "ele",
+            "Mostre."
+          ]
+        ],
+        "vitoria": "Pegue este taco. É seu agora. A cidade tem um novo mestre.",
+        "derrota": "Ainda não. Mas está perto."
+      }
+    ]
+  },
+  "figurinhas": {
+    "raridades": {
+      "comum": "Comum",
+      "rara": "Rara",
+      "lendaria": "Lendária"
+    },
+    "brilhante": "Ganhe as 3 estrelas no capítulo para a figurinha virar brilhante.",
+    "atributos": {
+      "mira": "Mira",
+      "forca": "Força",
+      "efeito": "Efeito",
+      "nervos": "Nervos"
+    }
+  },
+  "cpu": {
+    "pensarMs": [500, 1200],
+    "erroMinRad": 0.002,
+    "erroMaxRad": 0.032,
+    "orcamentoMsPorQuadro": 9,
+    "candidatos": 14,
+    "chanceDeFala": 0.45
+  },
+  "torcida": {
+    "ativa": true,
+    "larguraPorPessoa": 24,
+    "gritos": {
+      "acerto": [
+        "Uhuu!",
+        "Boa!",
+        "Que bola!",
+        "Lindo!",
+        "Na caçapa!"
+      ],
+      "dupla": [
+        "Duas!",
+        "Que isso?!",
+        "Show de bola!"
+      ],
+      "falta": [
+        "Ihhh!",
+        "Buuu!",
+        "Errou feio!",
+        "Falta!"
+      ],
+      "quase": [
+        "Uuuh!",
+        "Quase!",
+        "Por pouco!",
+        "Raspou!"
+      ],
+      "erro": [
+        "Hmm...",
+        "Calma!",
+        "Vai na próxima"
+      ],
+      "vitoria": [
+        "É campeão!",
+        "Olé, olé!",
+        "Uhuuuul!",
+        "Campeão!"
+      ]
+    },
+    "reacoes": [
+      "👏",
+      "🔥",
+      "😱",
+      "😂",
+      "💪",
+      "🍺",
+      "🎉",
+      "😬"
+    ]
+  },
+  "musica": {
+    "ativa": true,
+    "volume": 0.45,
+    "modo": "todas",
+    "barrasPorFaixa": 48,
+    "faixas": [
+      {
+        "id": "samba",
+        "titulo": "Samba do Taco",
+        "estilo": "Samba",
+        "autor": "Sinuca dos Amigos",
+        "licenca": "CC0 1.0",
+        "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+      },
+      {
+        "id": "bossa",
+        "titulo": "Bossa da Madrugada",
+        "estilo": "Bossa nova",
+        "autor": "Sinuca dos Amigos",
+        "licenca": "CC0 1.0",
+        "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+      },
+      {
+        "id": "forro",
+        "titulo": "Forró da Caçapa",
+        "estilo": "Baião",
+        "autor": "Sinuca dos Amigos",
+        "licenca": "CC0 1.0",
+        "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+      },
+      {
+        "id": "lofi",
+        "titulo": "Lo-fi do Feltro",
+        "estilo": "Lo-fi",
+        "autor": "Sinuca dos Amigos",
+        "licenca": "CC0 1.0",
+        "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+      }
+    ],
+    "arquivos": []
+  },
   "controles": {
     "mira": "tocar ou arrastar na mesa aponta a tacada",
     "ajusteFinoRad": 0.003,
@@ -496,16 +1500,18 @@ input{font:inherit}
     "revelarNumerosGarrafinha": true
   },
   "telas": [
-    { "id": "home", "elementos": ["logo", "novoJogo", "placar", "temas", "regras"] },
+    { "id": "home", "elementos": ["musica", "logo", "modoHistoria", "novoJogo", "online", "album", "placar", "temas", "regras"] },
     { "id": "scrModo", "elementos": ["listaModos"] },
     { "id": "scrJog", "elementos": ["listaJogadores", "telefoneWhatsApp", "opcoesDoModo", "comecar"] },
+    { "id": "scrHist", "elementos": ["estrelas", "figurinhasColetadas", "locais", "capitulos"] },
+    { "id": "scrAlbum", "elementos": ["contador", "gradeDeFigurinhas", "figurinhaAmpliada", "compartilhar"] },
     { "id": "scrOnline", "elementos": ["seuNome", "seuWhatsApp", "criarSala", "codigoDaSala", "entrar"] },
     { "id": "scrSala", "elementos": ["codigo", "convidarWhatsApp", "copiarLink", "listaJogadores", "trocarJogo", "opcoesDoModo", "comecar"] },
-    { "id": "game", "elementos": ["menu", "chipsJogadores", "verNumeros", "status", "mesa", "caraOuCoroa", "mapaDaBola", "barraForca", "bolaNaMao", "cronometroPartida", "cronometroTacada"] },
+    { "id": "game", "elementos": ["menu", "chipsJogadores", "verNumeros", "status", "mesa", "caraOuCoroa", "mapaDaBola", "barraForca", "torcida", "reacoes", "falaDoAdversario", "bolaNaMao", "cronometroPartida", "cronometroTacada"] },
     { "id": "overlays", "elementos": ["pausa", "temas", "regras", "passarCelular", "fimDeJogo", "enviarPlacar", "placarDaTurma"] }
   ],
   "armazenamento": {
-    "chaves": { "preferencias": "sinuca.prefs", "jogadores": "sinuca.jogadores", "serie": "sinuca.serie", "cliente": "sinuca.cliente" }
+    "chaves": { "preferencias": "sinuca.prefs", "jogadores": "sinuca.jogadores", "serie": "sinuca.serie", "cliente": "sinuca.cliente", "historia": "sinuca.historia" }
   },
   "esquemas": {
     "jogador": { "nome": "string", "telefone": "string (só dígitos, com DDI)", "pts": "number", "vivo": "boolean", "nums": "number[] (garrafinha)", "equipe": "0|1 (bola 8)" },
@@ -566,20 +1572,22 @@ const qs = new URLSearchParams(location.search);
 let CID = store.get(K.cliente, null); if (!CID){ CID = Math.random().toString(36).slice(2, 12); store.set(K.cliente, CID); }
 let NET = null, gidN = 0;
 const isHost = () => !NET || NET.role === 'host';
-const myTurn = () => !NET || (!!G && G.cur === NET.me);
+const isCpuTurn = () => !NET && !!G && !!G.players && !!G.players[G.cur] && !!G.players[G.cur].cpu;
+const myTurn = () => NET ? (!!G && G.cur === NET.me) : !isCpuTurn();
+const humanSeat = () => NET ? NET.me : (G && G.hs != null ? G.hs : Math.max(0, (G && G.players ? G.players.findIndex(p => !p.cpu) : 0)));
 const clamp = (v, a, b) => Math.max(a, Math.min(b, +v || 0));
 let setup = { online: false, modo: 'bola8', jogadores: store.get(K.jogadores, [{nome:'Jogador 1',telefone:''},{nome:'Jogador 2',telefone:''}]), numeros: MODECFG.garrafinha.opcoes.numerosPorJogador.padrao, inicio: 0 };
 
 /* ================= THEME ================= */
 const VARMAP = { fundo:'--bg', painel:'--panel', painel2:'--panel2', texto:'--text', suave:'--muted', destaque:'--accent', feltro:'--felt', feltro2:'--felt2', madeira:'--wood', madeira2:'--wood2', cacapa:'--pocket', mira:'--aim' };
 let TH = {};
-function applyTheme(id){
+function applyTheme(id, temp){
   const t = CFG.temas.find(x => x.id === id) || CFG.temas[0];
-  prefs.tema = t.id; TH = t.cores;
+  if (!temp) prefs.tema = t.id; TH = t.cores;
   const rs = document.documentElement.style;
   for (const k in VARMAP) rs.setProperty(VARMAP[k], t.cores[k]);
   document.querySelector('meta[name=theme-color]').content = t.cores.fundo;
-  store.set(K.preferencias, prefs);
+  if (!temp) store.set(K.preferencias, prefs);
 }
 applyTheme(prefs.tema);
 
@@ -724,12 +1732,12 @@ function rack(){
 function afterStart(){
   if (!G || G.phase !== 'coin') return;
   closeOv(); G.turnoT = G.relogio;
-  if (G.modo === 'garrafinha' && !NET){ G.phase = 'deal'; dealFlow(0); return; }
+  if (G.modo === 'garrafinha' && !NET && !G.story){ G.phase = 'deal'; dealFlow(0); return; }
   G.phase = 'aim'; hud();
   const msg = `${G.players[G.cur].nome} começa`; toast(msg); sendState(null, msg);
   if (G.modo === 'garrafinha') myNumsCard();
 }
-function myNumsCard(){ const p = G.players[NET ? NET.me : G.cur]; if (p) passCard('Seus números', 'Só você vê. Derrube as bolas dos outros e proteja as suas.', p, 'Entendi', closeOv, true); }
+function myNumsCard(){ const p = G.players[humanSeat()]; if (p) passCard('Seus números', 'Só você vê. Derrube as bolas dos outros e proteja as suas.', p, 'Entendi', closeOv, true); }
 const COIN_CARA = '<svg viewBox="0 0 60 60" fill="currentColor"><path d="M34 8c-9 0-16 7-16 16 0 3 1 5 1 7l-5 8 5 2v6c0 3 2 5 5 5h6v6h16V44c5-4 8-10 8-17C54 16 45 8 34 8z" opacity=".85"/></svg>';
 function sides(){
   // returns two sides [{nome, idx}] for 2 players or 2 teams, else null
@@ -753,8 +1761,10 @@ function startPicker(){
   coinShow(m);
 }
 function coinShow(m){
-  const F = CFG.inicio.faces, chooser = m.sides[m.ch], can = !NET || sideHas(chooser, NET.me);
+  const F = CFG.inicio.faces, chooser = m.sides[m.ch], cpuPick = !NET && G.players.length === 2 && !!(G.players[chooser.idx] || {}).cpu;
+  const can = !cpuPick && (!NET || sideHas(chooser, NET.me));
   const who = esc(chooser.nome);
+  if (cpuPick) setTimeout(() => coinResolve(Math.random() < 0.5 ? 'cara' : 'coroa'), 1300);
   openOv(`<h3>Cara ou coroa</h3><p style="margin:0">${can ? `<b>${NET ? 'Você' : who}</b>, escolha seu lado. Quem acertar começa.` : `<b>${who}</b> está escolhendo o lado. Quem acertar começa.`}</p>
     <div class="coinStage"><div class="coinJump" id="cj"><div class="coin" id="coin">
       <div class="f">${COIN_CARA}<span>${esc(F.cara)}</span></div>
@@ -823,15 +1833,18 @@ function drawAnimate(win){
   };
   tick();
 }
-function newGame(){
-  const m = MODECFG[setup.modo];
+function newGame(opts = {}){
+  const m = MODECFG[setup.modo]; AI = null;
   G = {
     gid: ++gidN, modo: setup.modo, cfg: m,
-    players: setup.jogadores.map((p, i) => ({ nome: p.nome, telefone: p.telefone, pts: 0, vivo: true, off: false, nums: [], equipe: m.jogadores.equipes ? i % 2 : i })),
+    players: setup.jogadores.map((p, i) => ({ nome: p.nome, telefone: p.telefone, cpu: p.cpu || null, pts: 0, vivo: true, off: false, nums: [], equipe: m.jogadores.equipes ? i % 2 : i })),
     cur: setup.inicio % setup.jogadores.length, balls: [], phase: 'aim', aim: 0, power: 0, shot: null,
     grupos: [null, null], quebra: true, tacadas: 0, numeros: setup.numeros,
-    tempo: 0, relogio: prefs.relogio, turnoT: prefs.relogio, spin: { x: 0, y: 0 }
+    tempo: 0, relogio: opts.story ? 0 : prefs.relogio, turnoT: opts.story ? 0 : prefs.relogio, spin: { x: 0, y: 0 },
+    story: opts.story || null, storyFouls: 0, humanShots: 0
   };
+  G.hs = Math.max(0, G.players.findIndex(p => !p.cpu));
+  $('#talk').classList.remove('show');
   rack();
   MODES[G.modo].init(G);
   show('game'); G.phase = 'coin'; hud(); spinUI(); clockUI(true);
@@ -913,7 +1926,7 @@ const MODES = {
     alive(p){ return p.nums.some(n => !isDown(n)); },
     legal(){ return true; },
     rest(p){ return !isHost() && p.rest != null ? p.rest : p.nums.filter(n => !isDown(n)).length; },
-    target(){ const p = G.players[G.cur], r = this.rest(p); return `${NET && !myTurn() ? 'tem' : 'você ainda tem'} ${r} bola${r === 1 ? '' : 's'} na mesa`; },
+    target(){ const p = G.players[G.cur], r = this.rest(p); return `${!myTurn() ? 'tem' : 'você ainda tem'} ${r} bola${r === 1 ? '' : 's'} na mesa`; },
     chip(i){ const p = G.players[i]; return p.vivo ? `${p.pts} pts, ${this.rest(p)}🎱` : 'fora'; },
     resolve(s){
       const o = MODECFG.garrafinha.opcoes, me = G.players[G.cur];
@@ -954,14 +1967,14 @@ const MODES = {
 /* ================= HUD ================= */
 function hud(){
   const md = MODES[G.modo];
-  $('#chips').innerHTML = G.players.map((p, i) => `<div class="chip${i === G.cur ? ' cur' : ''}${p.vivo ? '' : ' out'}${p.off ? ' off' : ''}${NET && i === NET.me ? ' me' : ''}"><b>${esc(p.nome)}</b><span>${md.chip(i)}</span></div>`).join('');
-  const cp = G.players[G.cur] || { nome: '' }, mine = NET && myTurn();
+  $('#chips').innerHTML = G.players.map((p, i) => `<div class="chip${i === G.cur ? ' cur' : ''}${p.vivo ? '' : ' out'}${p.off ? ' off' : ''}${NET && i === NET.me ? ' me' : ''}"><b>${p.cpu && CHAR[p.cpu] ? `<span class="cav">${avatarSVG(CHAR[p.cpu].visual, { bg: true })}</span>` : ''}${esc(p.nome)}</b><span>${md.chip(i)}</span></div>`).join('');
+  const cp = G.players[G.cur] || { nome: '' }, mine = (NET || G.story) && myTurn();
   $('#statusTxt').innerHTML = G.phase === 'over' ? 'Fim de jogo' : G.phase === 'coin' ? 'Sorteando quem começa' : `${mine ? '<b>Sua vez</b>' : `Vez de <b>${esc(cp.nome)}</b>`}: ${esc(md.target())}`;
   $('#btnPeek').hidden = G.modo !== 'garrafinha' || (NET && !G.players[NET.me]);
   $('#controls').classList.toggle('placing', G.phase === 'place');
-  const wait = !!NET && (!myTurn() || G.phase === 'coin' || G.phase === 'over');
+  const wait = (!!NET || !!G.story) && (!myTurn() || G.phase === 'coin' || G.phase === 'over');
   $('#controls').classList.toggle('wait', wait);
-  $('#waitMsg').textContent = G.phase === 'over' ? 'Fim de jogo' : G.phase === 'coin' ? 'Sorteando quem começa...' : `Aguardando ${cp.nome} jogar${cp.off ? ' (offline)' : ''}...`;
+  $('#waitMsg').textContent = G.phase === 'over' ? 'Fim de jogo' : G.phase === 'coin' ? 'Sorteando quem começa...' : cp.cpu ? `${cp.nome} está jogando...` : `Aguardando ${cp.nome} jogar${cp.off ? ' (offline)' : ''}...`;
   $('#netDot').hidden = !NET;
 }
 let toastT = 0;
@@ -986,7 +1999,7 @@ function dealFlow(i){
 }
 $('#btnPeek').onclick = () => {
   if (!G || (G.phase === 'moving' && !NET)) return;
-  if (NET){ const me = G.players[NET.me]; if (me) passCard('Seus números', 'Só você vê.', me, 'Voltar ao jogo', closeOv, true); return; }
+  if (NET || G.story){ const me = G.players[humanSeat()]; if (me) passCard('Seus números', 'Só você vê.', me, 'Voltar ao jogo', closeOv, true); return; }
   const p = G.players[G.cur];
   passCard(`Números de ${p.nome}`, 'Esconda a tela dos outros jogadores.', p, 'Voltar ao jogo', closeOv);
 };
@@ -998,18 +2011,21 @@ function pauseMenu(){
     <button class="btn primary" id="pmBack">Continuar</button>
     <div class="row"><button class="btn" id="pmTheme">Temas</button><button class="btn" id="pmRules">Regras</button></div>
     <button class="btn" id="pmOri">Mesa: ${CFG.orientacao.opcoes.find(o => o.id === prefs.orientacao).nome}</button>
-    <div class="row"><button class="btn" id="pmSound">Som: ${prefs.som ? 'ligado' : 'desligado'}</button>${isHost() ? '<button class="btn" id="pmRestart">Reiniciar</button>' : ''}</div>
+    <div class="row"><button class="btn" id="pmSound">Som: ${prefs.som ? 'ligado' : 'desligado'}</button><button class="btn" id="pmMus">Música</button></div>
+    <div class="row"><button class="btn" id="pmCrowd">Torcida: ${crowdOn() ? 'ligada' : 'desligada'}</button>${isHost() ? '<button class="btn" id="pmRestart">Reiniciar</button>' : ''}</div>
     ${NET ? `<p class="note" style="margin:0;text-align:center">Sala ${esc(NET.code)}. O jogo continua enquanto este menu está aberto.</p>` : ''}
     ${NET && NET.role === 'host' ? '<button class="btn" id="pmLobby">Voltar para a sala</button>' : ''}
-    <button class="btn ghost" id="pmExit">${NET ? (NET.role === 'host' ? 'Fechar a sala' : 'Sair da sala') : 'Sair para o menu'}</button>`);
+    <button class="btn ghost" id="pmExit">${NET ? (NET.role === 'host' ? 'Fechar a sala' : 'Sair da sala') : G && G.story ? 'Voltar ao mapa' : 'Sair para o menu'}</button>`);
   $('#pmBack').onclick = closeOv;
   $('#pmTheme').onclick = () => themeModal(pauseMenu);
   $('#pmRules').onclick = () => rulesModal(G.modo, pauseMenu);
   $('#pmOri').onclick = () => { const o = CFG.orientacao.opcoes, i = o.findIndex(x => x.id === prefs.orientacao); prefs.orientacao = o[(i + 1) % o.length].id; store.set(K.preferencias, prefs); resize(); pauseMenu(); };
   $('#pmSound').onclick = () => { prefs.som = !prefs.som; store.set(K.preferencias, prefs); pauseMenu(); };
-  if ($('#pmRestart')) $('#pmRestart').onclick = () => { closeOv(); NET ? hostStartGame() : newGame(); };
+  $('#pmMus').onclick = () => musicModal(pauseMenu);
+  $('#pmCrowd').onclick = () => { prefs.torcida = !crowdOn(); store.set(K.preferencias, prefs); crowdApply(); pauseMenu(); };
+  if ($('#pmRestart')) $('#pmRestart').onclick = () => { closeOv(); NET ? hostStartGame() : G && G.story ? storyStart(G.story.idx) : newGame(); };
   if ($('#pmLobby')) $('#pmLobby').onclick = hostToLobby;
-  $('#pmExit').onclick = () => { if (!NET){ closeOv(); G = null; show('home'); return; } confirmLeave(pauseMenu); };
+  $('#pmExit').onclick = () => { if (G && G.story) return storyExit(true); if (!NET){ closeOv(); G = null; show('home'); return; } confirmLeave(pauseMenu); };
 }
 
 /* ================= SOUND ================= */
@@ -1113,29 +2129,30 @@ const POCKETS = [
 const inHMouth = x => x < CP.canto.boca || x > W - CP.canto.boca || Math.abs(x - W / 2) < CP.meio.boca;
 const inVMouth = y => y < CP.canto.boca || y > H - CP.canto.boca;
 
-function pocket(b){
+function pocket(b, shot, loud){
   b.down = true; b.vx = b.vy = 0;
-  if (b.n === 0) G.shot.cueDown = true; else G.shot.pots.push(b.n);
-  snd(0.25, 180);
+  if (b.n === 0) shot.cueDown = true; else shot.pots.push(b.n);
+  if (loud) snd(0.25, 180);
 }
 function english(b){
   if (b.n !== 0 || !b.spinX) return;
   const a = b.spinX * CFG.efeito.lateral, c = Math.cos(a), s = Math.sin(a);
   const vx = b.vx * c - b.vy * s, vy = b.vx * s + b.vy * c; b.vx = vx; b.vy = vy; b.spinX *= 0.5;
 }
-function physics(){
+function physics(){ return stepPhysics(G.balls, G.shot, true); }
+function stepPhysics(balls, shot, loud){
   const S = PH.subpassos, e = PH.restituicaoTabela, eb = PH.restituicaoBolas;
-  const live = G.balls.filter(b => !b.down);
+  const live = balls.filter(b => !b.down), snd2 = loud ? snd : () => {};
   for (let s = 0; s < S; s++){
     for (const b of live){
       if (b.down) continue;
       b.x += b.vx / S; b.y += b.vy / S;
-      if (b.y < R && !inHMouth(b.x)){ b.y = R; b.vy = -b.vy * e; english(b); snd(Math.abs(b.vy) / 40, 420); }
-      if (b.y > H - R && !inHMouth(b.x)){ b.y = H - R; b.vy = -b.vy * e; english(b); snd(Math.abs(b.vy) / 40, 420); }
-      if (b.x < R && !inVMouth(b.y)){ b.x = R; b.vx = -b.vx * e; english(b); snd(Math.abs(b.vx) / 40, 420); }
-      if (b.x > W - R && !inVMouth(b.y)){ b.x = W - R; b.vx = -b.vx * e; english(b); snd(Math.abs(b.vx) / 40, 420); }
-      for (const p of POCKETS){ const dx = b.x - p.x, dy = b.y - p.y; if (dx * dx + dy * dy < p.r * p.r){ pocket(b); break; } }
-      if (!b.down && (b.x < -R || b.x > W + R || b.y < -R || b.y > H + R)) pocket(b);
+      if (b.y < R && !inHMouth(b.x)){ b.y = R; b.vy = -b.vy * e; english(b); snd2(Math.abs(b.vy) / 40, 420); }
+      if (b.y > H - R && !inHMouth(b.x)){ b.y = H - R; b.vy = -b.vy * e; english(b); snd2(Math.abs(b.vy) / 40, 420); }
+      if (b.x < R && !inVMouth(b.y)){ b.x = R; b.vx = -b.vx * e; english(b); snd2(Math.abs(b.vx) / 40, 420); }
+      if (b.x > W - R && !inVMouth(b.y)){ b.x = W - R; b.vx = -b.vx * e; english(b); snd2(Math.abs(b.vx) / 40, 420); }
+      for (const p of POCKETS){ const dx = b.x - p.x, dy = b.y - p.y; if (dx * dx + dy * dy < p.r * p.r){ pocket(b, shot, loud); break; } }
+      if (!b.down && (b.x < -R || b.x > W + R || b.y < -R || b.y > H + R)) pocket(b, shot, loud);
     }
     for (let i = 0; i < live.length; i++){
       const a = live[i]; if (a.down) continue;
@@ -1152,8 +2169,8 @@ function physics(){
           const jj = rel * (1 + eb) / 2;
           a.vx -= jj * nx; a.vy -= jj * ny; b.vx += jj * nx; b.vy += jj * ny;
           if (pre){ cue.hitDone = true; if (cue.spinY){ const k = cue.spinY * CFG.efeito.seguimento; cue.vx += pre.vx * k; cue.vy += pre.vy * k; } cue.spinY = 0; }
-          snd(rel / 25, 1100);
-          if (G.shot.firstHit == null){ if (a.n === 0) G.shot.firstHit = b.n; else if (b.n === 0) G.shot.firstHit = a.n; }
+          snd2(rel / 25, 1100);
+          if (shot.firstHit == null){ if (a.n === 0) shot.firstHit = b.n; else if (b.n === 0) shot.firstHit = a.n; }
         }
       }
     }
@@ -1184,22 +2201,38 @@ function shoot(){
   c.spinX = G.spin.x; c.spinY = G.spin.y; c.hitDone = false;
   if (CFG.efeito.resetarAposTacada){ G.spin = { x: 0, y: 0 }; spinUI(); }
   G.shotLow = lowest(); G.tacadas++;
+  G.shotStart = G.balls.map(b => [b.x, b.y]);
+  if (G.story && G.cur === humanSeat()) G.humanShots++;
   snd(0.1 + G.power * 0.2, 700);
   G.phase = 'moving'; G.power = 0; updatePower();
   if (NET){ netFrame = 0; hud(); sendState(); }
 }
+function nearMiss(){
+  if (!G.shotStart) return false;
+  return G.balls.some((b, i) => b.n && !b.down && G.shotStart[i] && Math.hypot(b.x - G.shotStart[i][0], b.y - G.shotStart[i][1]) > 15
+    && POCKETS.some(p => Math.hypot(b.x - p.x, b.y - p.y) < p.r + R * 1.9));
+}
 function endShot(){
+  const shooter = G.cur, sh = G.shot, human = shooter === humanSeat(), potsN = sh.pots.length;
   const res = MODES[G.modo].resolve(G.shot);
+  const hs = humanSeat();
+  const ev = res.over ? (G.story && !res.winners.includes(hs) ? 'quase' : 'vitoria') : res.foul ? 'falta' : (potsN >= 2 && res.keep) ? 'dupla' : (potsN && res.keep) ? 'acerto' : nearMiss() ? 'quase' : 'erro';
+  crowdEvent(ev);
+  if (G.story && human && res.foul) G.storyFouls++;
+  if (G.story && !res.over){
+    if (!human) cpuTalk(res.foul ? 'erro' : (potsN && res.keep) ? 'acerto' : 'erro');
+    else if (res.foul) cpuTalk('provoca'); else if (potsN && res.keep) cpuTalk('elogio');
+  }
   G.quebra = false;
   const c = cueBall();
   if (c.down){ c.down = false; const f = freeSpot(W * M.posicaoBranca.x, H * M.posicaoBranca.y); c.x = f.x; c.y = f.y; c.vx = c.vy = 0; }
-  if (res.over){ G.phase = 'over'; hud(); toast(res.msg); sendState(null, res.msg); setTimeout(() => finish(res), 900); return; }
+  if (res.over){ G.phase = 'over'; hud(); toast(res.msg); sendState(null, res.msg, ev); setTimeout(() => finish(res), 900); return; }
   if (!res.keep || G.players[G.cur].off) nextPlayer();
   G.phase = res.foul ? 'place' : 'aim';
   G.turnoT = G.relogio;
   hud();
   const msg = res.msg || (res.keep ? `${G.players[G.cur].nome} continua` : `Vez de ${G.players[G.cur].nome}`);
-  toast(msg); sendState(null, msg);
+  toast(msg); sendState(null, msg, ev);
 }
 function nextPlayer(){
   const n = G.players.length;
@@ -1210,6 +2243,8 @@ function nextPlayer(){
 /* ================= RESULT & WHATSAPP ================= */
 let lastResult = null;
 function finish(res){
+  if (!G) return;
+  if (G.story) return storyFinish(res);
   const md = MODES[G.modo];
   const rank = md.rank(res.winners).sort((a, b) => (b.win - a.win) || (G.modo === 'treino' ? a.pts - b.pts : b.pts - a.pts));
   const result = { data: new Date().toISOString(), duracao: Math.round(G.tempo), tacadas: G.tacadas, online: !!NET, modo: G.cfg.nome, modoId: G.modo, vencedores: res.winners.map(i => G.players[i].nome), ranking: rank, telefones: G.players.filter(p => p.telefone).map(p => ({ nome: p.nome, tel: p.telefone })) };
@@ -1419,7 +2454,9 @@ let lastT = performance.now();
 function loop(now){
   const dt = Math.min(0.1, Math.max(0, ((now || performance.now()) - lastT) / 1000)); lastT = now || performance.now();
   sndCount = 0;
+  if ($('#game').classList.contains('on')) drawCrowd(dt);
   if (G){
+    aiUpdate();
     tickClock(dt);
     if (G.phase === 'moving'){
       if (isHost()){ const mv = physics(); if (NET && (++netFrame % ON.quadrosPorEnvio === 0 || !mv)) bcastBalls(); if (!mv) endShot(); }
@@ -1619,6 +2656,9 @@ function hostMsg(conn, m){
     case 'shot':
       if (turn && G.phase === 'aim'){ G.aim = +m.a || 0; G.power = clamp(m.p, 0, 1); G.spin = { x: clamp(m.sx, -1, 1), y: clamp(m.sy, -1, 1) }; shoot(); }
       return;
+    case 'react':
+      if (TOR.reacoes.includes(m.e)){ floatEmoji(m.e, p.nome); bcast({ t: 'react', e: m.e, n: p.nome }, conn); }
+      return;
     case 'coinPick':
       if (G && coinSt && sideHas(coinSt.sd[coinSt.ch], seat) && (m.f === 'cara' || m.f === 'coroa')) coinResolve(m.f);
       return;
@@ -1695,9 +2735,9 @@ function snap(seat){
     balls: G.balls.map(b => [b.n, Math.round(b.x * 100) / 100, Math.round(b.y * 100) / 100, b.down ? 1 : 0])
   };
 }
-function sendState(only, msg){
+function sendState(only, msg, ev){
   if (!NET || NET.role !== 'host' || !G) return;
-  NET.lobby.forEach((p, i) => { if (p.conn && (!only || only === p)) sendTo(p.conn, { t: 'state', me: i, s: snap(i), msg }); });
+  NET.lobby.forEach((p, i) => { if (p.conn && (!only || only === p)) sendTo(p.conn, { t: 'state', me: i, s: snap(i), msg, ev }); });
 }
 function bcastBalls(){
   const b = [];
@@ -1777,6 +2817,7 @@ function guestMsg(net, m){
       if (!$('#scrSala').classList.contains('on')) show('scrSala');
       lobbyUI(); return;
     case 'state': return applyState(m);
+    case 'react': if (TOR.reacoes.includes(m.e) && $('#game').classList.contains('on')) floatEmoji(m.e, String(m.n || '').slice(0, 14)); return;
     case 'balls': return applyBalls(m.b);
     case 'cue': if (G && !myTurn()){ G.aim = +m.a || 0; G.power = clamp(m.p, 0, 1); G.spin = { x: +m.sx || 0, y: +m.sy || 0 }; } return;
     case 'place': if (G && !myTurn() && G.phase === 'place'){ const c = cueBall(); c.x = +m.x; c.y = +m.y; } return;
@@ -1806,6 +2847,7 @@ function applyState(m){
   if (prevPhase === 'coin' && G.phase !== 'coin'){ closeOv(); if (G.modo === 'garrafinha') myNumsCard(); }
   hud(); spinUI(); clockUI(true); updatePower();
   if (m.msg) toast(m.msg);
+  if (m.ev) crowdEvent(m.ev);
 }
 function applyBalls(b){
   if (!G || !Array.isArray(b)) return;
@@ -1883,6 +2925,916 @@ setInterval(() => {
     if (now - NET.last > lim) guestDrop();
   }
 }, 500);
+
+/* ================= PERSONAGENS & FIGURINHAS ================= */
+const CHARS = CFG.personagens, CHAR = Object.fromEntries(CHARS.map(c => [c.id, c]));
+const HIST = CFG.historia, LOCAL = Object.fromEntries(HIST.locais.map(l => [l.id, l]));
+const CAPS = HIST.capitulos;
+const capOf = id => CAPS.find(c => c.personagem === id);
+function shade(hex, f){
+  const n = parseInt(hex.slice(1), 16); let r = n >> 16, g = n >> 8 & 255, b = n & 255;
+  const t = f < 0 ? 0 : 255, p = Math.abs(f);
+  r = Math.round((t - r) * p + r); g = Math.round((t - g) * p + g); b = Math.round((t - b) * p + b);
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+const ME_VIS = () => ({ pele: '#d9a273', cabelo: '#2a1d16', corte: 'curto', camisa: (TH && TH.destaque) || '#f2b632', roupa: 'camiseta', expressao: 'sorriso', fundo: (TH && TH.feltro) || '#1e7048' });
+
+/* avatar: SVG original, viewBox 100x100. o = { bg, sil, id } */
+function avatarSVG(v, o = {}){
+  const S = o.sil ? '#0d0d0d' : null, c = k => S || k;
+  const skin = c(v.pele), skinD = c(shade(v.pele, -0.18)), hair = c(v.cabelo || '#222'), shirt = c(v.camisa || '#555');
+  const uid = o.id || ('a' + Math.random().toString(36).slice(2, 7));
+  let s = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
+  if (o.bg) s += `<circle cx="50" cy="50" r="50" fill="${o.sil ? '#2a2a2a' : (v.fundo || '#888')}"/>`;
+  s += `<clipPath id="${uid}"><circle cx="50" cy="50" r="${o.bg ? 50 : 70}"/></clipPath><g clip-path="url(#${uid})">`;
+  if (v.taco) s += `<g transform="rotate(18 80 60)"><rect x="77" y="4" width="4" height="100" rx="2" fill="${c('#b07a3e')}"/><rect x="77" y="4" width="4" height="6" fill="${c('#5fa0d8')}"/><rect x="77" y="62" width="4" height="40" fill="${c('#3a1c0e')}"/></g>`;
+  // cabelo de trás
+  if (v.corte === 'longo') s += `<path d="M27 40 C25 62 27 76 31 82 L69 82 C73 76 75 62 73 40 Z" fill="${hair}"/>`;
+  if (v.corte === 'crespo') s += `<circle cx="50" cy="35" r="30" fill="${hair}"/><circle cx="27" cy="46" r="12" fill="${hair}"/><circle cx="73" cy="46" r="12" fill="${hair}"/>`;
+  if (v.corte === 'rabo') s += `<path d="M66 30 C82 34 84 52 76 66 C74 54 72 44 64 38 Z" fill="${hair}"/>`;
+  // tronco
+  s += `<path d="M8 104 C10 80 26 71 50 71 C74 71 90 80 92 104 Z" fill="${shirt}"/>`;
+  const r = v.roupa;
+  if (r === 'regata') s += `<path d="M34 72 C38 84 62 84 66 72 C60 70 40 70 34 72Z" fill="${skin}"/><path d="M27 75 C30 86 31 96 30 104 M73 75 C70 86 69 96 70 104" stroke="${c(shade(v.camisa, -0.15))}" stroke-width="2" fill="none"/>`;
+  else if (r === 'terno') s += `<path d="M40 72 L50 96 L60 72 Z" fill="${c('#fbfaf6')}"/><path d="M48 78 L52 78 L53 96 L50 100 L47 96 Z" fill="${c('#8a1c1c')}"/><path d="M38 72 L50 98 L42 104 L30 76 Z M62 72 L50 98 L58 104 L70 76Z" fill="${c(shade(v.camisa, -0.08))}"/>`;
+  else if (r === 'colete') s += `<path d="M42 72 L50 86 L58 72 Z" fill="${c('#f3f0e6')}"/><path d="M30 76 C36 74 40 73 43 72 L50 88 L50 104 L28 104 Z M70 76 C64 74 60 73 57 72 L50 88 L50 104 L72 104 Z" fill="${c(shade(v.camisa, -0.25))}"/><circle cx="47" cy="94" r="1.4" fill="${c('#e8d18a')}"/><circle cx="53" cy="94" r="1.4" fill="${c('#e8d18a')}"/>`;
+  else if (r === 'florida') s += `<path d="M42 72 C45 79 55 79 58 72" fill="${skin}"/>` + [[26, 88], [40, 96], [60, 92], [74, 86], [50, 86], [32, 100], [68, 100]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.2" fill="${c('#f6d6ef')}"/><circle cx="${x}" cy="${y}" r="1.2" fill="${c('#f2c014')}"/>`).join('');
+  else if (r === 'jaqueta') s += `<path d="M44 72 L50 80 L56 72" fill="${c('#151515')}"/><path d="M50 80 L50 104" stroke="${c('#151515')}" stroke-width="2"/><path d="M38 72 L46 84 M62 72 L54 84" stroke="${c(shade(v.camisa, -0.3))}" stroke-width="3"/>`;
+  else if (r === 'vestido') s += `<path d="M36 72 C40 82 60 82 64 72 C58 70 42 70 36 72Z" fill="${skin}"/><path d="M40 82 C44 86 56 86 60 82" stroke="${c('#f2c014')}" stroke-width="2.4" fill="none"/>`;
+  else if (r === 'camisa') s += `<path d="M42 72 L50 82 L58 72 L55 71 L50 76 L45 71 Z" fill="${c(shade(v.camisa, 0.25))}"/><path d="M50 82 L50 104" stroke="${c(shade(v.camisa, 0.18))}" stroke-width="1.2"/>`;
+  else s += `<path d="M41 72 C44 78 56 78 59 72" fill="${skinD}"/>`;
+  // pescoço, orelhas, cabeça
+  s += `<path d="M42 58 L42 74 C46 78 54 78 58 74 L58 58 Z" fill="${skinD}"/>`;
+  s += `<ellipse cx="31" cy="45" rx="4.5" ry="6" fill="${skin}"/><ellipse cx="69" cy="45" rx="4.5" ry="6" fill="${skin}"/>`;
+  s += `<ellipse cx="50" cy="43" rx="19" ry="22.5" fill="${skin}"/>`;
+  if (v.brinco) s += `<circle cx="31" cy="53" r="2.2" fill="${c('#f2c014')}"/><circle cx="69" cy="53" r="2.2" fill="${c('#f2c014')}"/>`;
+  // cabelo de cima
+  const top = {
+    curto: `<path d="M31 42 C29 24 39 17 50 17 C62 17 72 24 69 42 C67 33 62 28 50 28 C38 28 33 33 31 42Z" fill="${hair}"/>`,
+    curtoF: `<path d="M30 46 C27 24 38 16 50 16 C63 16 73 24 70 46 C68 36 64 31 58 29 C50 33 40 32 34 34 C32 37 31 41 30 46Z" fill="${hair}"/>`,
+    topete: `<path d="M31 42 C29 25 37 18 44 17 C46 9 62 8 66 16 C71 22 72 32 69 42 C67 33 62 28 52 27 C40 27 33 33 31 42Z" fill="${hair}"/>`,
+    lados: `<path d="M30 46 C29 37 31 32 34 30 L35 42 Z M70 46 C71 37 69 32 66 30 L65 42 Z" fill="${hair}"/><ellipse cx="45" cy="25" rx="6" ry="2.5" fill="#fff" opacity="${S ? 0 : .35}"/>`,
+    careca: `<ellipse cx="44" cy="26" rx="7" ry="3" fill="#fff" opacity="${S ? 0 : .35}"/>`,
+    crespo: `<path d="M30 40 C30 24 40 18 50 18 C60 18 70 24 70 40 C64 30 36 30 30 40Z" fill="${hair}"/>`,
+    crespoCurto: `<path d="M31 40 C30 25 39 19 50 19 C61 19 70 25 69 40 C66 33 60 30 50 30 C40 30 34 33 31 40Z" fill="${hair}"/>`,
+    coque: `<circle cx="50" cy="15" r="8.5" fill="${hair}"/><path d="M31 42 C30 25 39 19 50 19 C61 19 70 25 69 42 C66 32 60 28 50 28 C40 28 34 32 31 42Z" fill="${hair}"/>`,
+    longo: `<path d="M30 46 C28 24 39 17 50 17 C61 17 72 24 70 46 C68 34 62 28 50 30 C42 28 33 34 30 46Z" fill="${hair}"/>`,
+    rabo: `<path d="M31 42 C30 24 39 18 50 18 C61 18 70 24 69 42 C66 32 60 28 50 28 C40 28 34 32 31 42Z" fill="${hair}"/>`
+  };
+  s += top[v.corte] || top.curto;
+  // rosto
+  const ex = v.expressao, br = c(v.corte === 'careca' ? shade(v.cabelo || '#777', -0.1) : (v.cabelo || '#222'));
+  const browR = ex === 'debochado' ? 'M54 35 Q58 31 63 34' : ex === 'serio' ? 'M54 36 L63 35' : 'M54 36 Q58 33 63 35';
+  const browL = ex === 'serio' ? 'M37 35 L46 36' : 'M37 35 Q42 33 46 36';
+  s += `<path d="${browL} M${browR.slice(1)}" stroke="${br}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`;
+  s += `<ellipse cx="42" cy="42" rx="2.2" ry="${ex === 'sorriso' ? 2 : 2.5}" fill="${c('#1a1210')}"/><ellipse cx="58" cy="42" rx="2.2" ry="${ex === 'sorriso' ? 2 : 2.5}" fill="${c('#1a1210')}"/>`;
+  if (v.oculos === 'redondo') s += `<g stroke="${c('#1a1a1a')}" stroke-width="1.8" fill="${S ? 'none' : 'rgba(255,255,255,.15)'}"><circle cx="42" cy="42" r="6"/><circle cx="58" cy="42" r="6"/><path d="M48 42 L52 42 M36 41 L31 40 M64 41 L69 40"/></g>`;
+  if (v.oculos === 'escuro') s += `<g fill="${c('#0e0e0e')}"><rect x="34" y="37" width="14" height="9" rx="3"/><rect x="52" y="37" width="14" height="9" rx="3"/></g><path d="M48 40 L52 40 M34 39 L31 38 M66 39 L69 38" stroke="${c('#0e0e0e')}" stroke-width="2"/><path d="M37 39 L41 39" stroke="#fff" stroke-width="1.2" opacity="${S ? 0 : .5}"/>`;
+  if (v.oculos === 'meialua') s += `<path d="M36 42 A6 6 0 0 0 48 42 Z M52 42 A6 6 0 0 0 64 42 Z" fill="${S ? 'none' : 'rgba(255,255,255,.18)'}" stroke="${c('#6b4a2a')}" stroke-width="1.6"/><path d="M48 42 L52 42" stroke="${c('#6b4a2a')}" stroke-width="1.6"/>`;
+  s += `<path d="M50 44 Q47 51 50 52.5" stroke="${skinD}" stroke-width="1.8" fill="none" stroke-linecap="round"/>`;
+  if (v.bigode === 'bigodao') s += `<path d="M38 57 C40 52 46 52 50 54 C54 52 60 52 62 57 C59 56 56 57 50 57.5 C44 57 41 56 38 57Z" fill="${hair}"/>`;
+  else if (v.bigode === 'fino') s += `<path d="M42 56 Q50 53 58 56" stroke="${hair}" stroke-width="1.6" fill="none"/>`;
+  const mouth = ex === 'sorriso' ? `M43 58 Q50 64 57 58` : ex === 'debochado' ? `M44 59 Q52 62 58 56` : `M44 59.5 L56 59.5`;
+  if (v.batom) s += `<path d="${mouth} Q50 61 43 58Z" fill="${c('#c3203a')}" stroke="${c('#c3203a')}" stroke-width="2.2" stroke-linejoin="round"/>`;
+  else s += `<path d="${mouth}" stroke="${c('#5a2a1a')}" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+  if (v.barba === 'cheia') s += `<path d="M31 46 C32 62 40 70 50 70 C60 70 68 62 69 46 C66 54 64 57 61 57 C58 62 54 64 50 64 C46 64 42 62 39 57 C36 57 34 54 31 46Z" fill="${hair}"/>`;
+  if (v.barba === 'cavanhaque') s += `<path d="M45 62 C46 67 54 67 55 62 C53 64 47 64 45 62Z" fill="${hair}"/><path d="M44 56 Q50 54 56 56" stroke="${hair}" stroke-width="1.6" fill="none"/>`;
+  if (v.barba === 'longa') s += `<path d="M33 50 C34 60 38 64 42 64 C44 68 46 66 50 66 C54 66 56 68 58 64 C62 64 66 60 67 50 C69 64 66 76 58 86 C55 90 52 92 50 96 C48 92 45 90 42 86 C34 76 31 64 33 50Z" fill="${hair}"/><path d="M40 57 C44 53 56 53 60 57 C56 56 44 56 40 57Z" fill="${hair}"/><path d="M45 60 Q50 62 55 60" stroke="${c('#5a2a1a')}" stroke-width="1.6" fill="none"/>`;
+  // chapéus
+  const hc = c(v.chapeuCor || '#333');
+  if (v.chapeu === 'bone') s += `<path d="M29 32 C29 15 71 15 71 32 Z" fill="${hc}"/><path d="M29 31 C40 28 60 28 71 31 C74 32 84 33 86 36 C70 36 40 35 29 34Z" fill="${c(shade(v.chapeuCor || '#333', -0.25))}"/><circle cx="50" cy="17" r="1.8" fill="${c(shade(v.chapeuCor || '#333', 0.3))}"/>`;
+  if (v.chapeu === 'panama') s += `<ellipse cx="50" cy="27" rx="30" ry="6" fill="${hc}"/><path d="M34 27 C34 10 66 10 66 27 Z" fill="${hc}"/><path d="M34 24 L66 24 L66 27 L34 27Z" fill="${c('#3a2a1a')}"/>`;
+  if (v.chapeu === 'bandana') s += `<path d="M30 33 C32 22 68 22 70 33 C60 30 40 30 30 33Z" fill="${hc}"/><path d="M69 31 L78 36 L72 38 L76 44 L68 36Z" fill="${hc}"/>` + (S ? '' : `<circle cx="42" cy="28" r="1.2" fill="#fff"/><circle cx="56" cy="27" r="1.2" fill="#fff"/>`);
+  if (v.chapeu === 'coroa') s += `<path d="M36 12 L41 20 L46 9 L50 18 L54 9 L59 20 L64 12 L62 24 L38 24 Z" fill="${hc}" stroke="${c('#b68a10')}" stroke-width="1"/><circle cx="50" cy="20" r="2" fill="${c('#d6282a')}"/>`;
+  s += `</g></svg>`;
+  return s;
+}
+
+/* progresso da história e figurinhas */
+let HPROG = Object.assign({ caps: {}, figs: {} }, store.get(K.historia, {}));
+const saveProg = () => store.set(K.historia, HPROG);
+const figState = id => HPROG.figs[id] || null;            // null | 'normal' | 'brilhante'
+const figCount = () => CHARS.filter(c => figState(c.id)).length;
+
+const RAR = CFG.figurinhas.raridades, ATR = CFG.figurinhas.atributos;
+function figHTML(ch, opt = {}){
+  const st = opt.state !== undefined ? opt.state : figState(ch.id);
+  const num = '#' + String(ch.num).padStart(2, '0');
+  if (!st) return `<div class="fig locked" data-fig="${ch.id}"><div class="fig-top"><b>${num}</b><span>?</span></div>
+    <div class="fig-art">${avatarSVG(ch.visual, { sil: true })}</div><div class="fig-name">???</div><div class="fig-sub">${esc(LOCAL[capOf(ch.id).local].nome)}</div></div>`;
+  return `<div class="fig r-${ch.raridade}${st === 'brilhante' ? ' shiny' : ''}" data-fig="${ch.id}" style="--fc:${ch.visual.fundo}">
+    <div class="fig-top"><b>${num}</b><span>${esc(RAR[ch.raridade])}${st === 'brilhante' ? ' ✦' : ''}</span></div>
+    <div class="fig-art">${avatarSVG(ch.visual)}</div>
+    <div class="fig-name">${esc(ch.nome)}</div>
+    <div class="fig-sub">${esc(ch.local)}, ${esc(ch.especialidade.toLowerCase())}</div>
+    <div class="fig-stats">${Object.keys(ATR).map(k => `<div><span>${ATR[k]}</span><i><b style="width:${ch.atributos[k]}%"></b></i><em>${ch.atributos[k]}</em></div>`).join('')}</div>
+    <q>${esc(ch.frase)}</q><i class="fig-foil"></i></div>`;
+}
+function figBackHTML(){ return `<div class="fig fig-back"><div><b>🎱</b><span>Sinuca dos Amigos</span><small>Figurinha</small></div></div>`; }
+
+/* álbum */
+$('#hAlbum').onclick = () => { renderAlbum(); show('scrAlbum'); };
+function renderAlbum(){
+  $('#albumCount').textContent = `${figCount()}/${CHARS.length}`;
+  $('#albumGrid').innerHTML = CHARS.map(ch => `<button class="figslot" data-id="${ch.id}" aria-label="${figState(ch.id) ? esc(ch.nome) : 'Figurinha ' + ch.num + ' bloqueada'}">${figHTML(ch)}</button>`).join('');
+  $('#albumGrid').querySelectorAll('.figslot').forEach(b => b.onclick = () => figModal(b.dataset.id));
+}
+function figModal(id, back){
+  const ch = CHAR[id], st = figState(id), cap = capOf(id), ci = CAPS.indexOf(cap) + 1;
+  if (!st){
+    openOv(`<h3>Figurinha #${String(ch.num).padStart(2, '0')}</h3><div class="figbig">${figHTML(ch)}</div>
+      <p style="margin:0;text-align:center">Vença o Capítulo ${ci} do Modo História para ganhar esta figurinha.</p><button class="btn" id="fmOk">Fechar</button>`, 'figcard');
+    $('#fmOk').onclick = back || closeOv; return;
+  }
+  openOv(`<div class="figbig">${figHTML(ch)}</div>
+    ${st !== 'brilhante' ? `<p class="note" style="margin:0;text-align:center">${esc(CFG.figurinhas.brilhante)}</p>` : ''}
+    <div class="row"><button class="btn wa" id="fmShare">Compartilhar</button><button class="btn" id="fmOk">Fechar</button></div>`, 'figcard');
+  $('#fmOk').onclick = back || closeOv;
+  $('#fmShare').onclick = () => shareFig(ch, st);
+}
+function revealFig(ch, state, then){
+  openOv(`<h3>${state === 'brilhante' ? 'Figurinha brilhante!' : 'Nova figurinha!'}</h3>
+    <div class="figbig flip" id="flip"><div class="flipin"><div class="ff">${figHTML(ch, { state })}</div><div class="fb">${figBackHTML()}</div></div></div>
+    <p class="note" style="margin:0;text-align:center" id="rvTxt">Toque na figurinha para virar.</p>
+    <div class="row" id="rvBtns" style="visibility:hidden"><button class="btn wa" id="rvShare">Compartilhar</button><button class="btn primary" id="rvOk">Colar no álbum</button></div>`, 'figcard');
+  const f = $('#flip'); let done = false;
+  const go = () => { if (done) return; done = true; f.classList.add('open'); crowdSound('cheer', .6); confetti(); $('#rvTxt').textContent = `${ch.nome} está no seu álbum.`; $('#rvBtns').style.visibility = 'visible'; };
+  f.onclick = go; setTimeout(go, 2200);
+  $('#rvOk').onclick = then || closeOv;
+  $('#rvShare').onclick = () => shareFig(ch, state);
+}
+function confetti(){
+  const box = document.createElement('div'); box.className = 'confetti'; ov.appendChild(box);
+  const cols = [TH.destaque, '#ffffff', TH.feltro, '#e0573e', '#5fb3ff'];
+  for (let i = 0; i < 40; i++){ const p = document.createElement('i'); p.style.cssText = `left:${Math.random() * 100}%;background:${cols[i % cols.length]};animation-delay:${Math.random() * .5}s;animation-duration:${1.6 + Math.random()}s;transform:rotate(${Math.random() * 360}deg)`; box.appendChild(p); }
+  setTimeout(() => box.remove(), 3200);
+}
+
+/* figurinha em imagem para compartilhar */
+async function figCanvas(ch, st){
+  const Wc = 720, Hc = 1008, cv2 = document.createElement('canvas'); cv2.width = Wc; cv2.height = Hc;
+  const x = cv2.getContext('2d');
+  try { await Promise.all(['700 40px "Bowlby One"', '700 30px "Barlow Semi Condensed"', '400 30px "Barlow Semi Condensed"'].map(f => document.fonts.load(f))); } catch(e){}
+  const rr = (X, Y, w, h, r) => { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r); x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); };
+  const border = { comum: ['#f4ead2', '#d8c9a4'], rara: ['#eef2f6', '#9aa5b1'], lendaria: ['#ffe17a', '#c48b12'] }[ch.raridade];
+  let g = x.createLinearGradient(0, 0, Wc, Hc); g.addColorStop(0, border[0]); g.addColorStop(.5, border[1]); g.addColorStop(1, border[0]);
+  rr(0, 0, Wc, Hc, 40); x.fillStyle = g; x.fill();
+  rr(28, 28, Wc - 56, Hc - 56, 26); x.fillStyle = '#fbf8f1'; x.fill();
+  // arte
+  x.save(); rr(48, 110, Wc - 96, 520, 18); x.clip();
+  x.fillStyle = ch.visual.fundo; x.fillRect(48, 110, Wc - 96, 520);
+  x.strokeStyle = 'rgba(255,255,255,.18)'; x.lineWidth = 22;
+  for (let k = -600; k < 900; k += 60){ x.beginPath(); x.moveTo(48 + k, 110); x.lineTo(48 + k + 520, 630); x.stroke(); }
+  const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(avatarSVG(ch.visual, { id: 'cv' }));
+  await new Promise(r => { img.onload = r; img.onerror = r; });
+  try { x.drawImage(img, 90, 150, Wc - 180, Wc - 180); } catch(e){}
+  if (st === 'brilhante'){ const h = x.createLinearGradient(48, 110, Wc - 48, 630); ['rgba(255,0,150,.18)', 'rgba(0,220,255,.18)', 'rgba(255,240,0,.18)', 'rgba(120,255,120,.18)'].forEach((c2, i) => h.addColorStop(i / 3, c2)); x.fillStyle = h; x.fillRect(48, 110, Wc - 96, 520); }
+  x.restore();
+  // topo
+  x.fillStyle = '#1d1d1b'; x.font = '400 46px "Bowlby One", Impact, sans-serif'; x.textBaseline = 'middle';
+  x.fillText('#' + String(ch.num).padStart(2, '0'), 56, 70);
+  x.font = '700 30px "Barlow Semi Condensed", Arial, sans-serif'; x.textAlign = 'right';
+  x.fillText(RAR[ch.raridade] + (st === 'brilhante' ? ' ✦' : ''), Wc - 56, 70); x.textAlign = 'left';
+  // nome
+  x.font = '400 44px "Bowlby One", Impact, sans-serif'; x.fillStyle = '#1d1d1b';
+  let nm = ch.nome; while (x.measureText(nm).width > Wc - 112 && nm.length > 4) nm = nm.slice(0, -1);
+  x.fillText(nm === ch.nome ? nm : nm + '…', 56, 676);
+  x.font = '400 28px "Barlow Semi Condensed", Arial, sans-serif'; x.fillStyle = '#5a564c';
+  x.fillText(`${ch.local}, ${ch.especialidade.toLowerCase()}`, 56, 718);
+  // atributos
+  Object.keys(ATR).forEach((k, i) => {
+    const y = 770 + i * 44; x.fillStyle = '#1d1d1b'; x.font = '700 26px "Barlow Semi Condensed", Arial, sans-serif'; x.fillText(ATR[k], 56, y);
+    rr(196, y - 11, 400, 22, 11); x.fillStyle = '#e6e0d2'; x.fill();
+    rr(196, y - 11, 400 * ch.atributos[k] / 100, 22, 11); x.fillStyle = shade(ch.visual.fundo, -0.25); x.fill();
+    x.fillStyle = '#1d1d1b'; x.textAlign = 'right'; x.fillText(ch.atributos[k], Wc - 56, y); x.textAlign = 'left';
+  });
+  x.font = 'italic 400 28px "Barlow Semi Condensed", Arial, sans-serif'; x.fillStyle = '#3a372f'; x.textAlign = 'center';
+  x.fillText(`“${ch.frase}”`, Wc / 2, 952, Wc - 112); x.textAlign = 'left';
+  return cv2;
+}
+async function shareFig(ch, st){
+  const btn = $('#fmShare') || $('#rvShare'); if (btn) btn.textContent = 'Preparando...';
+  const c2 = await figCanvas(ch, st);
+  const blob = await new Promise(r => c2.toBlob(r, 'image/png'));
+  const file = new File([blob], `figurinha-${String(ch.num).padStart(2, '0')}-${ch.id}.png`, { type: 'image/png' });
+  const text = `🎱 Ganhei a figurinha #${String(ch.num).padStart(2, '0')} ${ch.nome}${st === 'brilhante' ? ' (brilhante ✦)' : ''} no Sinuca dos Amigos! Álbum: ${figCount()}/${CHARS.length}`;
+  if (btn) btn.textContent = 'Compartilhar';
+  try {
+    if (navigator.canShare && navigator.canShare({ files: [file] })) return await navigator.share({ files: [file], text });
+  } catch(e){ if (e && e.name === 'AbortError') return; }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = file.name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  toastAny('Imagem salva. Envie pelo WhatsApp como foto.');
+}
+function toastAny(msg){ if ($('#game').classList.contains('on')) return toast(msg); const n = document.createElement('div'); n.className = 'gtoast'; n.textContent = msg; document.body.appendChild(n); setTimeout(() => n.remove(), 2800); }
+
+/* ================= ADVERSÁRIO DO COMPUTADOR ================= */
+const CPUC = CFG.cpu;
+let AI = null;
+function gauss(){ let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); }
+const cloneBalls = src => src.map(b => ({ n: b.n, x: b.x, y: b.y, vx: 0, vy: 0, down: b.down }));
+function simShot(balls, aim, power, sx, sy){
+  const c = balls[0], sp = PH.velMinTacada + power * (PH.velMaxTacada - PH.velMinTacada);
+  c.vx = Math.cos(aim) * sp; c.vy = Math.sin(aim) * sp; c.spinX = sx || 0; c.spinY = sy || 0; c.hitDone = false;
+  const shot = { firstHit: null, pots: [], cueDown: false };
+  for (let f = 0; f < 1500 && stepPhysics(balls, shot, false); f++);
+  return shot;
+}
+function segBlocked(balls, ax, ay, bx, by, skip){
+  const dx = bx - ax, dy = by - ay, L2 = dx * dx + dy * dy || 1, lim = (2 * R - 1) ** 2;
+  for (const b of balls){
+    if (b.down || skip.includes(b.n)) continue;
+    const t = ((b.x - ax) * dx + (b.y - ay) * dy) / L2; if (t < 0 || t > 1) continue;
+    const px = ax + dx * t - b.x, py = ay + dy * t - b.y; if (px * px + py * py < lim) return true;
+  }
+  return false;
+}
+const pocketAim = P => ({ x: P.x === 0 ? 5 : P.x === W ? W - 5 : P.x, y: P.y <= 0 ? 5 : P.y >= H ? H - 5 : P.y });
+function potLines(balls, cx, cy, targets){
+  const out = [];
+  for (const t of targets) for (const P of POCKETS){
+    const A = pocketAim(P), dx = A.x - t.x, dy = A.y - t.y, d = Math.hypot(dx, dy); if (d < 1) continue;
+    const ux = dx / d, uy = dy / d;
+    if (P.x === W / 2 && Math.abs(uy) < 0.45) continue;
+    const gx = t.x - ux * 2 * R, gy = t.y - uy * 2 * R;
+    if (gx < R - 1 || gx > W - R + 1 || gy < R - 1 || gy > H - R + 1) continue;
+    const ax = gx - cx, ay = gy - cy, da = Math.hypot(ax, ay); if (da < 1) continue;
+    const cut = (ax * ux + ay * uy) / da; if (cut < 0.2) continue;
+    if (segBlocked(balls, t.x, t.y, A.x, A.y, [t.n, 0]) || segBlocked(balls, cx, cy, gx, gy, [t.n, 0])) continue;
+    out.push({ t, aim: Math.atan2(ay, ax), da, d, cut, est: cut * cut * (1 - Math.min(1, (da + d) / 1500) * 0.6) });
+  }
+  return out.sort((a, b) => b.est - a.est);
+}
+function aiCtx(){
+  const seat = G.cur, p = G.players[seat], md = G.modo;
+  const ctx = { seat, mode: md, brk: G.quebra, legal: n => MODES[md].legal(n), mine: md === 'garrafinha' ? p.nums.slice() : [] };
+  if (md === 'bola8'){ ctx.group = G.grupos[p.equipe]; ctx.left = MODES.bola8.left(p.equipe); }
+  if (md === 'bolaDaVez') ctx.low = lowest();
+  ctx.targets = onTable().filter(b => ctx.legal(b.n) && !ctx.mine.includes(b.n));
+  if (!ctx.targets.length) ctx.targets = onTable().filter(b => ctx.legal(b.n));
+  return ctx;
+}
+function nextTargets(balls, ctx, shot){
+  const live = balls.filter(b => b.n && !b.down);
+  if (ctx.mode === 'bola8'){
+    let g = ctx.group;
+    if (!g){ const ty = new Set(shot.pots.map(grp)); ty.delete('oito'); if (ty.size === 1) g = [...ty][0]; }
+    if (!g) return live.filter(b => b.n !== 8);
+    const m = live.filter(b => grp(b.n) === g); return m.length ? m : live.filter(b => b.n === 8);
+  }
+  if (ctx.mode === 'bolaDaVez'){ if (!live.length) return []; const m = Math.min(...live.map(b => b.n)); return live.filter(b => b.n === m); }
+  if (ctx.mode === 'garrafinha') return live.filter(b => !ctx.mine.includes(b.n));
+  return live;
+}
+function scoreSim(shot, balls, ctx){
+  const foul = shot.cueDown || shot.firstHit == null || !ctx.legal(shot.firstHit);
+  let s = 0, keep = false;
+  if (ctx.mode === 'bola8'){
+    if (shot.pots.includes(8)){
+      if (!ctx.brk) return (!foul && ctx.group && ctx.left === 0) ? 5000 : -5000;
+      s -= 20;
+    }
+    for (const n of shot.pots){ if (n === 8) continue; if (!ctx.group || grp(n) === ctx.group){ s += 100; keep = true; } else s -= 30; }
+  } else if (ctx.mode === 'bolaDaVez'){
+    if (!foul) for (const n of shot.pots){ s += 40 + n * 10; keep = true; }
+    else s -= (ctx.low || 1) * 10;
+  } else if (ctx.mode === 'garrafinha'){
+    for (const n of shot.pots){ if (ctx.mine.includes(n)) s -= 300; else { s += 120; keep = true; } }
+  } else for (const n of shot.pots){ s += 100; keep = true; }
+  if (foul){ s -= 180; keep = false; }
+  if (keep){
+    const nt = nextTargets(balls, ctx, shot), c = balls[0];
+    const lines = nt.length ? potLines(balls, c.x, c.y, nt) : [];
+    s += 60 * (lines.length ? lines[0].est : 0) + 5 * Math.min(lines.length, 4);
+  }
+  return s;
+}
+function aiCands(ctx, cx, cy){
+  const cands = [];
+  if (ctx.brk){
+    const t = onTable().filter(b => ctx.legal(b.n)).sort((a, b) => Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy))[0] || onTable()[0];
+    const a = Math.atan2(t.y - cy, t.x - cx);
+    for (const da of [-0.01, -0.004, 0, 0.004, 0.01]) cands.push({ aim: a + da, power: 1, sx: 0, sy: 0 });
+    return cands;
+  }
+  for (const L of potLines(G.balls, cx, cy, ctx.targets).slice(0, CPUC.candidatos)){
+    const base = clamp(0.16 + (L.da + L.d / Math.max(L.cut, 0.35)) / 1700, 0.18, 0.92);
+    for (const k of [0.85, 1.2]) cands.push({ aim: L.aim, power: clamp(base * k, 0.12, 1), sx: 0, sy: 0 });
+  }
+  const near = ctx.targets.slice().sort((a, b) => Math.hypot(a.x - cx, a.y - cy) - Math.hypot(b.x - cx, b.y - cy)).slice(0, 4);
+  for (const t of near) if (!segBlocked(G.balls, cx, cy, t.x, t.y, [t.n, 0])) for (const pw of [0.35, 0.6]) cands.push({ aim: Math.atan2(t.y - cy, t.x - cx), power: pw, sx: 0, sy: 0 });
+  // tabela: mira no reflexo da bola em cada tabela
+  for (const t of near.slice(0, 2)) for (const [mx, my] of [[2 * R - t.x, t.y], [2 * (W - R) - t.x, t.y], [t.x, 2 * R - t.y], [t.x, 2 * (H - R) - t.y]])
+    for (const pw of [0.5, 0.75]) cands.push({ aim: Math.atan2(my - cy, mx - cx), power: pw, sx: 0, sy: 0 });
+  if (!cands.length) for (let i = 0; i < 14; i++) cands.push({ aim: Math.random() * Math.PI * 2, power: 0.45 + Math.random() * 0.45, sx: 0, sy: 0 });
+  return cands;
+}
+function aiSpots(ctx){
+  const out = [], cue = cueBall();
+  for (const t of ctx.targets) for (const P of POCKETS){
+    const A = pocketAim(P), dx = A.x - t.x, dy = A.y - t.y, d = Math.hypot(dx, dy), ux = dx / d, uy = dy / d;
+    if (P.x === W / 2 && Math.abs(uy) < 0.45) continue;
+    if (segBlocked(G.balls, t.x, t.y, A.x, A.y, [t.n, 0])) continue;
+    for (const back of [110, 200]){
+      const x = t.x - ux * (2 * R + back), y = t.y - uy * (2 * R + back);
+      if (x < R + 2 || x > W - R - 2 || y < R + 2 || y > H - R - 2 || overlapsAny(x, y, cue)) continue;
+      if (segBlocked(G.balls, x, y, t.x - ux * 2 * R, t.y - uy * 2 * R, [t.n, 0])) continue;
+      out.push({ x, y, est: 1 - d / 1500 - back / 2000 });
+    }
+  }
+  out.sort((a, b) => b.est - a.est);
+  if (!out.length) out.push({ x: cue.x, y: cue.y });
+  return out.slice(0, 6);
+}
+function aiStart(){
+  const ch = CHAR[G.players[G.cur].cpu], ctx = aiCtx(), c = cueBall();
+  const think = CPUC.pensarMs[0] + Math.random() * (CPUC.pensarMs[1] - CPUC.pensarMs[0]);
+  AI = { gid: G.gid, key: G.tacadas + G.phase, ch, A: ch.atributos, ctx, t0: performance.now(), think, stage: 'think', place: G.phase === 'place', jobs: [], res: [], i: 0, pass: 1 };
+  if (AI.place){ for (const sp of aiSpots(ctx)) for (const cd of aiCands(ctx, sp.x, sp.y).slice(0, 4)) AI.jobs.push(Object.assign({}, cd, { px: sp.x, py: sp.y })); }
+  if (!AI.jobs.length) AI.jobs = aiCands(ctx, c.x, c.y).map(cd => Object.assign({}, cd, { px: c.x, py: c.y }));
+}
+function aiRunJobs(budget){
+  const t1 = performance.now();
+  while (AI.i < AI.jobs.length && performance.now() - t1 < budget){
+    const j = AI.jobs[AI.i++], balls = cloneBalls(G.balls);
+    balls[0].x = j.px; balls[0].y = j.py; balls[0].down = false;
+    AI.res.push({ j, s: scoreSim(simShot(balls, j.aim, j.power, j.sx, j.sy), balls, AI.ctx) });
+  }
+  return AI.i >= AI.jobs.length;
+}
+function aiChoose(){
+  AI.res.sort((a, b) => b.s - a.s);
+  const A = AI.A, pBest = 0.5 + A.mira / 200; let k = 0;
+  while (k < Math.min(2, AI.res.length - 1) && Math.random() > pBest) k++;
+  const j = Object.assign({}, (AI.res[k] || { j: AI.jobs[0] }).j);
+  const crit = AI.ctx.mode === 'bola8' && AI.ctx.group && AI.ctx.left === 0;
+  let sig = CPUC.erroMinRad + Math.pow(1 - A.mira / 100, 1.5) * CPUC.erroMaxRad;
+  if (crit) sig *= 1 + (1 - A.nervos / 100);
+  if (AI.ctx.brk) sig = Math.min(sig, 0.01);
+  j.aim += gauss() * sig;
+  j.power = clamp(j.power * (1 + gauss() * (1 - A.forca / 100) * 0.12), 0.08, 1);
+  if (A.forca > 85 && !AI.ctx.brk) j.power = clamp(j.power * 1.25, 0.1, 1);
+  if (A.efeito < 40){ j.sx = 0; j.sy = 0; }
+  AI.choice = j;
+}
+function aiUpdate(){
+  if (!isCpuTurn() || (G.phase !== 'aim' && G.phase !== 'place') || ov.classList.contains('on')) return;
+  if (!AI || AI.gid !== G.gid || AI.key !== G.tacadas + G.phase){ aiStart(); hud(); }
+  const now = performance.now();
+  if (AI.stage === 'think'){
+    if (!aiRunJobs(CPUC.orcamentoMsPorQuadro)) return;
+    if (AI.pass === 1 && AI.A.efeito >= 40 && !AI.ctx.brk){
+      AI.pass = 2;
+      for (const r of AI.res.slice().sort((a, b) => b.s - a.s).slice(0, 3)) for (const sy of [-0.55, 0.5]) AI.jobs.push(Object.assign({}, r.j, { sy }));
+      return;
+    }
+    if (now - AI.t0 < AI.think) return;
+    aiChoose();
+    if (AI.place){ AI.stage = 'move'; AI.ms = now; AI.from = { x: cueBall().x, y: cueBall().y }; }
+    else { AI.stage = 'aim'; AI.ms = now; AI.a0 = G.aim; }
+    return;
+  }
+  if (AI.stage === 'move'){
+    const k = Math.min(1, (now - AI.ms) / 550), e = k < .5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2, c = cueBall();
+    c.x = AI.from.x + (AI.choice.px - AI.from.x) * e; c.y = AI.from.y + (AI.choice.py - AI.from.y) * e;
+    if (k >= 1){ c.x = AI.choice.px; c.y = AI.choice.py; G.phase = 'aim'; AI.key = G.tacadas + 'aim'; AI.stage = 'aim'; AI.ms = now; AI.a0 = G.aim; hud(); }
+    return;
+  }
+  if (AI.stage === 'aim'){
+    let d = AI.choice.aim - AI.a0; d = Math.atan2(Math.sin(d), Math.cos(d));
+    const k = Math.min(1, (now - AI.ms) / (380 + Math.abs(d) * 260)), e = 1 - Math.pow(1 - k, 3);
+    G.aim = AI.a0 + d * e; G.spin = { x: AI.choice.sx || 0, y: AI.choice.sy || 0 };
+    if (k >= 1){ AI.stage = 'power'; AI.ms = now; }
+    return;
+  }
+  if (AI.stage === 'power'){
+    const k = Math.min(1, (now - AI.ms) / 560);
+    G.power = AI.choice.power * (k < .75 ? k / .75 : 1); updatePower();
+    if (k >= 1){ G.aim = AI.choice.aim; G.power = AI.choice.power; G.spin = { x: AI.choice.sx || 0, y: AI.choice.sy || 0 }; AI = null; shoot(); }
+  }
+}
+
+/* ================= MODO HISTÓRIA ================= */
+const capProg = id => HPROG.caps[id] || { e: [false, false, false] };
+const capStars = id => capProg(id).e.filter(Boolean).length;
+const capOpen = i => i === 0 || capStars(CAPS[i - 1].id) > 0;
+const totalStars = () => CAPS.reduce((a, c) => a + capStars(c.id), 0);
+const meName = () => (prefs.meuNome || '').trim() || 'Você';
+const starLabel = (cap, i) => HIST.estrelas[i].replace('{par}', cap.par);
+
+$('#hHist').onclick = () => { leaveNet(); setup.online = false; renderHist(); show('scrHist'); };
+function renderHist(){
+  $('#histStats').textContent = `⭐ ${totalStars()}/${CAPS.length * 3}   🃏 ${figCount()}/${CHARS.length}`;
+  let html = '';
+  HIST.locais.forEach(L => {
+    const caps = CAPS.map((c, i) => [c, i]).filter(([c]) => c.local === L.id);
+    const open = capOpen(caps[0][1]);
+    html += `<div class="venue${open ? '' : ' closed'}"><div class="vhead"><b>${esc(L.nome)}</b><span>${esc(L.descricao)}</span></div>`;
+    for (const [c, i] of caps){
+      const ch = CHAR[c.personagem], ok = capOpen(i), st = capStars(c.id), m = MODECFG[c.modo];
+      html += `<button class="capcard${ok ? '' : ' lock'}" data-i="${i}" ${ok ? '' : 'aria-disabled="true"'}>
+        <span class="cav">${avatarSVG(ch.visual, { bg: true, sil: !ok && !figState(ch.id) })}</span>
+        <span class="cinfo"><small>Capítulo ${i + 1}, ${esc(m.icone + ' ' + m.nome)}</small><b>${ok ? esc(c.titulo) : 'Bloqueado'}</b><em>${ok ? esc(ch.nome) : 'Vença o capítulo anterior'}</em></span>
+        <span class="cstars" aria-label="${st} de 3 estrelas">${[0, 1, 2].map(k => `<i class="${capProg(c.id).e[k] ? 'on' : ''}">★</i>`).join('')}</span></button>`;
+    }
+    html += '</div>';
+  });
+  $('#histList').innerHTML = html;
+  $('#histList').querySelectorAll('.capcard').forEach(b => b.onclick = () => { const i = +b.dataset.i; if (capOpen(i)) storyIntro(i); });
+  const next = CAPS.findIndex((c, i) => capOpen(i) && !capStars(c.id));
+  const el = next >= 0 && $('#histList').querySelector(`.capcard[data-i="${next}"]`);
+  if (el) requestAnimationFrame(() => el.scrollIntoView({ block: 'center' }));
+}
+function askName(then){
+  openOv(`<h3>Como te chamam no bairro?</h3><input id="hnName" maxlength="14" placeholder="Seu nome" value="${esc(prefs.meuNome || '')}" style="height:48px;border-radius:12px;border:2px solid var(--panel2);background:var(--panel2);color:var(--text);padding:0 12px;font-size:18px;user-select:text;-webkit-user-select:text">
+    <button class="btn primary" id="hnOk">Continuar</button>`);
+  $('#hnName').focus();
+  const go = () => { const v = $('#hnName').value.trim().slice(0, 14); if (!v) return; prefs.meuNome = v; store.set(K.preferencias, prefs); then(); };
+  $('#hnOk').onclick = go; $('#hnName').onkeydown = e => { if (e.key === 'Enter') go(); };
+}
+function storyIntro(i, line = 0){
+  if (!prefs.meuNome) return askName(() => storyIntro(i));
+  const cap = CAPS[i], ch = CHAR[cap.personagem], L = LOCAL[cap.local], lines = cap.intro, last = line >= lines.length - 1;
+  const [who, txt] = lines[Math.min(line, lines.length - 1)];
+  const m = MODECFG[cap.modo];
+  openOv(`<p class="vsLocal">${esc(L.nome)}, capítulo ${i + 1}</p>
+    <div class="vs"><div class="vsP${who === 'voce' ? ' talk' : ''}"><span class="cav">${avatarSVG(ME_VIS(), { bg: true })}</span><b>${esc(meName())}</b></div>
+      <span class="vsX">VS</span>
+      <div class="vsP${who === 'ele' ? ' talk' : ''}"><span class="cav">${avatarSVG(ch.visual, { bg: true })}</span><b>${esc(ch.curto)}</b></div></div>
+    <div class="bubble ${who === 'voce' ? 'l' : 'r'}">${esc(txt)}</div>
+    ${last ? `<div class="goals"><small>${esc(m.icone + ' ' + m.nome)}${cap.numeros ? `, ${cap.numeros} números cada` : ''}</small>${[0, 1, 2].map(k => `<span class="${capProg(cap.id).e[k] ? 'on' : ''}"><i>★</i> ${esc(starLabel(cap, k))}</span>`).join('')}</div>` : ''}
+    <div class="row"><button class="btn ghost" id="siBack">${last ? 'Voltar' : 'Pular'}</button><button class="btn primary" id="siNext">${last ? 'Jogar' : 'Continuar'}</button></div>`, 'story');
+  $('#siNext').onclick = () => last ? storyStart(i) : storyIntro(i, line + 1);
+  $('#siBack').onclick = () => last ? closeOv() : storyIntro(i, lines.length - 1);
+}
+function storyStart(i){
+  const cap = CAPS[i], ch = CHAR[cap.personagem], L = LOCAL[cap.local];
+  closeOv();
+  setup.online = false; setup.modo = cap.modo; setup.numeros = cap.numeros || 3; setup.inicio = 0;
+  setup.jogadores = [{ nome: meName(), telefone: '' }, { nome: ch.curto, telefone: '', cpu: ch.id }];
+  applyTheme(L.tema, true);
+  musContext(L.musica);
+  newGame({ story: Object.assign({ idx: i }, cap) });
+}
+function storyExit(toMap){
+  G = null; AI = null; closeOv();
+  applyTheme(prefs.tema); musContext(null);
+  if (toMap){ renderHist(); show('scrHist'); } else show('home');
+}
+let talkT = 0;
+function cpuTalk(kind, force){
+  if (!G || !G.story) return;
+  const cpu = G.players.find((p, i) => p.cpu && i !== G.hs); if (!cpu) return;
+  const ch = CHAR[cpu.cpu], list = ch.falas[kind]; if (!list || !list.length) return;
+  if (!force && Math.random() > CPUC.chanceDeFala) return;
+  const t = $('#talk'); t.innerHTML = `<span class="cav">${avatarSVG(ch.visual, { bg: true })}</span><p>${esc(list[Math.random() * list.length | 0])}</p>`;
+  t.classList.add('show'); clearTimeout(talkT); talkT = setTimeout(() => t.classList.remove('show'), 2800);
+}
+function storyFinish(res){
+  const cap = G.story, ch = CHAR[cap.personagem], human = humanSeat();
+  const won = res.winners.includes(human) && !(res.winners.length > 1);
+  const got = [won, won && !G.storyFouls, won && G.humanShots <= cap.par];
+  const prev = capProg(cap.id).e, now = prev.map((v, k) => v || got[k]);
+  HPROG.caps[cap.id] = { e: now, ultima: new Date().toISOString() };
+  const before = figState(ch.id);
+  let reveal = null;
+  if (won && !before) reveal = now.every(Boolean) ? 'brilhante' : 'normal';
+  else if (won && before === 'normal' && now.every(Boolean)) reveal = 'brilhante';
+  if (reveal) HPROG.figs[ch.id] = reveal;
+  saveProg();
+  const nextI = cap.idx + 1, hasNext = nextI < CAPS.length;
+  const done = () => openOv(`<h3>${won ? (cap.idx === CAPS.length - 1 ? 'Você é o novo mestre!' : 'Vitória!') : 'Não foi dessa vez'}</h3>
+    <div class="vs small"><div class="vsP talk"><span class="cav">${avatarSVG(ch.visual, { bg: true })}</span></div><div class="bubble r" style="flex:1;margin:0">${esc(won ? cap.vitoria : cap.derrota)}</div></div>
+    <div class="goals">${got.map((g, k) => `<span class="${g ? 'on' : ''}${g && !prev[k] ? ' new' : ''}"><i>★</i> ${esc(starLabel(cap, k))}</span>`).join('')}</div>
+    <p class="muted" style="margin:0">Suas tacadas: ${G.humanShots}. Faltas: ${G.storyFouls}.</p>
+    <div class="row">${won && hasNext ? '<button class="btn primary" id="sfNext">Próximo capítulo</button>' : `<button class="btn primary" id="sfAgain">${won ? 'Jogar de novo' : 'Tentar de novo'}</button>`}<button class="btn" id="sfMap">Mapa</button></div>
+    ${won && hasNext && !got.every(Boolean) ? '<button class="btn ghost" id="sfAgain">Tentar 3 estrelas</button>' : ''}`, 'story');
+  const wire = () => {
+    if ($('#sfNext')) $('#sfNext').onclick = () => { G = null; storyIntro(nextI); };
+    ovCard.querySelectorAll('#sfAgain').forEach(b => b.onclick = () => storyStart(cap.idx));
+    $('#sfMap').onclick = () => storyExit(true);
+  };
+  if (reveal) revealFig(ch, reveal, () => { done(); wire(); });
+  else { done(); wire(); }
+}
+
+/* ================= ÁUDIO BASE ================= */
+function audio(){ AC = AC || new (window.AudioContext || window.webkitAudioContext)(); return AC; }
+let NOISE = null;
+function noiseBuf(){
+  if (NOISE) return NOISE;
+  const ac = audio(), len = ac.sampleRate * 2, b = ac.createBuffer(1, len, ac.sampleRate), d = b.getChannelData(0);
+  for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+  return NOISE = b;
+}
+function noiseSrc(ac){ const s = ac.createBufferSource(); s.buffer = noiseBuf(); s.loop = true; return s; }
+function unlockAudio(){
+  try { const ac = audio(); if (ac.state === 'suspended') ac.resume(); } catch(e){}
+  if (prefs.musica && !MUS.playing && !document.hidden) musPlay();
+}
+['pointerdown', 'keydown'].forEach(ev => document.addEventListener(ev, unlockAudio, { passive: true }));
+document.addEventListener('visibilitychange', () => {
+  if (!AC) return;
+  if (document.hidden){ AC.suspend(); if (MUS.el) MUS.el.pause(); }
+  else { AC.resume(); if (MUS.el && MUS.playing) MUS.el.play().catch(() => {}); }
+});
+
+/* ================= TORCIDA ================= */
+const TOR = CFG.torcida;
+const crowdOn = () => prefs.torcida !== false;
+const crowdCv = $('#crowdCv'), cctx = crowdCv.getContext('2d');
+let FANS = [], crowdW = 0, crowdH = 0, crowdDpr = 1, crowdTime = 0;
+function crowdResize(){
+  const r = crowdCv.getBoundingClientRect(); if (!r.width) return;
+  crowdDpr = Math.min(window.devicePixelRatio || 1, 2);
+  crowdCv.width = Math.round(r.width * crowdDpr); crowdCv.height = Math.round(r.height * crowdDpr);
+  const rebuild = !FANS.length || Math.abs(r.width - crowdW) > 4;
+  crowdW = r.width; crowdH = r.height;
+  if (rebuild) buildFans();
+}
+new ResizeObserver(crowdResize).observe(crowdCv);
+function buildFans(){
+  const n = Math.max(8, Math.round(crowdW / TOR.larguraPorPessoa));
+  const skins = ['#f1c7a0', '#e0ac7e', '#c68a5e', '#8d5a3b', '#6e4027', '#d9a273'];
+  const hairs = ['#1d1410', '#2b1c14', '#6b3a1e', '#cfcac0', '#151515', '#8a5a2a'];
+  FANS = [];
+  for (let i = 0; i < n; i++) FANS.push({
+    x: (i + 0.5) / n + (Math.random() - .5) * 0.25 / n, row: i % 2, ph: Math.random() * 6.28,
+    skin: skins[Math.random() * skins.length | 0], hair: hairs[Math.random() * hairs.length | 0], si: Math.random() * 7 | 0,
+    hat: Math.random() < .22, flag: Math.random() < .18, st: 'idle', t0: 0, dur: 0, dl: 0
+  });
+  FANS.sort((a, b) => b.row - a.row);
+}
+function fanColors(){ return [TH.destaque, TH.painel2, TH.feltro, TH.madeira, '#e0573e', '#5fb3ff', '#f4f1e8']; }
+function drawCrowd(dt){
+  if (!crowdOn() || !crowdW) return;
+  crowdTime += dt;
+  const x = cctx, d = crowdDpr, cols = fanColors();
+  x.setTransform(1, 0, 0, 1, 0, 0); x.clearRect(0, 0, crowdCv.width, crowdCv.height); x.setTransform(d, 0, 0, d, 0, 0);
+  for (const f of FANS){
+    const s = f.row ? 0.82 : 1, px = f.x * crowdW, base = crowdH + 2 - (f.row ? 9 : 0);
+    const el = crowdTime - f.t0 - f.dl, on = f.st !== 'idle' && el >= 0 && el < f.dur, k = on ? 1 - el / f.dur : 0;
+    let dy = Math.sin(crowdTime * 1.6 + f.ph) * 0.8, dx = 0, arms = 'none';
+    if (on){
+      if (f.st === 'cheer'){ dy -= Math.abs(Math.sin(el * 11 + f.ph)) * 7 * k; arms = 'up'; }
+      else if (f.st === 'ola'){ const w = Math.sin(el * 3.2); dy -= Math.max(0, w) * 10; arms = w > 0.2 ? 'up' : 'none'; }
+      else if (f.st === 'ooh'){ dy -= 1.5; arms = 'head'; }
+      else if (f.st === 'boo'){ dx = Math.sin(el * 18) * 1.5 * k; arms = 'down'; }
+      else if (f.st === 'clap'){ arms = 'clap'; }
+    } else if (f.st !== 'idle' && el >= f.dur) f.st = 'idle';
+    const cx = px + dx, by = base + dy * s, sh = cols[f.si % cols.length];
+    // corpo
+    x.fillStyle = sh; x.beginPath();
+    x.moveTo(cx - 10 * s, by); x.quadraticCurveTo(cx - 10 * s, by - 15 * s, cx, by - 15 * s); x.quadraticCurveTo(cx + 10 * s, by - 15 * s, cx + 10 * s, by); x.fill();
+    // braços
+    x.strokeStyle = f.skin; x.lineWidth = 3.4 * s; x.lineCap = 'round'; x.beginPath();
+    const ay = by - 11 * s;
+    if (arms === 'up'){ x.moveTo(cx - 7 * s, ay); x.lineTo(cx - 12 * s, by - 31 * s); x.moveTo(cx + 7 * s, ay); x.lineTo(cx + 12 * s, by - 31 * s); }
+    if (arms === 'head'){ x.moveTo(cx - 7 * s, ay); x.lineTo(cx - 7 * s, by - 25 * s); x.moveTo(cx + 7 * s, ay); x.lineTo(cx + 7 * s, by - 25 * s); }
+    if (arms === 'down'){ x.moveTo(cx - 7 * s, ay); x.lineTo(cx - 14 * s, by - 3 * s); x.moveTo(cx + 7 * s, ay); x.lineTo(cx + 14 * s, by - 3 * s); }
+    if (arms === 'clap'){ const o = (1 + Math.abs(Math.sin(el * 14)) * 4) * s; x.moveTo(cx - 7 * s, ay); x.lineTo(cx - o, by - 18 * s); x.moveTo(cx + 7 * s, ay); x.lineTo(cx + o, by - 18 * s); }
+    x.stroke();
+    if (f.flag && arms === 'up'){
+      x.strokeStyle = '#d9d2c0'; x.lineWidth = 1.4 * s; x.beginPath(); x.moveTo(cx + 12 * s, by - 31 * s); x.lineTo(cx + 12 * s, by - 46 * s); x.stroke();
+      x.fillStyle = TH.destaque; x.beginPath(); const w = Math.sin(crowdTime * 9) * 2;
+      x.moveTo(cx + 12 * s, by - 46 * s); x.lineTo(cx + 25 * s, by - (43 - w) * s); x.lineTo(cx + 12 * s, by - 38 * s); x.fill();
+    }
+    // cabeça
+    const hy = by - 21 * s;
+    x.fillStyle = f.skin; x.beginPath(); x.arc(cx, hy, 6.5 * s, 0, 7); x.fill();
+    x.fillStyle = f.hat ? cols[(f.si + 3) % cols.length] : f.hair; x.beginPath();
+    if (f.hat){ x.arc(cx, hy - 1 * s, 6.8 * s, Math.PI, 0); x.fill(); x.fillRect(cx - 2 * s, hy - 1.5 * s, 10 * s, 2 * s); }
+    else { x.arc(cx, hy - 0.5 * s, 6.6 * s, Math.PI * 1.05, Math.PI * 1.95); x.fill(); }
+    if (on && (f.st === 'cheer' || f.st === 'ooh' || f.st === 'ola')){ x.fillStyle = '#3a1a10'; x.beginPath(); x.ellipse(cx, hy + 2.6 * s, 1.6 * s, 1.9 * s, 0, 0, 7); x.fill(); }
+  }
+}
+const CROWD_MAP = {
+  acerto: { st: 'cheer', frac: .65, dur: 1.4, snd: 'cheer' },
+  dupla: { st: 'cheer', frac: 1, dur: 2.1, snd: 'big' },
+  falta: { st: 'boo', frac: .7, dur: 1.5, snd: 'boo' },
+  quase: { st: 'ooh', frac: .85, dur: 1.5, snd: 'ooh' },
+  erro: { st: 'idle', frac: 0, dur: 0, snd: null, chance: .35 },
+  vitoria: { st: 'ola', frac: 1, dur: 3.2, snd: 'big', clap: true },
+  bom: { st: 'cheer', frac: .3, dur: 1, snd: null },
+  susto: { st: 'ooh', frac: .3, dur: 1, snd: null }
+};
+let shoutT = 0;
+function crowdEvent(kind, quiet){
+  if (!crowdOn() || !FANS.length) return;
+  const m = CROWD_MAP[kind]; if (!m) return;
+  if (m.chance && Math.random() > m.chance) return;
+  for (const f of FANS) if (Math.random() < m.frac){ f.st = m.st; f.t0 = crowdTime; f.dur = m.dur; f.dl = m.st === 'ola' ? f.x * 0.9 : Math.random() * 0.25; }
+  if (m.clap) setTimeout(() => { for (const f of FANS) if (Math.random() < .5){ f.st = 'clap'; f.t0 = crowdTime; f.dur = 1.8; f.dl = 0; } crowdSound('clap', .9); }, 2600);
+  if (m.snd && !quiet) crowdSound(m.snd, 1);
+  const list = TOR.gritos[kind];
+  if (list && list.length){
+    const f = FANS[Math.random() * FANS.length | 0], el = $('#shout');
+    el.textContent = list[Math.random() * list.length | 0];
+    el.style.left = Math.min(82, Math.max(18, f.x * 100)) + '%';
+    el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+    clearTimeout(shoutT); shoutT = setTimeout(() => el.classList.remove('show'), 1700);
+  }
+}
+function crowdSound(type, vol = 1){
+  if (!prefs.som || !crowdOn() && type !== 'cheer') return;
+  let ac; try { ac = audio(); } catch(e){ return; }
+  if (ac.state !== 'running') return;
+  const t = ac.currentTime, out = ac.createGain(); out.gain.value = 0.9 * vol * CFG.som.volumeMax; out.connect(ac.destination);
+  const env = (g, a, peak, hold, rel) => { g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(peak, t + a); g.gain.setValueAtTime(peak, t + a + hold); g.gain.exponentialRampToValueAtTime(0.0001, t + a + hold + rel); return t + a + hold + rel; };
+  const voices = (n, lo, hi, glide, filt, fq, peak, a, hold, rel) => {
+    const f = ac.createBiquadFilter(); f.type = filt; f.frequency.value = fq; f.Q.value = 1.2; f.connect(out);
+    for (let i = 0; i < n; i++){
+      const o = ac.createOscillator(), g = ac.createGain(), lfo = ac.createOscillator(), lg = ac.createGain(), f0 = lo + Math.random() * (hi - lo);
+      o.type = 'sawtooth'; o.frequency.setValueAtTime(f0, t); o.frequency.linearRampToValueAtTime(f0 * glide, t + a + hold + rel);
+      lfo.frequency.value = 4.5 + Math.random() * 3; lg.gain.value = f0 * 0.025; lfo.connect(lg).connect(o.frequency);
+      const st = t + Math.random() * 0.15; g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(peak, st + a); g.gain.setValueAtTime(peak, st + a + hold); g.gain.exponentialRampToValueAtTime(0.0001, st + a + hold + rel);
+      o.connect(g).connect(f); const end = st + a + hold + rel + .05; o.start(t); lfo.start(t); o.stop(end); lfo.stop(end);
+    }
+  };
+  const noise = (filt, fq, q, peak, a, hold, rel) => {
+    const s = noiseSrc(ac), f = ac.createBiquadFilter(), g = ac.createGain(); f.type = filt; f.frequency.value = fq; f.Q.value = q;
+    s.connect(f).connect(g).connect(out); const end = env(g, a, peak, hold, rel); s.start(t, Math.random()); s.stop(end + .05);
+  };
+  if (type === 'cheer' || type === 'big'){
+    const big = type === 'big';
+    noise('bandpass', 1100, 0.6, big ? .5 : .35, .12, big ? 1.2 : .5, big ? 1.2 : .8);
+    noise('bandpass', 2600, 1.2, .12, .1, big ? 1 : .4, .8);
+    voices(big ? 9 : 6, 230, 460, 1.18, 'bandpass', 900, .035, .12, big ? 1 : .45, .9);
+    if (big){ const o = ac.createOscillator(), g = ac.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(2300, t + .3); o.frequency.linearRampToValueAtTime(3000, t + .45); o.frequency.setValueAtTime(2300, t + .6); o.frequency.linearRampToValueAtTime(3100, t + .8);
+      g.gain.setValueAtTime(0.0001, t); g.gain.setValueAtTime(.06, t + .3); g.gain.setValueAtTime(0.0001, t + .5); g.gain.setValueAtTime(.06, t + .6); g.gain.exponentialRampToValueAtTime(0.0001, t + .95); o.connect(g).connect(out); o.start(t); o.stop(t + 1); }
+  }
+  if (type === 'ooh'){ noise('bandpass', 380, 2.5, .25, .3, .5, .7); voices(7, 150, 260, 0.82, 'lowpass', 650, .04, .3, .5, .7); }
+  if (type === 'boo'){ noise('lowpass', 300, 0.7, .2, .2, .6, .6); voices(8, 100, 170, 0.92, 'lowpass', 420, .045, .2, .6, .6); }
+  if (type === 'clap'){
+    for (let i = 0; i < 26; i++){
+      const tt = t + Math.random() * 1.6, s = noiseSrc(ac), f = ac.createBiquadFilter(), g = ac.createGain();
+      f.type = 'bandpass'; f.frequency.value = 1200 + Math.random() * 900; f.Q.value = .9; s.connect(f).connect(g).connect(out);
+      g.gain.setValueAtTime(0.0001, tt); g.gain.linearRampToValueAtTime(.35, tt + .002); g.gain.exponentialRampToValueAtTime(0.0001, tt + .05);
+      s.start(tt, Math.random()); s.stop(tt + .06);
+    }
+  }
+}
+/* reações (emoji) */
+let reactLast = 0;
+function floatEmoji(e, who){
+  const st = $('#stage'), n = document.createElement('div');
+  n.className = 'femoji'; n.style.left = (10 + Math.random() * 80) + '%'; n.style.setProperty('--h', (st.clientHeight * 0.85) + 'px');
+  n.innerHTML = `<b>${e}</b>${who ? `<small>${esc(who)}</small>` : ''}`;
+  st.appendChild(n); setTimeout(() => n.remove(), 2600);
+  crowdEvent(['😱', '😬'].includes(e) ? 'susto' : 'bom', true);
+}
+function sendReact(e){
+  const now = performance.now(); if (now - reactLast < 350 || !TOR.reacoes.includes(e)) return; reactLast = now;
+  const me = NET ? ((NET.role === 'host' ? NET.lobby[0] : null) || {}).nome || prefs.meuNome : null;
+  floatEmoji(e, NET ? (me || 'Você') : null);
+  if (NET){ NET.role === 'host' ? bcast({ t: 'react', e, n: me || 'Anfitrião' }) : toHost({ t: 'react', e }); }
+}
+$('#reactBtn').onclick = ev => { ev.stopPropagation(); $('#reactPop').classList.toggle('on'); };
+$('#reactPop').innerHTML = TOR.reacoes.map(e => `<button data-e="${e}" aria-label="Reagir ${e}">${e}</button>`).join('');
+$('#reactPop').querySelectorAll('button').forEach(b => b.onclick = ev => { ev.stopPropagation(); sendReact(b.dataset.e); $('#reactPop').classList.remove('on'); });
+document.addEventListener('pointerdown', ev => { if (!ev.target.closest('#reactPop,#reactBtn')) $('#reactPop').classList.remove('on'); });
+function crowdApply(){
+  $('#crowd').hidden = !crowdOn(); $('#reactBtn').hidden = !crowdOn();
+  if (crowdOn()) requestAnimationFrame(crowdResize);
+}
+crowdApply();
+
+/* ================= MÚSICA ================= */
+const MUSC = CFG.musica;
+if (prefs.musica === undefined) prefs.musica = MUSC.ativa;
+if (prefs.musVol === undefined) prefs.musVol = MUSC.volume;
+if (!prefs.musModo) prefs.musModo = MUSC.modo;
+const MUS = { playing: false, cur: null, ctxTrack: null, timer: 0, next: 0, step: 0, bar: 0, bus: null, el: null, mel: null, played: 0, local: null };
+const allTracks = () => MUSC.faixas.concat(MUSC.arquivos || [], MUS.local ? [MUS.local] : []);
+const trackById = id => allTracks().find(t => t.id === id);
+const NOTE = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+const nm = s => { const m = /^([A-G])([#b]?)(-?\d)$/.exec(s); return 12 * (+m[3] + 1) + NOTE[m[1]] + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0); };
+const mtof = m => 440 * Math.pow(2, (m - 69) / 12);
+function mulberry(a){ return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function busOut(){
+  const ac = audio();
+  if (!MUS.bus){
+    MUS.comp = ac.createDynamicsCompressor(); MUS.comp.threshold.value = -18; MUS.comp.ratio.value = 3;
+    MUS.bus = ac.createGain(); MUS.bus.connect(MUS.comp).connect(ac.destination);
+  }
+  return MUS.bus;
+}
+/* instrumentos */
+function vEnv(g, t, a, peak, dec, sus, len, rel){
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(peak, t + a);
+  g.gain.setTargetAtTime(Math.max(peak * sus, 0.0001), t + a, dec);
+  g.gain.setTargetAtTime(0.0001, t + Math.max(a, len), rel);
+  return t + Math.max(a, len) + rel * 5;
+}
+const I = {
+  kick(t, v){ const ac = AC, o = ac.createOscillator(), g = ac.createGain(); o.frequency.setValueAtTime(130, t); o.frequency.exponentialRampToValueAtTime(45, t + .12);
+    g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(0.0001, t + .32); o.connect(g).connect(busOut()); o.start(t); o.stop(t + .35); },
+  surdo(t, v, open){ const ac = AC, o = ac.createOscillator(), g = ac.createGain(); o.frequency.setValueAtTime(open ? 98 : 110, t); o.frequency.exponentialRampToValueAtTime(open ? 60 : 80, t + .1);
+    g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(0.0001, t + (open ? .55 : .14)); o.connect(g).connect(busOut()); o.start(t); o.stop(t + .6); },
+  noiseHit(t, v, type, f, q, dec, a = .001){ const ac = AC, s = noiseSrc(ac), fl = ac.createBiquadFilter(), g = ac.createGain(); fl.type = type; fl.frequency.value = f; fl.Q.value = q;
+    g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec);
+    s.connect(fl).connect(g).connect(busOut()); s.start(t, Math.random()); s.stop(t + a + dec + .02); },
+  tone(t, v, type, f, dec, f2){ const ac = AC, o = ac.createOscillator(), g = ac.createGain(); o.type = type; o.frequency.setValueAtTime(f, t); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + dec);
+    g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dec); o.connect(g).connect(busOut()); o.start(t); o.stop(t + dec + .02); },
+  snare(t, v){ I.noiseHit(t, v * .8, 'highpass', 1400, .7, .14); I.tone(t, v * .5, 'triangle', 200, .08, 150); },
+  hat(t, v, open){ I.noiseHit(t, v, 'highpass', 7500, .8, open ? .16 : .035); },
+  shaker(t, v){ I.noiseHit(t, v, 'bandpass', 6200, .9, .05, .008); },
+  rim(t, v){ I.tone(t, v, 'square', 1700, .025); I.noiseHit(t, v * .6, 'bandpass', 2400, 4, .02); },
+  tamborim(t, v){ I.tone(t, v, 'sine', 1250, .05, 1050); I.noiseHit(t, v * .5, 'highpass', 3000, .7, .02); },
+  triangle(t, v, open){ [[2490, 1], [4130, .5], [5870, .35]].forEach(([f, k]) => I.tone(t, v * k, 'sine', f, open ? .6 : .06)); },
+  bacalhau(t, v){ I.noiseHit(t, v, 'bandpass', 2600, 2, .03); I.tone(t, v * .3, 'square', 950, .02); },
+  clap(t, v){ [0, .011, .022].forEach((d, i) => I.noiseHit(t + d, v, 'bandpass', 1400, .7, i === 2 ? .1 : .012)); },
+  crackle(t, v){ I.noiseHit(t, v, 'highpass', 2500 + Math.random() * 3000, .7, .004); },
+  bass(t, m, len, v, wave = 'triangle'){ const ac = AC, o = ac.createOscillator(), f = ac.createBiquadFilter(), g = ac.createGain();
+    o.type = wave; o.frequency.value = mtof(m); f.type = 'lowpass'; f.frequency.value = 900;
+    const end = vEnv(g, t, .008, v, .25, .55, len, .05); o.connect(f).connect(g).connect(busOut()); o.start(t); o.stop(end); },
+  pluck(t, m, len, v){ const ac = AC, o = ac.createOscillator(), o2 = ac.createOscillator(), f = ac.createBiquadFilter(), g = ac.createGain();
+    o.type = 'sawtooth'; o2.type = 'square'; o.frequency.value = mtof(m); o2.frequency.value = mtof(m) * 1.003;
+    f.type = 'lowpass'; f.frequency.setValueAtTime(4200, t); f.frequency.exponentialRampToValueAtTime(900, t + .14);
+    g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(0.0001, t + Math.min(.32, len + .1));
+    o.connect(f); o2.connect(f); f.connect(g).connect(busOut()); o.start(t); o2.start(t); o.stop(t + .4); o2.stop(t + .4); },
+  epiano(t, m, len, v){ const ac = AC, c = ac.createOscillator(), mo = ac.createOscillator(), mg = ac.createGain(), g = ac.createGain(), f0 = mtof(m);
+    c.frequency.value = f0; mo.frequency.value = f0; mg.gain.setValueAtTime(f0 * 1.3, t); mg.gain.exponentialRampToValueAtTime(f0 * .05, t + .7);
+    mo.connect(mg).connect(c.frequency);
+    const end = vEnv(g, t, .006, v, .5, .35, len, .25); c.connect(g).connect(busOut()); c.start(t); mo.start(t); c.stop(end); mo.stop(end); },
+  vibes(t, m, len, v){ const ac = AC, o = ac.createOscillator(), o2 = ac.createOscillator(), g = ac.createGain(), g2 = ac.createGain(), tr = ac.createOscillator(), tg = ac.createGain();
+    o.frequency.value = mtof(m); o2.frequency.value = mtof(m) * 4; g2.gain.value = .15;
+    tr.frequency.value = 5.2; tg.gain.value = v * .25; tr.connect(tg).connect(g.gain);
+    const end = vEnv(g, t, .004, v, .45, .2, len, .35); o.connect(g); o2.connect(g2).connect(g); g.connect(busOut());
+    [o, o2, tr].forEach(x => { x.start(t); x.stop(end); }); },
+  flute(t, m, len, v){ const ac = AC, o = ac.createOscillator(), o2 = ac.createOscillator(), g = ac.createGain(), lf = ac.createOscillator(), lg = ac.createGain(), f0 = mtof(m);
+    o.type = 'sine'; o2.type = 'triangle'; o.frequency.value = f0; o2.frequency.value = f0;
+    lf.frequency.value = 5.6; lg.gain.setValueAtTime(0, t); lg.gain.linearRampToValueAtTime(f0 * .007, t + .2); lf.connect(lg); lg.connect(o.frequency); lg.connect(o2.frequency);
+    const g2 = ac.createGain(); g2.gain.value = .25;
+    const end = vEnv(g, t, .04, v, .3, .8, len, .07); o.connect(g); o2.connect(g2).connect(g); g.connect(busOut());
+    [o, o2, lf].forEach(x => { x.start(t); x.stop(end); }); },
+  accordion(t, m, len, v){ const ac = AC, f = ac.createBiquadFilter(), g = ac.createGain(), tr = ac.createOscillator(), tg = ac.createGain(), f0 = mtof(m);
+    f.type = 'lowpass'; f.frequency.value = 2300; f.Q.value = .5; tr.frequency.value = 6; tg.gain.value = v * .12; tr.connect(tg).connect(g.gain);
+    const os = [[f0 * 1.004, 'sawtooth', .5], [f0 * .996, 'sawtooth', .5], [f0 / 2, 'square', .18]].map(([fr, ty, k]) => { const o = ac.createOscillator(), og = ac.createGain(); o.type = ty; o.frequency.value = fr; og.gain.value = k; o.connect(og).connect(f); return o; });
+    const end = vEnv(g, t, .025, v, .2, .85, len, .05); f.connect(g).connect(busOut());
+    os.concat(tr).forEach(x => { x.start(t); x.stop(end); }); }
+};
+const chord = (b, v, sc) => ({ b: nm(b), v: v.map(nm), sc });
+/* faixas originais (CC0) */
+const SC = { Am: [9, 11, 0, 2, 4, 5, 7], AmH: [9, 11, 0, 2, 4, 5, 8], F: [5, 7, 9, 10, 0, 2, 4], Gmix: [7, 9, 11, 0, 2, 4, 5], Cpent: [0, 2, 4, 7, 9] };
+const TRACKS = {
+  samba: {
+    bpm: 98, swing: .06, lead: 'flute', range: [69, 84], start: 76, scale: SC.Am,
+    prog: [chord('A2', ['C4', 'E4', 'A4']), chord('A2', ['C4', 'E4', 'A4']), chord('E2', ['B3', 'D4', 'G#4'], SC.AmH), chord('E2', ['B3', 'D4', 'G#4'], SC.AmH),
+      chord('E2', ['D4', 'E4', 'G#4'], SC.AmH), chord('E2', ['B3', 'D4', 'G#4'], SC.AmH), chord('A2', ['C4', 'E4', 'A4']), chord('A2', ['C#4', 'E4', 'G4']),
+      chord('D3', ['D4', 'F4', 'A4']), chord('D3', ['D4', 'F4', 'A4']), chord('A2', ['C4', 'E4', 'A4']), chord('A2', ['C4', 'E4', 'A4']),
+      chord('B2', ['A3', 'D4', 'F4']), chord('E2', ['B3', 'D4', 'G#4'], SC.AmH), chord('A2', ['C4', 'E4', 'A4']), chord('A2', ['C4', 'E4', 'A4'])],
+    rhythms: [[[0, 2], [3, 1], [4, 2], [6, 2], [8, 3], [12, 4]], [[2, 2], [4, 1], [5, 3], [10, 2], [12, 2], [14, 2]], [[0, 3], [3, 3], [6, 2], [8, 2], [11, 5]], [[0, 1], [1, 1], [2, 2], [4, 4], [10, 2], [12, 4]]],
+    play(st, t, c, bar, fill){
+      const v = [.3, .2, .25, .45];
+      if (st % 4 === 0) I.surdo(t, st % 8 === 4 ? .75 : .35, st % 8 === 4);
+      I.shaker(t, v[st % 4] * .5);
+      if ([0, 2, 3, 5, 7, 9, 10, 12, 14].includes(st) || (fill && st >= 12)) I.tamborim(t, (fill && st >= 12) ? .22 : .14);
+      if ([0, 3, 6, 8, 10, 13].includes(st)) c.v.forEach((m, i) => I.pluck(t + i * .008, m, .12, .06));
+      const bp = { 0: [0, .45, 2], 3: [7, .3, 1], 4: [0, .6, 3], 8: [0, .45, 2], 11: [7, .3, 1], 12: [0, .6, 3] }[st];
+      if (bp) I.bass(t, c.b + bp[0], bp[2] * this.sd, bp[1] * .55);
+    }
+  },
+  bossa: {
+    bpm: 74, swing: 0, lead: 'vibes', range: [67, 81], start: 72, scale: SC.F,
+    prog: [[chord('F2', ['A3', 'C4', 'E4'])], [chord('G2', ['Bb3', 'D4', 'F4']), chord('C3', ['Bb3', 'E4', 'A4'])], [chord('A2', ['G3', 'C4', 'E4'])], [chord('D3', ['F#3', 'C4', 'Eb4'])],
+      [chord('G2', ['Bb3', 'D4', 'F4'])], [chord('C3', ['Bb3', 'E4', 'A4'])], [chord('F2', ['A3', 'C4', 'E4']), chord('D3', ['A3', 'C4', 'F4'])], [chord('G2', ['Bb3', 'D4', 'F4']), chord('C3', ['Bb3', 'E4', 'A4'])]],
+    rhythms: [[[0, 4], [6, 2], [8, 6]], [[2, 2], [4, 4], [10, 6]], [[0, 2], [3, 3], [8, 4], [14, 2]], [[4, 4], [8, 2], [10, 6]]],
+    play(st, t, c, bar){
+      const clave = bar % 2 ? [2, 5, 8, 12] : [0, 3, 6, 10, 13];
+      if (clave.includes(st)) I.rim(t, .1);
+      I.shaker(t, st % 2 ? .05 : .09);
+      if ([0, 8].includes(st)) I.kick(t, .22); if ([6, 14].includes(st)) I.kick(t, .12);
+      if ([2, 6, 10, 13].includes(st)) c.v.forEach((m, i) => I.epiano(t + i * .012, m, this.sd * 2, .055));
+      const bp = { 0: [0, 5], 6: [7, 2], 8: [7, 5], 14: [0, 2] }[st];
+      if (bp) I.bass(t, c.b + bp[0], bp[1] * this.sd, .32, 'sine');
+    }
+  },
+  forro: {
+    bpm: 116, swing: 0, lead: 'accordion', harm: true, range: [67, 83], start: 74, scale: SC.Gmix,
+    prog: [chord('G2', ['B3', 'D4', 'F4']), chord('F2', ['A3', 'C4', 'F4']), chord('G2', ['B3', 'D4', 'F4']), chord('F2', ['A3', 'C4', 'F4']),
+      chord('C3', ['G3', 'C4', 'E4']), chord('C3', ['G3', 'C4', 'E4']), chord('D3', ['F#3', 'A3', 'C4']), chord('G2', ['B3', 'D4', 'G4'])],
+    rhythms: [[[0, 3], [3, 1], [4, 2], [6, 2], [8, 4], [12, 4]], [[0, 2], [2, 2], [4, 2], [6, 2], [8, 3], [11, 1], [12, 4]], [[0, 1], [1, 1], [2, 2], [4, 3], [7, 1], [8, 8]], [[0, 3], [3, 3], [6, 2], [8, 2], [10, 2], [12, 4]]],
+    play(st, t, c, bar, fill){
+      if ([0, 3, 8, 11].includes(st)) I.surdo(t, st % 8 === 0 ? .8 : .55, true);
+      if ([4, 12].includes(st) || (fill && st === 14)) I.bacalhau(t, .14);
+      I.triangle(t, st % 4 === 2 ? .05 : .03, st % 4 === 2);
+      if ([2, 6, 10, 14].includes(st)) c.v.forEach(m => I.accordion(t, m, this.sd * 1.2, .028));
+      const bp = { 0: [0, 3], 3: [7, 1], 4: [12, 2], 8: [0, 3], 11: [7, 1], 12: [12, 2] }[st];
+      if (bp) I.bass(t, c.b + bp[0], bp[1] * this.sd, .42);
+    }
+  },
+  lofi: {
+    bpm: 78, swing: .22, lead: 'epiano', range: [72, 86], start: 76, scale: SC.Cpent, crackle: true,
+    prog: [chord('D3', ['F3', 'A3', 'C4', 'E4']), chord('G2', ['F3', 'B3', 'E4']), chord('C3', ['E3', 'G3', 'B3', 'D4']), chord('A2', ['G3', 'C#4', 'F4'])],
+    rhythms: [[[0, 3], [6, 2], [10, 4]], [[3, 3], [8, 6]], [[2, 2], [4, 2], [7, 5]], [[0, 6], [10, 2], [12, 4]]],
+    play(st, t, c, bar){
+      if ([0, 7, 10].includes(st)) I.kick(t, st ? .4 : .55);
+      if ([4, 12].includes(st)){ I.snare(t, .22); I.clap(t, .06); }
+      if (st % 2 === 0) I.hat(t, st % 4 === 2 ? .07 : .04, st === 14);
+      if (st === 0) c.v.forEach((m, i) => I.epiano(t + i * .02, m, this.sd * 14, .06));
+      if (st === 11 && bar % 2) c.v.forEach((m, i) => I.epiano(t + i * .01, m, this.sd * 3, .035));
+      const bp = { 0: [0, 3], 7: [7, 1], 10: [0, 4] }[st];
+      if (bp) I.bass(t, c.b + bp[0] - 12 + 12, bp[1] * this.sd, .4, 'sine');
+      if (st === 0) for (let k = 0; k < 5; k++) I.crackle(t + Math.random() * this.sd * 16, .03 + Math.random() * .04);
+    }
+  }
+};
+function chordAt(tr, bar, st){ const c = tr.prog[bar % tr.prog.length]; return Array.isArray(c) ? (c[1] && st >= 8 ? c[1] : c[0]) : c; }
+function genMelody(tr, seed){
+  const rng = mulberry(seed), notes = [], [lo, hi] = tr.range;
+  const inScale = (m, sc) => sc.includes(((m % 12) + 12) % 12);
+  let prev = tr.start;
+  const pick = (bar, st, strong) => {
+    const c = chordAt(tr, bar, st), sc = c.sc || tr.scale, pcs = c.v.map(m => m % 12);
+    const pool = [];
+    for (let m = lo; m <= hi; m++) if (strong ? pcs.includes(m % 12) : inScale(m, sc)) pool.push(m);
+    pool.sort((a, b) => Math.abs(a - prev) - Math.abs(b - prev));
+    const m = pool[Math.min(pool.length - 1, rng() < .55 ? 0 : 1 + (rng() * 3 | 0))] || prev;
+    prev = m; return m;
+  };
+  const motif = [];
+  for (let b = 0; b < 4; b++) motif.push(tr.rhythms[rng() * tr.rhythms.length | 0]);
+  for (let bar = 0; bar < 16; bar++){
+    const end = bar % 8 === 7, R = end ? [[0, 4], [4, 4], [8, 8]] : motif[bar % 4];
+    for (const [st, ln] of R){
+      let m = pick(bar, st, st % 4 === 0 || end);
+      if (end && st === 8){ const root = chordAt(tr, bar, st).b % 12; for (let k = lo; k <= hi; k++) if (k % 12 === root && Math.abs(k - prev) <= 7){ m = k; break; } }
+      notes.push({ bar, st, ln, m });
+    }
+  }
+  return notes;
+}
+function musSchedule(){
+  const ac = AC, tr = MUS.tr; if (!tr || !MUS.playing) return;
+  while (MUS.next < ac.currentTime + 0.15){
+    const st = MUS.step, bar = MUS.bar, form = bar % 32, sw = st % 2 ? tr.swing * tr.sd : 0, t = MUS.next + sw;
+    const c = chordAt(tr, bar, st), fill = bar % 8 === 7;
+    try { tr.play(st, t, c, bar, fill); } catch(e){}
+    const mb = form < 16 ? form : form >= 24 ? form - 16 : -1;
+    if (mb >= 0) for (const n of MUS.mel) if (n.bar === mb && n.st === st){
+      I[tr.lead](t, n.m, n.ln * tr.sd * .92, tr.lead === 'accordion' ? .05 : tr.lead === 'flute' ? .07 : .08);
+      if (tr.harm){ const sc = c.sc || tr.scale; let h = n.m - 3; while (h > n.m - 5 && !sc.includes(((h % 12) + 12) % 12)) h--; I.accordion(t, h, n.ln * tr.sd * .92, .028); }
+    }
+    MUS.next += tr.sd; MUS.step = (st + 1) % 16;
+    if (MUS.step === 0){
+      MUS.bar++; MUS.played++;
+      if (prefs.musModo === 'todas' && !MUS.ctxTrack && MUS.played >= MUSC.barrasPorFaixa){ setTimeout(() => musNext(), 0); return; }
+    }
+  }
+}
+function musStop(){
+  clearInterval(MUS.timer); MUS.timer = 0; MUS.playing = false; MUS.tr = null;
+  if (MUS.el){ MUS.el.pause(); MUS.el = null; }
+  if (MUS.bus){ const old = MUS.bus; try { old.gain.setTargetAtTime(0.0001, AC.currentTime, .15); } catch(e){} setTimeout(() => { try { old.disconnect(); } catch(e){} }, 900); MUS.bus = null; }
+}
+function musPlay(id){
+  id = id || MUS.ctxTrack || prefs.musFaixa || MUSC.faixas[0].id;
+  let ac; try { ac = audio(); } catch(e){ return; }
+  musStop();
+  if (!prefs.musica) return;
+  if (ac.state !== 'running'){ ac.resume().catch(() => {}); }
+  const meta = trackById(id) || MUSC.faixas[0];
+  MUS.cur = meta.id; MUS.played = 0; MUS.playing = true;
+  if (meta.url){
+    const el = new Audio(meta.url); el.volume = Math.min(1, prefs.musVol); el.loop = prefs.musModo !== 'todas' || !!MUS.ctxTrack;
+    el.onended = () => musNext(); el.play().catch(() => { MUS.playing = false; }); MUS.el = el;
+  } else {
+    const tr = TRACKS[meta.id]; if (!tr){ MUS.playing = false; return; }
+    tr.sd = 60 / tr.bpm / 4; MUS.tr = tr; MUS.mel = genMelody(tr, 1234 + meta.id.length * 77 + (Date.now() / 86400000 | 0));
+    busOut().gain.value = 0.0001; MUS.bus.gain.setTargetAtTime(prefs.musVol * 0.55, ac.currentTime, .3);
+    MUS.step = 0; MUS.bar = 0; MUS.next = ac.currentTime + 0.1;
+    MUS.timer = setInterval(musSchedule, 25); musSchedule();
+  }
+  musUI();
+}
+function musNext(){
+  const list = allTracks(), i = list.findIndex(t => t.id === MUS.cur);
+  const nx = list[(i + 1) % list.length]; prefs.musFaixa = nx.id; store.set(K.preferencias, prefs); musPlay(nx.id);
+}
+function musContext(id){ MUS.ctxTrack = id; if (prefs.musica) musPlay(); }
+function musVolume(v){ prefs.musVol = v; store.set(K.preferencias, prefs); if (MUS.bus && AC) MUS.bus.gain.setTargetAtTime(v * 0.55, AC.currentTime, .05); if (MUS.el) MUS.el.volume = Math.min(1, v); }
+function musUI(){ const b = $('#hMus'); if (b){ b.classList.toggle('on', !!prefs.musica); b.setAttribute('aria-label', prefs.musica ? 'Música ligada' : 'Música desligada'); } }
+function musicModal(back){
+  const list = allTracks();
+  openOv(`<h3>Música</h3>
+    <div class="scroll mlist">${list.map(t => `<button class="mtrack${t.id === MUS.cur && MUS.playing ? ' on' : ''}" data-id="${esc(t.id)}"><b>${t.id === MUS.cur && MUS.playing ? '♪ ' : ''}${esc(t.titulo)}</b><small>${esc(t.estilo || 'Arquivo')}, ${esc(t.autor || 'desconhecido')}, ${t.link ? `<a href="${esc(t.link)}" target="_blank" rel="noopener">${esc(t.licenca || 'licença')}</a>` : esc(t.licenca || 'licença não informada')}</small></button>`).join('')}</div>
+    <label class="vol"><span>Volume</span><input type="range" id="muVol" min="0" max="1" step="0.05" value="${prefs.musVol}"></label>
+    <div class="row"><button class="btn" id="muOn">Música: ${prefs.musica ? 'ligada' : 'desligada'}</button><button class="btn" id="muMode">${prefs.musModo === 'todas' ? 'Tocar todas' : 'Repetir a faixa'}</button></div>
+    <label class="btn ghost small" style="cursor:pointer">Tocar música do celular<input type="file" accept="audio/*" id="muFile" hidden></label>
+    <p class="note" style="margin:0">As trilhas do jogo são originais e estão em domínio público (CC0). Músicas Creative Commons podem ser adicionadas na configuração.</p>
+    <button class="btn" id="muBack">Fechar</button>`);
+  ovCard.querySelectorAll('.mtrack').forEach(b => b.onclick = e => { if (e.target.closest('a')) return; prefs.musica = true; prefs.musFaixa = b.dataset.id; MUS.ctxTrack = null; store.set(K.preferencias, prefs); musPlay(b.dataset.id); musicModal(back); });
+  $('#muVol').oninput = e => musVolume(+e.target.value);
+  $('#muOn').onclick = () => { prefs.musica = !prefs.musica; store.set(K.preferencias, prefs); prefs.musica ? musPlay() : musStop(); musUI(); musicModal(back); };
+  $('#muMode').onclick = () => { prefs.musModo = prefs.musModo === 'todas' ? 'repetir' : 'todas'; store.set(K.preferencias, prefs); if (MUS.el) MUS.el.loop = prefs.musModo !== 'todas'; musicModal(back); };
+  $('#muFile').onchange = e => { const f = e.target.files[0]; if (!f) return; if (MUS.local) URL.revokeObjectURL(MUS.local.url);
+    MUS.local = { id: 'local', titulo: f.name.replace(/\.[^.]+$/, ''), estilo: 'Do seu celular', autor: 'você', licenca: 'só neste aparelho', url: URL.createObjectURL(f) };
+    prefs.musica = true; MUS.ctxTrack = null; musPlay('local'); musicModal(back); };
+  $('#muBack').onclick = back || closeOv;
+}
+$('#hMus').onclick = () => musicModal();
+musUI();
 
 if (qs.get('sala')) openOnline();
 

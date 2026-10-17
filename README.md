@@ -13,7 +13,57 @@ Jogo de sinuca para celular, feito para jogar com a turma, no mesmo aparelho ou 
 | **Bola da Vez** | 2 a 8 | Toque sempre primeiro na menor bola. Cada bola vale o próprio número. |
 | **Treino** | 1 | Limpe a mesa com o menor número de tacadas. |
 
-## Recursos
+## Modo História
+
+Você enfrenta 10 personagens do bairro, de boteco em boteco, até a Grande Final contra o Mestre Sete Tacos. O adversário é controlado pelo computador: ele simula as tacadas antes de jogar e erra mais ou menos conforme a mira, a força, o efeito e os nervos de cada personagem.
+
+| Local | Capítulos |
+|---|---|
+| Boteco do Zé | Seu Zé do Balcão (Bola 8), Tião Marreta (Bola 8) |
+| Bar da Esquina | Dona Cida Tabelinha (Bola da Vez), Rafa Mão Leve (Bola 8) |
+| Clube Recreativo | Marquinho Efeito (Garrafinha), Professora Lurdes (Bola da Vez) |
+| Torneio do Bairro | Bia Relâmpago (Bola 8), Coronel Bigode (Bola 8) |
+| Grande Final | Dona Neide, Rainha da Caçapa (Garrafinha), Mestre Sete Tacos (Bola 8) |
+
+Cada capítulo tem 3 estrelas: vencer, não cometer falta e vencer dentro de um número de tacadas.
+
+## Álbum de figurinhas
+
+Cada personagem vencido vira uma figurinha no álbum, com número, raridade (comum, rara ou lendária), atributos e frase. Com as 3 estrelas do capítulo, a figurinha fica brilhante. Dá para compartilhar a figurinha como imagem no WhatsApp.
+
+## Torcida
+
+Uma torcida no pé da mesa comemora, faz "uuuh" nas bolas que raspam e vaia as faltas, com sons gerados no próprio celular. O botão 📣 manda reações (👏 🔥 😱 😂 💪 🍺 🎉 😬) que aparecem na mesa. No online, todo mundo vê as reações, inclusive quem está esperando a vez. A torcida pode ser desligada no menu ☰.
+
+## Músicas
+
+O jogo tem 4 trilhas originais geradas no próprio celular, todas em domínio público (CC0 1.0):
+
+| Faixa | Estilo |
+|---|---|
+| Samba do Taco | Samba |
+| Bossa da Madrugada | Bossa nova |
+| Forró da Caçapa | Baião |
+| Lo-fi do Feltro | Lo-fi |
+
+No Modo História, cada local tem a sua trilha. O botão ♪ na tela inicial (ou *Música* no menu ☰) troca a faixa, muda o volume e permite tocar uma música do próprio celular.
+
+### Adicionar músicas Creative Commons
+
+1. Crie a pasta `musicas/` no repositório e coloque o arquivo (`.mp3` ou `.ogg`).
+2. No bloco de configuração do `index.html`, adicione a faixa em `musica.arquivos`, com os créditos que a licença pede:
+
+```json
+"arquivos": [
+  { "id": "minha-faixa", "titulo": "Nome da música", "estilo": "Samba", "autor": "Nome do artista",
+    "licenca": "CC BY 4.0", "link": "https://creativecommons.org/licenses/by/4.0/deed.pt_BR",
+    "url": "musicas/minha-faixa.mp3" }
+]
+```
+
+Os créditos aparecem na lista de músicas do jogo. Use só faixas cuja licença permita esse uso (CC0, CC BY ou CC BY-SA, por exemplo) e confira se ela permite uso comercial, caso o jogo um dia tenha anúncio ou venda.
+
+## Outros recursos
 
 - **Online:** crie uma sala, mande o convite pelo WhatsApp e cada amigo joga no próprio celular.
 - **Cara ou coroa** para decidir quem começa (sorteio com 3 ou mais jogadores).
@@ -34,7 +84,7 @@ Abra o link do jogo e:
 | Arquivo | O que é |
 |---|---|
 | `index.html` | O jogo inteiro (HTML, CSS e JavaScript num arquivo só). |
-| `sinuca-config.json` | Configuração do jogo: mesa, física, temas, modos, regras, cronômetro, online e WhatsApp. É a mesma que está dentro do `index.html` no bloco `<script id="cfg">`. |
+| `sinuca-config.json` | Configuração do jogo: mesa, física, temas, modos, regras, personagens, história, torcida, músicas, cronômetro, online e WhatsApp. É a mesma que está dentro do `index.html` no bloco `<script id="cfg">`. |
 | `peerjs.min.js` | Biblioteca [PeerJS](https://peerjs.com) para a conexão online entre celulares (WebRTC). |
 | `sw.js`, `manifest.webmanifest`, `icon-*.png` | Arquivos que transformam o site em app instalável e permitem jogar sem internet. |
 
@@ -46,8 +96,13 @@ Edite o bloco `<script type="application/json" id="cfg">` dentro do `index.html`
 - `cronometro.tempoPorTacada.opcoes`: tempos disponíveis por tacada.
 - `temas`: cores de cada tema.
 - `online.servidor`: endereço de um servidor PeerJS próprio (deixe `null` para usar o público).
+- `personagens`: nome, frase, falas, atributos e visual de cada personagem.
+- `historia.capitulos`: adversário, modo de jogo, diálogos e meta de tacadas de cada capítulo.
+- `cpu`: quanto o computador demora para pensar e o tamanho do erro dele.
+- `torcida.gritos` e `torcida.reacoes`: o que a torcida grita e quais emojis aparecem.
+- `musica`: volume inicial, faixas e arquivos Creative Commons.
 
-Se mudar o `index.html`, troque também o `CACHE` em `sw.js` (por exemplo de `sinuca-v2` para `sinuca-v3`) para os celulares baixarem a versão nova.
+Se mudar o `index.html`, troque também o `CACHE` em `sw.js` (por exemplo de `sinuca-v3` para `sinuca-v4`) para os celulares baixarem a versão nova.
 
 ## Como o online funciona
 
