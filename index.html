@@ -333,6 +333,37 @@ input{font:inherit}
 .meface .cav{width:120px;height:120px;box-shadow:0 0 0 3px var(--accent)}
 .camwrap{position:relative;width:240px;height:240px;border-radius:50%;overflow:hidden;background:#000;margin:0 auto}
 .camwrap video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.homeTip{margin:0;color:var(--muted);font-size:14px}
+.hmrow{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.hmrow .btn{justify-content:flex-start}
+.pin{width:48px;height:48px;border-radius:12px;background:var(--panel2);font-size:20px;opacity:.45}
+.pin[aria-pressed="true"]{opacity:1;background:var(--accent)}
+@media (min-width:1000px){
+  #home{flex-direction:row;max-width:1040px!important;gap:90px;justify-content:center}
+  #home .logo{font-size:96px}
+  #home .rackdeco{display:grid!important}
+  #home .rackdeco .mb{width:42px!important;height:42px!important}
+  .home-btns{width:360px}
+  .home-btns .btn{min-height:56px;font-size:19px}
+  .homeIntro{display:grid;justify-items:center;gap:18px}
+  #modes{grid-template-columns:1fr 1fr}
+}
+@media (min-width:1000px) and (min-aspect-ratio:4/3){
+  #game.on{display:grid;grid-template-columns:300px 1fr;grid-template-rows:auto auto 1fr auto;grid-template-areas:"hud stage" "status stage" "side stage" "controls stage";background:linear-gradient(90deg,var(--panel) 300px,transparent 300px)}
+  #game .hud{grid-area:hud;max-width:none!important;margin:0!important;padding:18px 16px 8px;flex-wrap:wrap}
+  #game #chips{flex-direction:column;flex:1 1 100%;order:3;gap:8px;margin-top:8px}
+  #game .chip{font-size:16px;padding:10px 12px;justify-content:space-between}
+  #game .chip b{max-width:none}
+  #game #status{grid-area:status;max-width:none!important;margin:0!important;padding:8px 16px;flex-wrap:wrap;font-size:16px;gap:12px}
+  #game #statusTxt{flex:1 1 100%}
+  #game #stage{grid-area:stage}
+  #game .controls{grid-area:controls;max-width:none!important;margin:0!important;padding:16px;flex-wrap:wrap;gap:10px}
+  #game #power,#game #waitMsg{flex:1 1 100%;order:3;background:var(--panel2)}
+  #game #power{height:60px}
+  #game #placeBar{flex-wrap:wrap}
+  #game #reactPop{left:16px;right:auto}
+  #game #talk{max-width:420px}
+}
 .face{width:100%;height:100%;object-fit:cover;display:block}
 .face.sil{filter:grayscale(1) brightness(.18) contrast(1.4) blur(2px)}
 .fig-art{align-items:stretch!important}
@@ -360,8 +391,8 @@ input{font:inherit}
   <!-- HOME -->
   <section class="screen on" id="home">
     <button class="iconbtn homeMus" id="hMus" aria-label="Música">♪</button>
-    <div class="logo">Sinuca<small>dos Amigos</small></div>
-    <div class="rackdeco" id="rackdeco" aria-hidden="true"></div>
+    <div class="homeIntro"><div class="logo">Sinuca<small>dos Amigos</small></div>
+    <div class="rackdeco" id="rackdeco" aria-hidden="true"></div></div>
     <div class="home-btns">
       <button class="btn primary" id="hHist">Modo História</button>
       <button class="btn primary" id="hAposta">Noite de Apostas</button>
@@ -374,6 +405,7 @@ input{font:inherit}
         <button class="btn" id="hTheme">Temas</button>
         <button class="btn ghost" id="hRules">Regras</button>
       </div>
+      <button class="btn ghost" id="hMore">Mais opções</button>
     </div>
   </section>
 
@@ -4629,6 +4661,28 @@ async function cameraModal(back){
   };
 }
 $('#hFace').onclick = () => { if (!prefs.meuNome) return askName(() => faceModal()); faceModal(); };
+
+/* ================= MENU INICIAL AJUSTÁVEL ================= */
+const HOMEB = [['hHist','Modo História'],['hAposta','Noite de Apostas'],['hPlay','Jogar neste celular'],['hOnline','Jogar online'],['hFace','Meu rosto'],['hAlbum','Álbum'],['hScore','Placar'],['hTheme','Temas'],['hRules','Regras']];
+if (!Array.isArray(prefs.homeBtns)) prefs.homeBtns = ['hHist', 'hPlay', 'hOnline'];
+function homeRender(){
+  HOMEB.forEach(([id]) => { $('#' + id).hidden = !prefs.homeBtns.includes(id); });
+  $('.home-grid').hidden = !HOMEB.slice(4).some(([id]) => prefs.homeBtns.includes(id));
+}
+function moreModal(){
+  openOv(`<h3>Menu</h3><p class="homeTip">Toque em 📌 para fixar a opção na tela inicial.</p>
+    <div class="scroll" style="display:grid;gap:8px">${HOMEB.map(([id, t]) => `<div class="hmrow"><button class="btn" data-go2="${id}">${t}</button><button class="pin" data-pin="${id}" aria-pressed="${prefs.homeBtns.includes(id)}" aria-label="Fixar ${t} na tela inicial">📌</button></div>`).join('')}</div>
+    <button class="btn ghost" id="hmX">Fechar</button>`);
+  ovCard.querySelectorAll('[data-go2]').forEach(b => b.onclick = () => { closeOv(); $('#' + b.dataset.go2).click(); });
+  ovCard.querySelectorAll('[data-pin]').forEach(b => b.onclick = () => {
+    const id = b.dataset.pin, on = prefs.homeBtns.includes(id);
+    prefs.homeBtns = on ? prefs.homeBtns.filter(x => x !== id) : HOMEB.map(h => h[0]).filter(x => x === id || prefs.homeBtns.includes(x));
+    store.set(K.preferencias, prefs); b.setAttribute('aria-pressed', !on); homeRender();
+  });
+  $('#hmX').onclick = closeOv;
+}
+$('#hMore').onclick = moreModal;
+homeRender();
 if (qs.get('sala')) openOnline();
 
 })();

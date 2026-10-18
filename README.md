@@ -116,6 +116,10 @@ O celular de quem cria a sala (anfitrião) calcula a física e manda o estado da
 
 A cada partida o jogo sorteia um ambiente em volta da mesa, com piso e luz central: carpete vinho, assoalho de madeira, piso quadriculado, cimento queimado, carpete azul, ladrilho hidráulico ou taco em espinha. As cores da mesa também mudam (fora do Modo História, que usa as cores de cada local). A lista fica em `ambientes` na configuração.
 
+## Tela inicial e computador
+
+A tela inicial mostra só as opções principais. Em *Mais opções* ficam todas, e o 📌 fixa qualquer uma na tela inicial. No computador, a partida usa uma coluna lateral com jogadores, status e controles, e a mesa ocupa o resto da tela.
+
 ## Meu rosto
 
 Em *Meu rosto*, na tela inicial, você tira uma foto com a câmera, escolhe uma da galeria ou sorteia um rosto de pessoa que não existe. A foto fica só no aparelho e aparece no Modo História e nas apostas.
