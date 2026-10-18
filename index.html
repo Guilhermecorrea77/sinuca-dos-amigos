@@ -133,7 +133,7 @@ input{font:inherit}
 .seg button.on{background:var(--accent);color:#1a1206}
 .opt{flex-wrap:wrap}
 #status b{color:var(--accent)}
-#stage{position:relative;flex:1;min-height:0}
+#stage{position:relative;flex:1;min-height:0;overflow:hidden}
 #cv{position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block}
 #toast{position:absolute;left:50%;top:10px;transform:translateX(-50%);background:rgba(0,0,0,.78);color:#fff;padding:8px 14px;border-radius:12px;font-weight:600;font-size:15px;text-align:center;max-width:92%;pointer-events:none;opacity:0;transition:opacity .25s}
 #toast.show{opacity:1}
@@ -313,21 +313,26 @@ input{font:inherit}
 .vol{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-weight:600}
 .vol input{width:100%;accent-color:var(--accent)}
 #crowd{display:none!important}
-#game>*{position:relative;z-index:1}
-#cena{position:absolute!important;inset:0;z-index:0!important;overflow:hidden;pointer-events:none}
-#cena img{position:absolute;opacity:.32;filter:saturate(.8)}
-#cena .e0{width:110px;left:-26px;bottom:90px;transform:rotate(-12deg)}
-#cena .e1{width:96px;right:-22px;top:120px;transform:rotate(10deg)}
-#cena .e2{width:70px;right:14px;bottom:96px;opacity:.22}
-#cena::before{content:"";position:absolute;inset:0}
-#cena::after{content:"";position:absolute;left:50%;top:70px;width:120%;height:60%;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0,rgba(255,236,170,.16),transparent 60%)}
-[data-cena="boteco"] #cena::before{background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 34px),linear-gradient(transparent 70%,rgba(82,40,15,.55))}
-[data-cena="adega"] #cena::before{background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,transparent 2px 22px),repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 2px,transparent 2px 44px),linear-gradient(#3b1712,#24110f)}
-[data-cena="quiosque"] #cena::before{background:linear-gradient(#5bb8c8 0,#2a8e9c 35%,#0f3b43 60%,#c89a5b 100%);opacity:.55}
-[data-cena="neon"] #cena::before{background:linear-gradient(transparent 55%,rgba(255,63,180,.15)),repeating-linear-gradient(90deg,rgba(63,240,255,.10) 0 1px,transparent 1px 40px),repeating-linear-gradient(0deg,rgba(63,240,255,.06) 0 1px,transparent 1px 40px)}
-[data-cena="neon"] #cena img{filter:drop-shadow(0 0 8px #ff3fb4)}
-[data-cena="torneio"] #cena::before{background:radial-gradient(ellipse at 15% 0,rgba(95,179,255,.25),transparent 45%),radial-gradient(ellipse at 85% 0,rgba(95,179,255,.25),transparent 45%),linear-gradient(transparent 70%,rgba(0,0,0,.4))}
-[data-cena="grafite"] #cena::before{background:repeating-linear-gradient(135deg,rgba(0,0,0,.035) 0 3px,transparent 3px 9px)}
+#stage{background:var(--amb,transparent)}
+#stage::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(255,238,190,var(--luz,0)),transparent 70%),radial-gradient(ellipse at 50% 50%,transparent 45%,rgba(0,0,0,.55))}
+
+/* computador */
+@media (min-width:900px){
+  #app{max-width:none}
+  #home,#scrModo,#scrJog,#scrOnline,#scrSala,#scrHist,#scrAlbum{max-width:620px;left:50%;transform:translateX(-50%);width:100%}
+  #albumGrid{grid-template-columns:repeat(5,1fr)}
+  .figslot{font-size:7.6px}
+  .card{width:min(480px,100%)}
+  #game .hud,#game #status{max-width:1200px;width:100%;margin:0 auto}
+  #game .controls{max-width:760px;width:100%;margin:0 auto}
+  .btn:hover{filter:brightness(1.08)}
+}
+@media (min-width:900px) and (min-height:700px){ #chips{font-size:15px} }
+/* foto do jogador */
+.meface{display:grid;justify-items:center;gap:10px}
+.meface .cav{width:120px;height:120px;box-shadow:0 0 0 3px var(--accent)}
+.camwrap{position:relative;width:240px;height:240px;border-radius:50%;overflow:hidden;background:#000;margin:0 auto}
+.camwrap video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
 .face{width:100%;height:100%;object-fit:cover;display:block}
 .face.sil{filter:grayscale(1) brightness(.18) contrast(1.4) blur(2px)}
 .fig-art{align-items:stretch!important}
@@ -344,7 +349,7 @@ input{font:inherit}
 .betbox{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;border-radius:12px;background:var(--panel2);font-weight:700}
 .betbox b{font-size:22px;min-width:3ch;text-align:center}
 .creds{display:grid;gap:4px;font-size:13px;color:var(--muted)}.creds a{color:inherit}
-@media (max-height:480px){#cena img{display:none}}
+
 @media (prefers-reduced-motion: reduce){.fig-foil,.flipin,.femoji,#ring.low{animation:none!important}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
@@ -363,6 +368,7 @@ input{font:inherit}
       <button class="btn primary" id="hPlay">Jogar neste celular</button>
       <button class="btn primary" id="hOnline">Jogar online</button>
       <div class="home-grid">
+        <button class="btn" id="hFace">Meu rosto</button>
         <button class="btn" id="hAlbum">Álbum</button>
         <button class="btn" id="hScore">Placar</button>
         <button class="btn" id="hTheme">Temas</button>
@@ -428,7 +434,6 @@ input{font:inherit}
 
   <!-- GAME -->
   <section class="screen" id="game">
-    <div id="cena" aria-hidden="true"></div>
     <div class="hud">
       <button class="iconbtn" id="btnPause" aria-label="Menu">☰<i class="netdot" id="netDot" hidden></i></button>
       <div id="chips"></div>
@@ -2001,57 +2006,6 @@ input{font:inherit}
       }
     }
   },
-  "cenas": {
-    "fonte": "Ilustrações Twemoji (Twitter, CC BY 4.0), pasta cenas/",
-    "porTema": {
-      "boteco": {
-        "nome": "Balcão do boteco",
-        "enfeites": [
-          "1f37a",
-          "1f4fb",
-          "1f4a1"
-        ]
-      },
-      "adega": {
-        "nome": "Bar de tijolinho",
-        "enfeites": [
-          "1f377",
-          "1f56f",
-          "1f3b7"
-        ]
-      },
-      "quiosque": {
-        "nome": "Quiosque na praia",
-        "enfeites": [
-          "1f334",
-          "1fa97",
-          "1f965"
-        ]
-      },
-      "neon": {
-        "nome": "Salão neon",
-        "enfeites": [
-          "1f3c6",
-          "1f4f8",
-          "1f389"
-        ]
-      },
-      "torneio": {
-        "nome": "Arena da final",
-        "enfeites": [
-          "1f451",
-          "1f3df",
-          "1f3ba"
-        ]
-      },
-      "grafite": {
-        "nome": "Garagem",
-        "enfeites": [
-          "1f3b1"
-        ]
-      }
-    }
-  },
   "apostas": {
     "titulo": "Noite de Apostas",
     "lore": "Toda sexta, quando o Seu Zé baixa a porta, o bairro joga valendo fichas. Você chega com algumas fichas no bolso e escolhe contra quem apostar, mesa após mesa. Quanto mais forte o adversário, maior o prêmio. Se as fichas acabarem, a noite acaba. Se aguentar até a última mesa, o Mestre Sete Tacos aceita a aposta final.",
@@ -2116,12 +2070,6 @@ input{font:inherit}
       "link": "https://github.com/gecid-aia/ai-faces"
     },
     {
-      "o": "Ilustrações dos cenários",
-      "autor": "Twemoji, Twitter",
-      "licenca": "CC BY 4.0",
-      "link": "https://github.com/jdecked/twemoji"
-    },
-    {
       "o": "Trilhas sonoras",
       "autor": "Sinuca dos Amigos",
       "licenca": "CC0 1.0",
@@ -2133,7 +2081,77 @@ input{font:inherit}
       "licenca": "MIT",
       "link": "https://peerjs.com"
     }
-  ]
+  ],
+  "ambientes": {
+    "descricao": "A cada partida o jogo sorteia um ambiente (piso e iluminação) e as cores da mesa.",
+    "sortearMesa": true,
+    "lista": [
+      {
+        "id": "carpeteVinho",
+        "nome": "Carpete vinho com luz central",
+        "piso": "carpete",
+        "cor": "#5a1a22",
+        "luz": 0.32
+      },
+      {
+        "id": "assoalho",
+        "nome": "Assoalho de madeira",
+        "piso": "madeira",
+        "cor": "#6b4423",
+        "luz": 0.24
+      },
+      {
+        "id": "xadrez",
+        "nome": "Piso quadriculado",
+        "piso": "xadrez",
+        "cor": "#2b2b2b",
+        "cor2": "#cfc8b8",
+        "luz": 0.22
+      },
+      {
+        "id": "cimento",
+        "nome": "Cimento queimado",
+        "piso": "cimento",
+        "cor": "#6f6b66",
+        "luz": 0.26
+      },
+      {
+        "id": "carpeteAzul",
+        "nome": "Carpete azul de clube",
+        "piso": "carpete",
+        "cor": "#1d2f5a",
+        "luz": 0.3
+      },
+      {
+        "id": "ladrilho",
+        "nome": "Ladrilho hidráulico",
+        "piso": "ladrilho",
+        "cor": "#7a3b2a",
+        "cor2": "#d9c8a8",
+        "luz": 0.22
+      },
+      {
+        "id": "tacos",
+        "nome": "Taco de madeira em espinha",
+        "piso": "espinha",
+        "cor": "#8a5a2e",
+        "luz": 0.26
+      }
+    ]
+  },
+  "rostos": {
+    "sorteio": [
+      "faces/sorteio-1.jpg",
+      "faces/sorteio-2.jpg",
+      "faces/sorteio-3.jpg",
+      "faces/sorteio-4.jpg",
+      "faces/sorteio-5.jpg",
+      "faces/sorteio-6.jpg",
+      "faces/sorteio-7.jpg",
+      "faces/sorteio-8.jpg"
+    ],
+    "tamanhoFoto": 256
+  }
 }
 </script>
 
@@ -2175,9 +2193,6 @@ function applyTheme(id, temp){
   const rs = document.documentElement.style;
   for (const k in VARMAP) rs.setProperty(VARMAP[k], t.cores[k]);
   document.querySelector('meta[name=theme-color]').content = t.cores.fundo;
-  const cn = (CFG.cenas.porTema[t.id] || { enfeites: [] });
-  document.body.dataset.cena = t.id;
-  const ce = document.getElementById('cena'); if (ce) ce.innerHTML = cn.enfeites.map((e, i) => `<img class="e${i}" src="cenas/${e}.svg" alt="">`).join('');
   if (!temp) store.set(K.preferencias, prefs);
 }
 applyTheme(prefs.tema);
@@ -2438,6 +2453,7 @@ function newGame(opts = {}){
   $('#talk').classList.remove('show');
   rack();
   MODES[G.modo].init(G);
+  pickAmbiente(G);
   show('game'); G.phase = 'coin'; hud(); spinUI(); clockUI(true);
   if (NET){ NET.lobby.forEach((p, i) => { if (G.players[i]) G.players[i].off = !p.online; }); sendState(); }
   if (G.players.length === 1) return afterStart();
@@ -2559,7 +2575,7 @@ const MODES = {
 /* ================= HUD ================= */
 function hud(){
   const md = MODES[G.modo];
-  $('#chips').innerHTML = G.players.map((p, i) => `<div class="chip${i === G.cur ? ' cur' : ''}${p.vivo ? '' : ' out'}${p.off ? ' off' : ''}${NET && i === NET.me ? ' me' : ''}"><b>${p.cpu && CHAR[p.cpu] ? `<span class="cav">${avatarSVG(CHAR[p.cpu].visual, { bg: true })}</span>` : ''}${esc(p.nome)}</b><span>${md.chip(i)}</span></div>`).join('');
+  $('#chips').innerHTML = G.players.map((p, i) => `<div class="chip${i === G.cur ? ' cur' : ''}${p.vivo ? '' : ' out'}${p.off ? ' off' : ''}${NET && i === NET.me ? ' me' : ''}"><b>${p.cpu && CHAR[p.cpu] ? `<span class="cav">${avatarSVG(CHAR[p.cpu].visual, { bg: true })}</span>` : (G.story && i === G.hs && myFace()) ? `<span class="cav">${avatarSVG(meVis(), { bg: true })}</span>` : ''}${esc(p.nome)}</b><span>${md.chip(i)}</span></div>`).join('');
   const cp = G.players[G.cur] || { nome: '' }, mine = (NET || G.story) && myTurn();
   $('#statusTxt').innerHTML = G.phase === 'over' ? 'Fim de jogo' : G.phase === 'coin' ? 'Sorteando quem começa' : `${mine ? '<b>Sua vez</b>' : `Vez de <b>${esc(cp.nome)}</b>`}: ${esc(md.target())}`;
   $('#btnPeek').hidden = G.modo !== 'garrafinha' || (NET && !G.players[NET.me]);
@@ -2931,7 +2947,7 @@ function resize(){
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
   const OW = W + 2 * RAIL, OH = H + 2 * RAIL, rot = prefs.orientacao === 'retrato' ? true : prefs.orientacao === 'paisagem' ? false : r.height > r.width;
-  const s = Math.min(r.width / (rot ? OH : OW), r.height / (rot ? OW : OH)) * 0.97;
+  const s = Math.min(r.width / (rot ? OH : OW), r.height / (rot ? OW : OH)) * (Math.min(r.width, r.height) > 420 ? 0.88 : 0.95);
   view = { rot, s, dpr, cx: r.width / 2, cy: r.height / 2 };
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.scale(dpr, dpr); ctx.translate(view.cx, view.cy);
   if (rot) ctx.rotate(-Math.PI / 2);
@@ -2943,17 +2959,18 @@ function toTable(e){ const r = cv.getBoundingClientRect(); const q = view.m.inve
 
 function rrect(x, y, w, h, r){ ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
 function drawTable(){
+  const TT = (G && G.mesa) || TH;
   ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, cv.width, cv.height); ctx.restore();
   ctx.setTransform(view.m);
   // shadow + rail
   ctx.save(); ctx.shadowColor = 'rgba(0,0,0,.45)'; ctx.shadowBlur = 30; ctx.shadowOffsetY = 10;
   rrect(-RAIL, -RAIL, W + 2 * RAIL, H + 2 * RAIL, 26);
-  const gw = ctx.createLinearGradient(0, -RAIL, 0, H + RAIL); gw.addColorStop(0, TH.madeira); gw.addColorStop(.5, TH.madeira2); gw.addColorStop(1, TH.madeira);
+  const gw = ctx.createLinearGradient(0, -RAIL, 0, H + RAIL); gw.addColorStop(0, TT.madeira); gw.addColorStop(.5, TT.madeira2); gw.addColorStop(1, TT.madeira);
   ctx.fillStyle = gw; ctx.fill(); ctx.restore();
   // cushion
-  ctx.fillStyle = TH.feltro2; rrect(-10, -10, W + 20, H + 20, 8); ctx.fill();
+  ctx.fillStyle = TT.feltro2; rrect(-10, -10, W + 20, H + 20, 8); ctx.fill();
   // felt
-  const gf = ctx.createRadialGradient(W / 2, H / 2, 40, W / 2, H / 2, W * 0.62); gf.addColorStop(0, TH.feltro); gf.addColorStop(1, TH.feltro2);
+  const gf = ctx.createRadialGradient(W / 2, H / 2, 40, W / 2, H / 2, W * 0.62); gf.addColorStop(0, TT.feltro); gf.addColorStop(1, TT.feltro2);
   ctx.fillStyle = gf; ctx.fillRect(0, 0, W, H);
   // markings
   ctx.strokeStyle = 'rgba(255,255,255,.12)'; ctx.lineWidth = 2;
@@ -2968,7 +2985,7 @@ function drawTable(){
   for (const p of POCKETS){
     const off = p.x === W / 2 ? 0 : 5; const px = p.x + (p.x === 0 ? -off : p.x === W ? off : 0), py = p.y + (p.y <= 0 ? -off : off);
     ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.beginPath(); ctx.arc(px, py, p.r + 5, 0, 7); ctx.fill();
-    ctx.fillStyle = TH.cacapa; ctx.beginPath(); ctx.arc(px, py, p.r, 0, 7); ctx.fill();
+    ctx.fillStyle = TT.cacapa; ctx.beginPath(); ctx.arc(px, py, p.r, 0, 7); ctx.fill();
   }
 }
 function drawBall(b, alpha = 1){
@@ -3320,7 +3337,7 @@ function hostToLobby(){
 function snap(seat){
   const over = G.phase === 'over';
   return {
-    gid: G.gid, modo: G.modo, cur: G.cur, phase: G.phase, grupos: G.grupos, quebra: G.quebra, tacadas: G.tacadas, numeros: G.numeros,
+    gid: G.gid, modo: G.modo, amb: G.amb, mesa: G.mesa, cur: G.cur, phase: G.phase, grupos: G.grupos, quebra: G.quebra, tacadas: G.tacadas, numeros: G.numeros,
     relogio: G.relogio, turnoT: G.turnoT, tempo: G.tempo, aim: G.aim,
     players: G.players.map((p, i) => ({ nome: p.nome, telefone: p.telefone, pts: p.pts, vivo: p.vivo, equipe: p.equipe, off: !!p.off,
       rest: p.nums.filter(n => !isDown(n)).length, nums: (i === seat || over) ? p.nums : [] })),
@@ -3428,6 +3445,7 @@ function applyState(m){
     G = { gid: s.gid, modo: s.modo, cfg: MODECFG[s.modo], aim: s.aim || 0, power: 0, spin: { x: 0, y: 0 }, shot: null, balls: [], cur: -1, phase: '' };
     show('game');
   }
+  if (s.amb && (!G.amb || G.amb.id !== s.amb.id)){ G.amb = s.amb; G.mesa = s.mesa; applyAmbiente(); }
   const prevPhase = G.phase, prevCur = G.cur;
   Object.assign(G, { players: s.players, cur: s.cur, phase: s.phase, grupos: s.grupos, quebra: s.quebra, tacadas: s.tacadas, numeros: s.numeros, relogio: s.relogio, turnoT: s.turnoT, tempo: s.tempo });
   NET.me = m.me;
@@ -3952,7 +3970,7 @@ function storyIntro(i, line = 0){
   const [who, txt] = lines[Math.min(line, lines.length - 1)];
   const m = MODECFG[cap.modo];
   openOv(`<p class="vsLocal">${esc(L.nome)}, capítulo ${i + 1}</p>
-    <div class="vs"><div class="vsP${who === 'voce' ? ' talk' : ''}"><span class="cav">${avatarSVG(ME_VIS(), { bg: true })}</span><b>${esc(meName())}</b></div>
+    <div class="vs"><div class="vsP${who === 'voce' ? ' talk' : ''}"><span class="cav">${avatarSVG(meVis(), { bg: true })}</span><b>${esc(meName())}</b></div>
       <span class="vsX">VS</span>
       <div class="vsP${who === 'ele' ? ' talk' : ''}"><span class="cav">${avatarSVG(ch.visual, { bg: true })}</span><b>${esc(ch.curto)}</b></div></div>
     <div class="bubble ${who === 'voce' ? 'l' : 'r'}">${esc(txt)}</div>
@@ -4541,6 +4559,76 @@ function apostaFim(venceu, desistiu){
 
 if (RUN && RUN.jogo){ RUN.fichas -= RUN.jogo.bet; RUN.hist.push({ id: RUN.jogo.id, won: false, delta: -RUN.jogo.bet }); RUN.jogo = null; if (RUN.fichas <= 0) RUN = null; store.set(K.aposta, RUN); }
 applyTheme(prefs.tema);
+
+/* ================= AMBIENTE (sorteado a cada partida) ================= */
+function ambCSS(a){
+  const c = a.cor, d = shade(c, -0.18), l = shade(c, 0.1), c2 = a.cor2 || l;
+  switch (a.piso){
+    case 'carpete': return `radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1.4px) 0 0/5px 5px,radial-gradient(circle,rgba(0,0,0,.12) 1px,transparent 1.4px) 2px 3px/7px 7px,${c}`;
+    case 'madeira': return `repeating-linear-gradient(90deg,transparent 0 58px,rgba(0,0,0,.35) 58px 60px),repeating-linear-gradient(0deg,transparent 0 179px,rgba(0,0,0,.25) 179px 180px),repeating-linear-gradient(90deg,${c} 0 12px,${l} 12px 20px,${c} 20px 34px,${d} 34px 42px,${c} 42px 60px)`;
+    case 'xadrez': return `conic-gradient(${c} 25%,${c2} 0 50%,${c} 0 75%,${c2} 0) 0 0/64px 64px`;
+    case 'cimento': return `radial-gradient(circle,rgba(255,255,255,.06) 1px,transparent 2px) 0 0/9px 9px,radial-gradient(circle,rgba(0,0,0,.1) 1.5px,transparent 2px) 4px 5px/13px 13px,linear-gradient(135deg,${l},${c} 50%,${d})`;
+    case 'ladrilho': return `radial-gradient(circle at 50% 50%,${c} 0 9px,transparent 10px) 0 0/48px 48px,conic-gradient(from 45deg,${c2} 25%,${l} 0 50%,${c2} 0 75%,${l} 0) 0 0/48px 48px`;
+    case 'espinha': return `repeating-linear-gradient(45deg,${c} 0 14px,${d} 14px 16px),repeating-linear-gradient(-45deg,transparent 0 46px,rgba(0,0,0,.3) 46px 48px)`;
+  }
+  return c;
+}
+function pickAmbiente(G){
+  const L = CFG.ambientes.lista, a = L[Math.random() * L.length | 0];
+  G.amb = a;
+  if (CFG.ambientes.sortearMesa && !G.story){ const t = CFG.temas[Math.random() * CFG.temas.length | 0]; G.mesa = t.cores; }
+  applyAmbiente();
+}
+function applyAmbiente(){
+  const st = $('#stage'); if (!G || !G.amb){ st.style.removeProperty('--amb'); st.style.setProperty('--luz', 0); return; }
+  st.style.setProperty('--amb', ambCSS(G.amb)); st.style.setProperty('--luz', G.amb.luz);
+}
+
+/* ================= MEU ROSTO ================= */
+const myFace = () => prefs.minhaFoto || null;
+function meVis(){ const v = ME_VIS(); if (myFace()) v.foto = myFace(); return v; }
+function saveFace(dataUrl){ prefs.minhaFoto = dataUrl; store.set(K.preferencias, prefs); }
+function squareFromSource(src, w, h){
+  const S = CFG.rostos.tamanhoFoto, c = document.createElement('canvas'); c.width = c.height = S;
+  const x = c.getContext('2d'), sz = Math.min(w, h);
+  x.drawImage(src, (w - sz) / 2, (h - sz) / 2, sz, sz, 0, 0, S, S);
+  return c.toDataURL('image/jpeg', 0.82);
+}
+function faceModal(back){
+  openOv(`<h3>Meu rosto</h3>
+    <div class="meface"><span class="cav">${avatarSVG(meVis(), { bg: true })}</span><b>${esc(meName())}</b></div>
+    <div class="row"><button class="btn primary" id="fcCam">Tirar foto</button><button class="btn" id="fcRnd">Sortear rosto</button></div>
+    <div class="row"><label class="btn ghost small" style="cursor:pointer">Escolher da galeria<input type="file" accept="image/*" id="fcFile" hidden></label>${myFace() ? '<button class="btn ghost small" id="fcDel">Tirar foto</button>' : ''}</div>
+    <p class="note" style="margin:0">A foto fica só neste aparelho. Os rostos sorteados são de pessoas que não existem.</p>
+    <button class="btn" id="fcOk">Pronto</button>`, 'story');
+  $('#fcRnd').onclick = async () => {
+    const list = CFG.rostos.sorteio.filter(u => u !== prefs.minhaFotoUrl), url = list[Math.random() * list.length | 0];
+    const img = new Image(); img.src = url; await new Promise(r => { img.onload = r; img.onerror = r; });
+    if (img.naturalWidth){ saveFace(squareFromSource(img, img.naturalWidth, img.naturalHeight)); prefs.minhaFotoUrl = url; store.set(K.preferencias, prefs); }
+    faceModal(back);
+  };
+  $('#fcFile').onchange = e => { const f = e.target.files[0]; if (!f) return; const img = new Image(); img.onload = () => { saveFace(squareFromSource(img, img.naturalWidth, img.naturalHeight)); URL.revokeObjectURL(img.src); faceModal(back); }; img.src = URL.createObjectURL(f); };
+  if ($('#fcDel')) { $('#fcDel').textContent = 'Remover foto'; $('#fcDel').onclick = () => { delete prefs.minhaFoto; store.set(K.preferencias, prefs); faceModal(back); }; }
+  $('#fcCam').onclick = () => cameraModal(back);
+  $('#fcOk').onclick = back || closeOv;
+}
+async function cameraModal(back){
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: 640, height: 640 }, audio: false }); }
+  catch(e){ openOv(`<h3>Câmera indisponível</h3><p style="margin:0">Não deu para abrir a câmera. Libere o acesso nas permissões do navegador ou use "Escolher da galeria".</p><button class="btn" id="cmX">Voltar</button>`); $('#cmX').onclick = () => faceModal(back); return; }
+  openOv(`<h3>Tirar foto</h3><div class="camwrap"><video id="cmV" playsinline autoplay muted></video></div>
+    <p class="note" style="margin:0;text-align:center">Centralize o rosto no círculo.</p>
+    <div class="row"><button class="btn" id="cmX">Cancelar</button><button class="btn primary" id="cmShot">Fotografar</button></div>`, 'story');
+  const v = $('#cmV'); v.srcObject = stream;
+  const stop = () => stream.getTracks().forEach(t => t.stop());
+  $('#cmX').onclick = () => { stop(); faceModal(back); };
+  $('#cmShot').onclick = () => {
+    const c = document.createElement('canvas'), w = v.videoWidth, h = v.videoHeight; if (!w) return;
+    c.width = w; c.height = h; const x = c.getContext('2d'); x.translate(w, 0); x.scale(-1, 1); x.drawImage(v, 0, 0);
+    saveFace(squareFromSource(c, w, h)); stop(); faceModal(back);
+  };
+}
+$('#hFace').onclick = () => { if (!prefs.meuNome) return askName(() => faceModal()); faceModal(); };
 if (qs.get('sala')) openOnline();
 
 })();

@@ -112,13 +112,16 @@ Se mudar o `index.html`, troque também o `CACHE` em `sw.js` (por exemplo de `si
 
 O celular de quem cria a sala (anfitrião) calcula a física e manda o estado da mesa para os outros pelo WebRTC. A conexão inicial usa o servidor público gratuito do PeerJS. O anfitrião precisa ficar com o jogo aberto durante a partida.
 
-## Cenários
+## Ambientes
 
-Cada tema de mesa tem um cenário: balcão do boteco, bar de tijolinho, quiosque na praia, salão neon, arena da final e garagem. Os enfeites são ilustrações [Twemoji](https://github.com/jdecked/twemoji) (CC BY 4.0), na pasta `cenas/`.
+A cada partida o jogo sorteia um ambiente em volta da mesa, com piso e luz central: carpete vinho, assoalho de madeira, piso quadriculado, cimento queimado, carpete azul, ladrilho hidráulico ou taco em espinha. As cores da mesa também mudam (fora do Modo História, que usa as cores de cada local). A lista fica em `ambientes` na configuração.
+
+## Meu rosto
+
+Em *Meu rosto*, na tela inicial, você tira uma foto com a câmera, escolhe uma da galeria ou sorteia um rosto de pessoa que não existe. A foto fica só no aparelho e aparece no Modo História e nas apostas.
 
 ## Créditos
 
-- Rostos dos personagens: imagens geradas pelo [This Person Does Not Exist](https://thispersondoesnotexist.com) (StyleGAN2), obtidas no repositório [gecid-aia/ai-faces](https://github.com/gecid-aia/ai-faces), licença [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Pasta `faces/`, recortadas e reduzidas.
-- Ilustrações dos cenários: [Twemoji](https://github.com/jdecked/twemoji), Twitter, licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Rostos dos personagens: imagens geradas pelo [This Person Does Not Exist](https://thispersondoesnotexist.com) (StyleGAN2), obtidas no repositório [gecid-aia/ai-faces](https://github.com/gecid-aia/ai-faces), licença [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Pasta `faces/` (personagens e `sorteio-*.jpg`), recortadas e reduzidas.
 - Trilhas: originais do jogo, [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR).
 - Conexão online: [PeerJS](https://peerjs.com), licença MIT.

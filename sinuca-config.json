@@ -1541,57 +1541,6 @@
       }
     }
   },
-  "cenas": {
-    "fonte": "Ilustrações Twemoji (Twitter, CC BY 4.0), pasta cenas/",
-    "porTema": {
-      "boteco": {
-        "nome": "Balcão do boteco",
-        "enfeites": [
-          "1f37a",
-          "1f4fb",
-          "1f4a1"
-        ]
-      },
-      "adega": {
-        "nome": "Bar de tijolinho",
-        "enfeites": [
-          "1f377",
-          "1f56f",
-          "1f3b7"
-        ]
-      },
-      "quiosque": {
-        "nome": "Quiosque na praia",
-        "enfeites": [
-          "1f334",
-          "1fa97",
-          "1f965"
-        ]
-      },
-      "neon": {
-        "nome": "Salão neon",
-        "enfeites": [
-          "1f3c6",
-          "1f4f8",
-          "1f389"
-        ]
-      },
-      "torneio": {
-        "nome": "Arena da final",
-        "enfeites": [
-          "1f451",
-          "1f3df",
-          "1f3ba"
-        ]
-      },
-      "grafite": {
-        "nome": "Garagem",
-        "enfeites": [
-          "1f3b1"
-        ]
-      }
-    }
-  },
   "apostas": {
     "titulo": "Noite de Apostas",
     "lore": "Toda sexta, quando o Seu Zé baixa a porta, o bairro joga valendo fichas. Você chega com algumas fichas no bolso e escolhe contra quem apostar, mesa após mesa. Quanto mais forte o adversário, maior o prêmio. Se as fichas acabarem, a noite acaba. Se aguentar até a última mesa, o Mestre Sete Tacos aceita a aposta final.",
@@ -1656,12 +1605,6 @@
       "link": "https://github.com/gecid-aia/ai-faces"
     },
     {
-      "o": "Ilustrações dos cenários",
-      "autor": "Twemoji, Twitter",
-      "licenca": "CC BY 4.0",
-      "link": "https://github.com/jdecked/twemoji"
-    },
-    {
       "o": "Trilhas sonoras",
       "autor": "Sinuca dos Amigos",
       "licenca": "CC0 1.0",
@@ -1673,5 +1616,75 @@
       "licenca": "MIT",
       "link": "https://peerjs.com"
     }
-  ]
+  ],
+  "ambientes": {
+    "descricao": "A cada partida o jogo sorteia um ambiente (piso e iluminação) e as cores da mesa.",
+    "sortearMesa": true,
+    "lista": [
+      {
+        "id": "carpeteVinho",
+        "nome": "Carpete vinho com luz central",
+        "piso": "carpete",
+        "cor": "#5a1a22",
+        "luz": 0.32
+      },
+      {
+        "id": "assoalho",
+        "nome": "Assoalho de madeira",
+        "piso": "madeira",
+        "cor": "#6b4423",
+        "luz": 0.24
+      },
+      {
+        "id": "xadrez",
+        "nome": "Piso quadriculado",
+        "piso": "xadrez",
+        "cor": "#2b2b2b",
+        "cor2": "#cfc8b8",
+        "luz": 0.22
+      },
+      {
+        "id": "cimento",
+        "nome": "Cimento queimado",
+        "piso": "cimento",
+        "cor": "#6f6b66",
+        "luz": 0.26
+      },
+      {
+        "id": "carpeteAzul",
+        "nome": "Carpete azul de clube",
+        "piso": "carpete",
+        "cor": "#1d2f5a",
+        "luz": 0.3
+      },
+      {
+        "id": "ladrilho",
+        "nome": "Ladrilho hidráulico",
+        "piso": "ladrilho",
+        "cor": "#7a3b2a",
+        "cor2": "#d9c8a8",
+        "luz": 0.22
+      },
+      {
+        "id": "tacos",
+        "nome": "Taco de madeira em espinha",
+        "piso": "espinha",
+        "cor": "#8a5a2e",
+        "luz": 0.26
+      }
+    ]
+  },
+  "rostos": {
+    "sorteio": [
+      "faces/sorteio-1.jpg",
+      "faces/sorteio-2.jpg",
+      "faces/sorteio-3.jpg",
+      "faces/sorteio-4.jpg",
+      "faces/sorteio-5.jpg",
+      "faces/sorteio-6.jpg",
+      "faces/sorteio-7.jpg",
+      "faces/sorteio-8.jpg"
+    ],
+    "tamanhoFoto": 256
+  }
 }
