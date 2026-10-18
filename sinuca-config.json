@@ -457,7 +457,8 @@
         "camisa": "#f4f1e8",
         "roupa": "regata",
         "expressao": "sorriso",
-        "fundo": "#f2b632"
+        "fundo": "#f2b632",
+        "foto": "faces/ze.jpg"
       },
       "falas": {
         "acerto": [
@@ -503,7 +504,8 @@
         "camisa": "#2f3a4a",
         "roupa": "camiseta",
         "expressao": "serio",
-        "fundo": "#e0573e"
+        "fundo": "#e0573e",
+        "foto": "faces/tiao.jpg"
       },
       "falas": {
         "acerto": [
@@ -549,7 +551,8 @@
         "camisa": "#7a4fa0",
         "roupa": "florida",
         "expressao": "sorriso",
-        "fundo": "#c79ad8"
+        "fundo": "#c79ad8",
+        "foto": "faces/cida.jpg"
       },
       "falas": {
         "acerto": [
@@ -593,7 +596,8 @@
         "camisa": "#1b1b1f",
         "roupa": "camisa",
         "expressao": "debochado",
-        "fundo": "#5fb3ff"
+        "fundo": "#5fb3ff",
+        "foto": "faces/rafa.jpg"
       },
       "falas": {
         "acerto": [
@@ -638,7 +642,8 @@
         "camisa": "#1d8a4a",
         "roupa": "regata",
         "expressao": "debochado",
-        "fundo": "#7fd18a"
+        "fundo": "#7fd18a",
+        "foto": "faces/marquinho.jpg"
       },
       "falas": {
         "acerto": [
@@ -683,7 +688,8 @@
         "camisa": "#2f5fa8",
         "roupa": "colete",
         "expressao": "serio",
-        "fundo": "#9fc4f0"
+        "fundo": "#9fc4f0",
+        "foto": "faces/lurdes.jpg"
       },
       "falas": {
         "acerto": [
@@ -729,7 +735,8 @@
         "roupa": "jaqueta",
         "brinco": true,
         "expressao": "sorriso",
-        "fundo": "#3ff0ff"
+        "fundo": "#3ff0ff",
+        "foto": "faces/bia.jpg"
       },
       "falas": {
         "acerto": [
@@ -775,7 +782,8 @@
         "camisa": "#f2efe6",
         "roupa": "terno",
         "expressao": "serio",
-        "fundo": "#c08a4a"
+        "fundo": "#c08a4a",
+        "foto": "faces/coronel.jpg"
       },
       "falas": {
         "acerto": [
@@ -822,7 +830,8 @@
         "camisa": "#b3122a",
         "roupa": "vestido",
         "expressao": "debochado",
-        "fundo": "#ff3fb4"
+        "fundo": "#ff3fb4",
+        "foto": "faces/neide.jpg"
       },
       "falas": {
         "acerto": [
@@ -868,7 +877,8 @@
         "roupa": "camisa",
         "expressao": "serio",
         "fundo": "#7a1f1f",
-        "taco": true
+        "taco": true,
+        "foto": "faces/mestre.jpg"
       },
       "falas": {
         "acerto": [
@@ -1269,12 +1279,13 @@
       "🍺",
       "🎉",
       "😬"
-    ]
+    ],
+    "mostrar": false
   },
   "musica": {
     "ativa": true,
     "volume": 0.45,
-    "modo": "todas",
+    "modo": "aleatorio",
     "barrasPorFaixa": 48,
     "faixas": [
       {
@@ -1466,7 +1477,9 @@
       "jogadores": "sinuca.jogadores",
       "serie": "sinuca.serie",
       "cliente": "sinuca.cliente",
-      "historia": "sinuca.historia"
+      "historia": "sinuca.historia",
+      "aposta": "sinuca.aposta",
+      "apostaRecorde": "sinuca.apostaRecorde"
     }
   },
   "esquemas": {
@@ -1527,5 +1540,138 @@
         "closed": "anfitrião fechou a sala"
       }
     }
-  }
+  },
+  "cenas": {
+    "fonte": "Ilustrações Twemoji (Twitter, CC BY 4.0), pasta cenas/",
+    "porTema": {
+      "boteco": {
+        "nome": "Balcão do boteco",
+        "enfeites": [
+          "1f37a",
+          "1f4fb",
+          "1f4a1"
+        ]
+      },
+      "adega": {
+        "nome": "Bar de tijolinho",
+        "enfeites": [
+          "1f377",
+          "1f56f",
+          "1f3b7"
+        ]
+      },
+      "quiosque": {
+        "nome": "Quiosque na praia",
+        "enfeites": [
+          "1f334",
+          "1fa97",
+          "1f965"
+        ]
+      },
+      "neon": {
+        "nome": "Salão neon",
+        "enfeites": [
+          "1f3c6",
+          "1f4f8",
+          "1f389"
+        ]
+      },
+      "torneio": {
+        "nome": "Arena da final",
+        "enfeites": [
+          "1f451",
+          "1f3df",
+          "1f3ba"
+        ]
+      },
+      "grafite": {
+        "nome": "Garagem",
+        "enfeites": [
+          "1f3b1"
+        ]
+      }
+    }
+  },
+  "apostas": {
+    "titulo": "Noite de Apostas",
+    "lore": "Toda sexta, quando o Seu Zé baixa a porta, o bairro joga valendo fichas. Você chega com algumas fichas no bolso e escolhe contra quem apostar, mesa após mesa. Quanto mais forte o adversário, maior o prêmio. Se as fichas acabarem, a noite acaba. Se aguentar até a última mesa, o Mestre Sete Tacos aceita a aposta final.",
+    "fichasIniciais": 100,
+    "rodadas": 7,
+    "apostaMinima": 10,
+    "oddBase": 1.3,
+    "oddDivisor": 70,
+    "modos": [
+      "bola8",
+      "bola8",
+      "bolaDaVez",
+      "garrafinha"
+    ],
+    "vantagens": [
+      {
+        "id": "giz",
+        "icone": "🟦",
+        "nome": "Giz azul",
+        "descricao": "A linha guia fica duas vezes mais longa."
+      },
+      {
+        "id": "cerveja",
+        "icone": "🍺",
+        "nome": "Rodada por conta",
+        "descricao": "Os adversários erram 40% mais.",
+        "valor": 0.4
+      },
+      {
+        "id": "moeda",
+        "icone": "🪙",
+        "nome": "Moeda viciada",
+        "descricao": "Você sempre começa a partida."
+      },
+      {
+        "id": "seguro",
+        "icone": "🛟",
+        "nome": "Seguro do Zé",
+        "descricao": "Perdendo, você paga só metade da aposta."
+      },
+      {
+        "id": "juros",
+        "icone": "📒",
+        "nome": "Caderninho",
+        "descricao": "Ganha 20% a mais em cada vitória.",
+        "valor": 0.2
+      },
+      {
+        "id": "fiado",
+        "icone": "🤝",
+        "nome": "Fiado",
+        "descricao": "Uma derrota não custa nada. Some depois de usar.",
+        "repete": true
+      }
+    ]
+  },
+  "creditos": [
+    {
+      "o": "Rostos dos personagens",
+      "autor": "This Person Does Not Exist (StyleGAN2), via repositório gecid-aia/ai-faces",
+      "licenca": "CC BY-SA 2.0",
+      "link": "https://github.com/gecid-aia/ai-faces"
+    },
+    {
+      "o": "Ilustrações dos cenários",
+      "autor": "Twemoji, Twitter",
+      "licenca": "CC BY 4.0",
+      "link": "https://github.com/jdecked/twemoji"
+    },
+    {
+      "o": "Trilhas sonoras",
+      "autor": "Sinuca dos Amigos",
+      "licenca": "CC0 1.0",
+      "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+    },
+    {
+      "o": "Conexão online",
+      "autor": "PeerJS",
+      "licenca": "MIT",
+      "link": "https://peerjs.com"
+    }
+  ]
 }

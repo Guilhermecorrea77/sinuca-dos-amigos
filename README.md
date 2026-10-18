@@ -27,13 +27,17 @@ Você enfrenta 10 personagens do bairro, de boteco em boteco, até a Grande Fina
 
 Cada capítulo tem 3 estrelas: vencer, não cometer falta e vencer dentro de um número de tacadas.
 
+## Noite de Apostas
+
+Modo roguelike: você começa com 100 fichas e enfrenta 7 mesas. Em cada mesa escolhe um entre 3 adversários sorteados, cada um com uma cotação (quanto mais forte, mais paga), e decide quanto apostar. Depois de cada vitória escolhe uma vantagem (Giz azul, Rodada por conta, Moeda viciada, Seguro do Zé, Caderninho ou Fiado). Ficou sem fichas, a noite acaba. A última mesa é a aposta final contra o Mestre Sete Tacos. As fichas são do jogo e não valem dinheiro.
+
 ## Álbum de figurinhas
 
 Cada personagem vencido vira uma figurinha no álbum, com número, raridade (comum, rara ou lendária), atributos e frase. Com as 3 estrelas do capítulo, a figurinha fica brilhante. Dá para compartilhar a figurinha como imagem no WhatsApp.
 
 ## Torcida
 
-Uma torcida no pé da mesa comemora, faz "uuuh" nas bolas que raspam e vaia as faltas, com sons gerados no próprio celular. O botão 📣 manda reações (👏 🔥 😱 😂 💪 🍺 🎉 😬) que aparecem na mesa. No online, todo mundo vê as reações, inclusive quem está esperando a vez. A torcida pode ser desligada no menu ☰.
+A torcida não aparece na tela, mas comemora, faz "uuuh" e vaia as jogadas com sons gerados no próprio celular. O botão 📣 manda reações (👏 🔥 😱 😂 💪 🍺 🎉 😬) que aparecem na mesa. No online, todo mundo vê as reações, inclusive quem está esperando a vez. A torcida pode ser desligada no menu ☰.
 
 ## Músicas
 
@@ -46,7 +50,7 @@ O jogo tem 4 trilhas originais geradas no próprio celular, todas em domínio p�
 | Forró da Caçapa | Baião |
 | Lo-fi do Feltro | Lo-fi |
 
-No Modo História, cada local tem a sua trilha. O botão ♪ na tela inicial (ou *Música* no menu ☰) troca a faixa, muda o volume e permite tocar uma música do próprio celular.
+As faixas tocam em ordem aleatória. O botão ♪ na tela inicial (ou *Música* no menu ☰) troca a faixa, muda o volume e permite tocar uma música do próprio celular.
 
 ### Adicionar músicas Creative Commons
 
@@ -107,3 +111,14 @@ Se mudar o `index.html`, troque também o `CACHE` em `sw.js` (por exemplo de `si
 ## Como o online funciona
 
 O celular de quem cria a sala (anfitrião) calcula a física e manda o estado da mesa para os outros pelo WebRTC. A conexão inicial usa o servidor público gratuito do PeerJS. O anfitrião precisa ficar com o jogo aberto durante a partida.
+
+## Cenários
+
+Cada tema de mesa tem um cenário: balcão do boteco, bar de tijolinho, quiosque na praia, salão neon, arena da final e garagem. Os enfeites são ilustrações [Twemoji](https://github.com/jdecked/twemoji) (CC BY 4.0), na pasta `cenas/`.
+
+## Créditos
+
+- Rostos dos personagens: imagens geradas pelo [This Person Does Not Exist](https://thispersondoesnotexist.com) (StyleGAN2), obtidas no repositório [gecid-aia/ai-faces](https://github.com/gecid-aia/ai-faces), licença [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/). Pasta `faces/`, recortadas e reduzidas.
+- Ilustrações dos cenários: [Twemoji](https://github.com/jdecked/twemoji), Twitter, licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Trilhas: originais do jogo, [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR).
+- Conexão online: [PeerJS](https://peerjs.com), licença MIT.

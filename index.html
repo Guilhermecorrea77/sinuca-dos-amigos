@@ -312,7 +312,39 @@ input{font:inherit}
 .mtrack small{font-size:13px;opacity:.85}.mtrack a{color:inherit}
 .vol{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-weight:600}
 .vol input{width:100%;accent-color:var(--accent)}
-@media (max-height:480px){#crowd{display:none!important}}
+#crowd{display:none!important}
+#game>*{position:relative;z-index:1}
+#cena{position:absolute!important;inset:0;z-index:0!important;overflow:hidden;pointer-events:none}
+#cena img{position:absolute;opacity:.32;filter:saturate(.8)}
+#cena .e0{width:110px;left:-26px;bottom:90px;transform:rotate(-12deg)}
+#cena .e1{width:96px;right:-22px;top:120px;transform:rotate(10deg)}
+#cena .e2{width:70px;right:14px;bottom:96px;opacity:.22}
+#cena::before{content:"";position:absolute;inset:0}
+#cena::after{content:"";position:absolute;left:50%;top:70px;width:120%;height:60%;transform:translateX(-50%);background:radial-gradient(ellipse at 50% 0,rgba(255,236,170,.16),transparent 60%)}
+[data-cena="boteco"] #cena::before{background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 34px),linear-gradient(transparent 70%,rgba(82,40,15,.55))}
+[data-cena="adega"] #cena::before{background:repeating-linear-gradient(0deg,rgba(0,0,0,.25) 0 2px,transparent 2px 22px),repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 2px,transparent 2px 44px),linear-gradient(#3b1712,#24110f)}
+[data-cena="quiosque"] #cena::before{background:linear-gradient(#5bb8c8 0,#2a8e9c 35%,#0f3b43 60%,#c89a5b 100%);opacity:.55}
+[data-cena="neon"] #cena::before{background:linear-gradient(transparent 55%,rgba(255,63,180,.15)),repeating-linear-gradient(90deg,rgba(63,240,255,.10) 0 1px,transparent 1px 40px),repeating-linear-gradient(0deg,rgba(63,240,255,.06) 0 1px,transparent 1px 40px)}
+[data-cena="neon"] #cena img{filter:drop-shadow(0 0 8px #ff3fb4)}
+[data-cena="torneio"] #cena::before{background:radial-gradient(ellipse at 15% 0,rgba(95,179,255,.25),transparent 45%),radial-gradient(ellipse at 85% 0,rgba(95,179,255,.25),transparent 45%),linear-gradient(transparent 70%,rgba(0,0,0,.4))}
+[data-cena="grafite"] #cena::before{background:repeating-linear-gradient(135deg,rgba(0,0,0,.035) 0 3px,transparent 3px 9px)}
+.face{width:100%;height:100%;object-fit:cover;display:block}
+.face.sil{filter:grayscale(1) brightness(.18) contrast(1.4) blur(2px)}
+.fig-art{align-items:stretch!important}
+.fig-art .face{width:100%;height:100%}
+.runbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 12px;border-radius:12px;background:var(--panel2);font-size:16px}
+.runbar b{font-size:20px;color:var(--accent)}.runbar i{font-style:normal;font-size:20px;margin-left:2px}
+.runbar.big{font-size:20px;font-weight:700}
+.oplist{display:grid;gap:8px}
+.opp{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:12px;padding:8px 10px;border-radius:14px;background:var(--panel2);text-align:left;border:2px solid transparent}
+.opp.on{border-color:var(--accent)}
+.opp .cav{width:52px;height:52px}
+.opp em{font-style:normal;font-family:var(--display);font-size:20px;color:var(--accent)}
+.opp.perk{grid-template-columns:44px 1fr}.opp .pk{font-size:32px;text-align:center}
+.betbox{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 12px;border-radius:12px;background:var(--panel2);font-weight:700}
+.betbox b{font-size:22px;min-width:3ch;text-align:center}
+.creds{display:grid;gap:4px;font-size:13px;color:var(--muted)}.creds a{color:inherit}
+@media (max-height:480px){#cena img{display:none}}
 @media (prefers-reduced-motion: reduce){.fig-foil,.flipin,.femoji,#ring.low{animation:none!important}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
@@ -327,6 +359,7 @@ input{font:inherit}
     <div class="rackdeco" id="rackdeco" aria-hidden="true"></div>
     <div class="home-btns">
       <button class="btn primary" id="hHist">Modo História</button>
+      <button class="btn primary" id="hAposta">Noite de Apostas</button>
       <button class="btn primary" id="hPlay">Jogar neste celular</button>
       <button class="btn primary" id="hOnline">Jogar online</button>
       <div class="home-grid">
@@ -395,6 +428,7 @@ input{font:inherit}
 
   <!-- GAME -->
   <section class="screen" id="game">
+    <div id="cena" aria-hidden="true"></div>
     <div class="hud">
       <button class="iconbtn" id="btnPause" aria-label="Menu">☰<i class="netdot" id="netDot" hidden></i></button>
       <div id="chips"></div>
@@ -429,18 +463,36 @@ input{font:inherit}
     "nome": "Sinuca dos Amigos",
     "versao": "1.0.0",
     "idioma": "pt-BR",
-    "layout": { "semScroll": true, "orientacao": "auto", "girarMesaEmRetrato": true, "larguraMaxima": 900 }
+    "layout": {
+      "semScroll": true,
+      "orientacao": "auto",
+      "girarMesaEmRetrato": true,
+      "larguraMaxima": 900
+    }
   },
   "mesa": {
     "largura": 1000,
     "altura": 500,
     "raioBola": 12,
     "espessuraTabela": 40,
-    "posicaoBranca": { "x": 0.25, "y": 0.5 },
-    "posicaoTriangulo": { "x": 0.72, "y": 0.5 },
+    "posicaoBranca": {
+      "x": 0.25,
+      "y": 0.5
+    },
+    "posicaoTriangulo": {
+      "x": 0.72,
+      "y": 0.5
+    },
     "cacapas": {
-      "canto": { "raio": 26, "boca": 34 },
-      "meio":  { "raio": 22, "boca": 24, "recuo": 6 }
+      "canto": {
+        "raio": 26,
+        "boca": 34
+      },
+      "meio": {
+        "raio": 22,
+        "boca": 24,
+        "recuo": 6
+      }
     },
     "fisica": {
       "subpassos": 10,
@@ -454,38 +506,216 @@ input{font:inherit}
     }
   },
   "bolas": [
-    { "n": 0,  "cor": "#f7f3e8", "tipo": "branca" },
-    { "n": 1,  "cor": "#f2c014", "tipo": "lisa" },
-    { "n": 2,  "cor": "#1f4fbf", "tipo": "lisa" },
-    { "n": 3,  "cor": "#d6282a", "tipo": "lisa" },
-    { "n": 4,  "cor": "#5b2a86", "tipo": "lisa" },
-    { "n": 5,  "cor": "#f07a1a", "tipo": "lisa" },
-    { "n": 6,  "cor": "#1d8a4a", "tipo": "lisa" },
-    { "n": 7,  "cor": "#7a1f1f", "tipo": "lisa" },
-    { "n": 8,  "cor": "#141414", "tipo": "oito" },
-    { "n": 9,  "cor": "#f2c014", "tipo": "listrada" },
-    { "n": 10, "cor": "#1f4fbf", "tipo": "listrada" },
-    { "n": 11, "cor": "#d6282a", "tipo": "listrada" },
-    { "n": 12, "cor": "#5b2a86", "tipo": "listrada" },
-    { "n": 13, "cor": "#f07a1a", "tipo": "listrada" },
-    { "n": 14, "cor": "#1d8a4a", "tipo": "listrada" },
-    { "n": 15, "cor": "#7a1f1f", "tipo": "listrada" }
+    {
+      "n": 0,
+      "cor": "#f7f3e8",
+      "tipo": "branca"
+    },
+    {
+      "n": 1,
+      "cor": "#f2c014",
+      "tipo": "lisa"
+    },
+    {
+      "n": 2,
+      "cor": "#1f4fbf",
+      "tipo": "lisa"
+    },
+    {
+      "n": 3,
+      "cor": "#d6282a",
+      "tipo": "lisa"
+    },
+    {
+      "n": 4,
+      "cor": "#5b2a86",
+      "tipo": "lisa"
+    },
+    {
+      "n": 5,
+      "cor": "#f07a1a",
+      "tipo": "lisa"
+    },
+    {
+      "n": 6,
+      "cor": "#1d8a4a",
+      "tipo": "lisa"
+    },
+    {
+      "n": 7,
+      "cor": "#7a1f1f",
+      "tipo": "lisa"
+    },
+    {
+      "n": 8,
+      "cor": "#141414",
+      "tipo": "oito"
+    },
+    {
+      "n": 9,
+      "cor": "#f2c014",
+      "tipo": "listrada"
+    },
+    {
+      "n": 10,
+      "cor": "#1f4fbf",
+      "tipo": "listrada"
+    },
+    {
+      "n": 11,
+      "cor": "#d6282a",
+      "tipo": "listrada"
+    },
+    {
+      "n": 12,
+      "cor": "#5b2a86",
+      "tipo": "listrada"
+    },
+    {
+      "n": 13,
+      "cor": "#f07a1a",
+      "tipo": "listrada"
+    },
+    {
+      "n": 14,
+      "cor": "#1d8a4a",
+      "tipo": "listrada"
+    },
+    {
+      "n": 15,
+      "cor": "#7a1f1f",
+      "tipo": "listrada"
+    }
   ],
   "temas": [
-    { "id": "boteco",  "nome": "Boteco",   "cores": { "fundo": "#1b2620", "painel": "#26352c", "painel2": "#31453a", "texto": "#f3e9cf", "suave": "#a9b39a", "destaque": "#f2b632", "feltro": "#1e7048", "feltro2": "#134a30", "madeira": "#8a4b24", "madeira2": "#52280f", "cacapa": "#070807", "mira": "#fff7d6" } },
-    { "id": "torneio", "nome": "Torneio",  "cores": { "fundo": "#0e1a2b", "painel": "#16263d", "painel2": "#1f3452", "texto": "#e8eef7", "suave": "#8ea3bf", "destaque": "#5fb3ff", "feltro": "#1c5fa8", "feltro2": "#123f72", "madeira": "#2a2d33", "madeira2": "#0d0f12", "cacapa": "#000000", "mira": "#e6f3ff" } },
-    { "id": "neon",    "nome": "Neon",     "cores": { "fundo": "#120a1f", "painel": "#1d1233", "painel2": "#2a1a4a", "texto": "#f6e8ff", "suave": "#b39ccc", "destaque": "#ff3fb4", "feltro": "#1a3d4f", "feltro2": "#0d2230", "madeira": "#3a1d57", "madeira2": "#140a22", "cacapa": "#000000", "mira": "#3ff0ff" } },
-    { "id": "adega",   "nome": "Adega",    "cores": { "fundo": "#24110f", "painel": "#341915", "painel2": "#45221c", "texto": "#f5e3d3", "suave": "#c09d8a", "destaque": "#e9b872", "feltro": "#7a1e28", "feltro2": "#4e1119", "madeira": "#5a2f17", "madeira2": "#2e160a", "cacapa": "#0a0404", "mira": "#ffe9c9" } },
-    { "id": "quiosque","nome": "Quiosque", "cores": { "fundo": "#0f3b43", "painel": "#155059", "painel2": "#1c6570", "texto": "#fff6e0", "suave": "#a8d4d0", "destaque": "#ff8a3d", "feltro": "#129a9a", "feltro2": "#0b6b70", "madeira": "#c89a5b", "madeira2": "#8a6232", "cacapa": "#0b1f22", "mira": "#fffbe8" } },
-    { "id": "grafite", "nome": "Grafite",  "cores": { "fundo": "#d9d6cf", "painel": "#ecebe6", "painel2": "#ffffff", "texto": "#1d1d1b", "suave": "#6b6a64", "destaque": "#c2272d", "feltro": "#55595e", "feltro2": "#3a3d41", "madeira": "#262626", "madeira2": "#000000", "cacapa": "#000000", "mira": "#ffffff" } }
+    {
+      "id": "boteco",
+      "nome": "Boteco",
+      "cores": {
+        "fundo": "#1b2620",
+        "painel": "#26352c",
+        "painel2": "#31453a",
+        "texto": "#f3e9cf",
+        "suave": "#a9b39a",
+        "destaque": "#f2b632",
+        "feltro": "#1e7048",
+        "feltro2": "#134a30",
+        "madeira": "#8a4b24",
+        "madeira2": "#52280f",
+        "cacapa": "#070807",
+        "mira": "#fff7d6"
+      }
+    },
+    {
+      "id": "torneio",
+      "nome": "Torneio",
+      "cores": {
+        "fundo": "#0e1a2b",
+        "painel": "#16263d",
+        "painel2": "#1f3452",
+        "texto": "#e8eef7",
+        "suave": "#8ea3bf",
+        "destaque": "#5fb3ff",
+        "feltro": "#1c5fa8",
+        "feltro2": "#123f72",
+        "madeira": "#2a2d33",
+        "madeira2": "#0d0f12",
+        "cacapa": "#000000",
+        "mira": "#e6f3ff"
+      }
+    },
+    {
+      "id": "neon",
+      "nome": "Neon",
+      "cores": {
+        "fundo": "#120a1f",
+        "painel": "#1d1233",
+        "painel2": "#2a1a4a",
+        "texto": "#f6e8ff",
+        "suave": "#b39ccc",
+        "destaque": "#ff3fb4",
+        "feltro": "#1a3d4f",
+        "feltro2": "#0d2230",
+        "madeira": "#3a1d57",
+        "madeira2": "#140a22",
+        "cacapa": "#000000",
+        "mira": "#3ff0ff"
+      }
+    },
+    {
+      "id": "adega",
+      "nome": "Adega",
+      "cores": {
+        "fundo": "#24110f",
+        "painel": "#341915",
+        "painel2": "#45221c",
+        "texto": "#f5e3d3",
+        "suave": "#c09d8a",
+        "destaque": "#e9b872",
+        "feltro": "#7a1e28",
+        "feltro2": "#4e1119",
+        "madeira": "#5a2f17",
+        "madeira2": "#2e160a",
+        "cacapa": "#0a0404",
+        "mira": "#ffe9c9"
+      }
+    },
+    {
+      "id": "quiosque",
+      "nome": "Quiosque",
+      "cores": {
+        "fundo": "#0f3b43",
+        "painel": "#155059",
+        "painel2": "#1c6570",
+        "texto": "#fff6e0",
+        "suave": "#a8d4d0",
+        "destaque": "#ff8a3d",
+        "feltro": "#129a9a",
+        "feltro2": "#0b6b70",
+        "madeira": "#c89a5b",
+        "madeira2": "#8a6232",
+        "cacapa": "#0b1f22",
+        "mira": "#fffbe8"
+      }
+    },
+    {
+      "id": "grafite",
+      "nome": "Grafite",
+      "cores": {
+        "fundo": "#d9d6cf",
+        "painel": "#ecebe6",
+        "painel2": "#ffffff",
+        "texto": "#1d1d1b",
+        "suave": "#6b6a64",
+        "destaque": "#c2272d",
+        "feltro": "#55595e",
+        "feltro2": "#3a3d41",
+        "madeira": "#262626",
+        "madeira2": "#000000",
+        "cacapa": "#000000",
+        "mira": "#ffffff"
+      }
+    }
   ],
   "modos": [
     {
-      "id": "bola8", "nome": "Bola 8", "icone": "🎱",
+      "id": "bola8",
+      "nome": "Bola 8",
+      "icone": "🎱",
       "descricao": "Lisas contra listradas. Limpe seu grupo e feche com a 8.",
-      "jogadores": { "min": 2, "max": 6, "somentePar": true, "equipes": true },
-      "opcoes": { "quebraReposicionaOito": true },
-      "pontuacao": { "tipo": "vitoria", "pontosVitoria": 1 },
+      "jogadores": {
+        "min": 2,
+        "max": 6,
+        "somentePar": true,
+        "equipes": true
+      },
+      "opcoes": {
+        "quebraReposicionaOito": true
+      },
+      "pontuacao": {
+        "tipo": "vitoria",
+        "pontosVitoria": 1
+      },
       "regras": [
         "Com 4 ou 6 jogadores forma-se Equipe A contra Equipe B, alternando a vez.",
         "Mesa aberta até alguém encaçapar só lisas (1–7) ou só listradas (9–15).",
@@ -495,17 +725,29 @@ input{font:inherit}
       ]
     },
     {
-      "id": "garrafinha", "nome": "Garrafinha", "icone": "🍾",
+      "id": "garrafinha",
+      "nome": "Garrafinha",
+      "icone": "🍾",
       "descricao": "Cada um sorteia números secretos. Derrube as bolas dos outros e proteja as suas.",
-      "jogadores": { "min": 2, "max": 7 },
+      "jogadores": {
+        "min": 2,
+        "max": 7
+      },
       "opcoes": {
-        "numerosPorJogador": { "padrao": 2, "min": 1, "max": 5 },
+        "numerosPorJogador": {
+          "padrao": 2,
+          "min": 1,
+          "max": 5
+        },
         "incluirBola8": true,
         "pontosPorBolaAdversaria": 1,
         "pontosPorBolaPropria": 0,
         "continuaAoEncacapar": true
       },
-      "pontuacao": { "tipo": "sobrevivencia", "desempate": "maiorPontuacao" },
+      "pontuacao": {
+        "tipo": "sobrevivencia",
+        "desempate": "maiorPontuacao"
+      },
       "regras": [
         "No início o celular passa de mão em mão: cada jogador vê só os próprios números.",
         "Qualquer bola pode ser a primeira tocada. Encaçapou, continua jogando.",
@@ -516,11 +758,21 @@ input{font:inherit}
       ]
     },
     {
-      "id": "bolaDaVez", "nome": "Bola da Vez", "icone": "🔢",
+      "id": "bolaDaVez",
+      "nome": "Bola da Vez",
+      "icone": "🔢",
       "descricao": "Toque sempre primeiro na menor bola da mesa. Cada bola vale o seu número.",
-      "jogadores": { "min": 2, "max": 8 },
-      "opcoes": { "penalidadeFalta": "valorBolaDaVez" },
-      "pontuacao": { "tipo": "pontos", "valorBola": "numero" },
+      "jogadores": {
+        "min": 2,
+        "max": 8
+      },
+      "opcoes": {
+        "penalidadeFalta": "valorBolaDaVez"
+      },
+      "pontuacao": {
+        "tipo": "pontos",
+        "valorBola": "numero"
+      },
       "regras": [
         "A bola da vez é sempre a de menor número ainda na mesa.",
         "A branca precisa tocar nela primeiro. Depois disso, qualquer bola que cair vale pontos.",
@@ -530,11 +782,18 @@ input{font:inherit}
       ]
     },
     {
-      "id": "treino", "nome": "Treino", "icone": "🎯",
+      "id": "treino",
+      "nome": "Treino",
+      "icone": "🎯",
       "descricao": "Sozinho, sem regras. Limpe a mesa com o menor número de tacadas.",
-      "jogadores": { "min": 1, "max": 1 },
+      "jogadores": {
+        "min": 1,
+        "max": 1
+      },
       "opcoes": {},
-      "pontuacao": { "tipo": "tacadas" },
+      "pontuacao": {
+        "tipo": "tacadas"
+      },
       "regras": [
         "Qualquer bola vale. Branca na caçapa volta com bola na mão.",
         "O placar mostra quantas tacadas você precisou para limpar a mesa."
@@ -543,24 +802,53 @@ input{font:inherit}
   ],
   "cronometro": {
     "mostrarTempoDePartida": true,
-    "tempoPorTacada": { "padrao": 0, "opcoes": [0, 30, 45, 60] },
+    "tempoPorTacada": {
+      "padrao": 0,
+      "opcoes": [
+        0,
+        30,
+        45,
+        60
+      ]
+    },
     "avisoSegundos": 10,
     "estouroEhFalta": true,
     "pausaComMenuAberto": true,
-    "visual": { "anel": true, "barraNaMesa": true, "bipesFinais": 5, "cores": { "tranquilo": "#4cc26b", "atencao": "#f2b632", "urgente": "#e0573e" } }
+    "visual": {
+      "anel": true,
+      "barraNaMesa": true,
+      "bipesFinais": 5,
+      "cores": {
+        "tranquilo": "#4cc26b",
+        "atencao": "#f2b632",
+        "urgente": "#e0573e"
+      }
+    }
   },
   "inicio": {
     "metodo": "caraOuCoroa",
     "maisDeDoisJogadores": "sorteio",
     "repetirNaRevanche": true,
-    "faces": { "cara": "Cara", "coroa": "Coroa" }
+    "faces": {
+      "cara": "Cara",
+      "coroa": "Coroa"
+    }
   },
   "orientacao": {
     "padrao": "auto",
     "opcoes": [
-      { "id": "auto", "nome": "Automática" },
-      { "id": "retrato", "nome": "Em pé" },
-      { "id": "paisagem", "nome": "Deitada" }
+      {
+        "id": "auto",
+        "nome": "Automática"
+      },
+      {
+        "id": "retrato",
+        "nome": "Em pé"
+      },
+      {
+        "id": "paisagem",
+        "nome": "Deitada"
+      }
     ]
   },
   "efeito": {
@@ -592,8 +880,12 @@ input{font:inherit}
       "https://unpkg.com/peerjs@1.5.5/dist/peerjs.min.js"
     ],
     "iceServers": [
-      { "urls": "stun:stun.l.google.com:19302" },
-      { "urls": "stun:stun1.l.google.com:19302" }
+      {
+        "urls": "stun:stun.l.google.com:19302"
+      },
+      {
+        "urls": "stun:stun1.l.google.com:19302"
+      }
     ],
     "quadrosPorEnvio": 2,
     "tempoLimiteSegundos": 10,
@@ -625,7 +917,8 @@ input{font:inherit}
         "camisa": "#f4f1e8",
         "roupa": "regata",
         "expressao": "sorriso",
-        "fundo": "#f2b632"
+        "fundo": "#f2b632",
+        "foto": "faces/ze.jpg"
       },
       "falas": {
         "acerto": [
@@ -671,7 +964,8 @@ input{font:inherit}
         "camisa": "#2f3a4a",
         "roupa": "camiseta",
         "expressao": "serio",
-        "fundo": "#e0573e"
+        "fundo": "#e0573e",
+        "foto": "faces/tiao.jpg"
       },
       "falas": {
         "acerto": [
@@ -717,7 +1011,8 @@ input{font:inherit}
         "camisa": "#7a4fa0",
         "roupa": "florida",
         "expressao": "sorriso",
-        "fundo": "#c79ad8"
+        "fundo": "#c79ad8",
+        "foto": "faces/cida.jpg"
       },
       "falas": {
         "acerto": [
@@ -761,7 +1056,8 @@ input{font:inherit}
         "camisa": "#1b1b1f",
         "roupa": "camisa",
         "expressao": "debochado",
-        "fundo": "#5fb3ff"
+        "fundo": "#5fb3ff",
+        "foto": "faces/rafa.jpg"
       },
       "falas": {
         "acerto": [
@@ -806,7 +1102,8 @@ input{font:inherit}
         "camisa": "#1d8a4a",
         "roupa": "regata",
         "expressao": "debochado",
-        "fundo": "#7fd18a"
+        "fundo": "#7fd18a",
+        "foto": "faces/marquinho.jpg"
       },
       "falas": {
         "acerto": [
@@ -851,7 +1148,8 @@ input{font:inherit}
         "camisa": "#2f5fa8",
         "roupa": "colete",
         "expressao": "serio",
-        "fundo": "#9fc4f0"
+        "fundo": "#9fc4f0",
+        "foto": "faces/lurdes.jpg"
       },
       "falas": {
         "acerto": [
@@ -897,7 +1195,8 @@ input{font:inherit}
         "roupa": "jaqueta",
         "brinco": true,
         "expressao": "sorriso",
-        "fundo": "#3ff0ff"
+        "fundo": "#3ff0ff",
+        "foto": "faces/bia.jpg"
       },
       "falas": {
         "acerto": [
@@ -943,7 +1242,8 @@ input{font:inherit}
         "camisa": "#f2efe6",
         "roupa": "terno",
         "expressao": "serio",
-        "fundo": "#c08a4a"
+        "fundo": "#c08a4a",
+        "foto": "faces/coronel.jpg"
       },
       "falas": {
         "acerto": [
@@ -990,7 +1290,8 @@ input{font:inherit}
         "camisa": "#b3122a",
         "roupa": "vestido",
         "expressao": "debochado",
-        "fundo": "#ff3fb4"
+        "fundo": "#ff3fb4",
+        "foto": "faces/neide.jpg"
       },
       "falas": {
         "acerto": [
@@ -1036,7 +1337,8 @@ input{font:inherit}
         "roupa": "camisa",
         "expressao": "serio",
         "fundo": "#7a1f1f",
-        "taco": true
+        "taco": true,
+        "foto": "faces/mestre.jpg"
       },
       "falas": {
         "acerto": [
@@ -1378,7 +1680,10 @@ input{font:inherit}
     }
   },
   "cpu": {
-    "pensarMs": [500, 1200],
+    "pensarMs": [
+      500,
+      1200
+    ],
     "erroMinRad": 0.002,
     "erroMaxRad": 0.032,
     "orcamentoMsPorQuadro": 9,
@@ -1434,12 +1739,13 @@ input{font:inherit}
       "🍺",
       "🎉",
       "😬"
-    ]
+    ],
+    "mostrar": false
   },
   "musica": {
     "ativa": true,
     "volume": 0.45,
-    "modo": "todas",
+    "modo": "aleatorio",
     "barrasPorFaixa": 48,
     "faixas": [
       {
@@ -1482,14 +1788,38 @@ input{font:inherit}
     "ajusteFinoRad": 0.003,
     "botoesAjusteFino": false,
     "forca": "arrastar a barra para a direita e soltar",
-    "teclado": { "girar": ["ArrowLeft", "ArrowRight"], "forca": ["ArrowUp", "ArrowDown"], "tacar": "Space" },
+    "teclado": {
+      "girar": [
+        "ArrowLeft",
+        "ArrowRight"
+      ],
+      "forca": [
+        "ArrowUp",
+        "ArrowDown"
+      ],
+      "tacar": "Space"
+    },
     "linhaGuia": true,
     "mostrarDesvioBranca": true
   },
-  "som": { "ativo": true, "volumeMax": 0.3 },
+  "som": {
+    "ativo": true,
+    "volumeMax": 0.3
+  },
   "placar": {
-    "serie": { "guardarHistorico": 30, "campos": ["vitorias", "jogos", "pontos"] },
-    "medalhas": ["🥇", "🥈", "🥉"]
+    "serie": {
+      "guardarHistorico": 30,
+      "campos": [
+        "vitorias",
+        "jogos",
+        "pontos"
+      ]
+    },
+    "medalhas": [
+      "🥇",
+      "🥈",
+      "🥉"
+    ]
   },
   "whatsapp": {
     "urlEnvio": "https://api.whatsapp.com/send",
@@ -1500,25 +1830,150 @@ input{font:inherit}
     "revelarNumerosGarrafinha": true
   },
   "telas": [
-    { "id": "home", "elementos": ["musica", "logo", "modoHistoria", "novoJogo", "online", "album", "placar", "temas", "regras"] },
-    { "id": "scrModo", "elementos": ["listaModos"] },
-    { "id": "scrJog", "elementos": ["listaJogadores", "telefoneWhatsApp", "opcoesDoModo", "comecar"] },
-    { "id": "scrHist", "elementos": ["estrelas", "figurinhasColetadas", "locais", "capitulos"] },
-    { "id": "scrAlbum", "elementos": ["contador", "gradeDeFigurinhas", "figurinhaAmpliada", "compartilhar"] },
-    { "id": "scrOnline", "elementos": ["seuNome", "seuWhatsApp", "criarSala", "codigoDaSala", "entrar"] },
-    { "id": "scrSala", "elementos": ["codigo", "convidarWhatsApp", "copiarLink", "listaJogadores", "trocarJogo", "opcoesDoModo", "comecar"] },
-    { "id": "game", "elementos": ["menu", "chipsJogadores", "verNumeros", "status", "mesa", "caraOuCoroa", "mapaDaBola", "barraForca", "torcida", "reacoes", "falaDoAdversario", "bolaNaMao", "cronometroPartida", "cronometroTacada"] },
-    { "id": "overlays", "elementos": ["pausa", "temas", "regras", "passarCelular", "fimDeJogo", "enviarPlacar", "placarDaTurma"] }
+    {
+      "id": "home",
+      "elementos": [
+        "musica",
+        "logo",
+        "modoHistoria",
+        "novoJogo",
+        "online",
+        "album",
+        "placar",
+        "temas",
+        "regras"
+      ]
+    },
+    {
+      "id": "scrModo",
+      "elementos": [
+        "listaModos"
+      ]
+    },
+    {
+      "id": "scrJog",
+      "elementos": [
+        "listaJogadores",
+        "telefoneWhatsApp",
+        "opcoesDoModo",
+        "comecar"
+      ]
+    },
+    {
+      "id": "scrHist",
+      "elementos": [
+        "estrelas",
+        "figurinhasColetadas",
+        "locais",
+        "capitulos"
+      ]
+    },
+    {
+      "id": "scrAlbum",
+      "elementos": [
+        "contador",
+        "gradeDeFigurinhas",
+        "figurinhaAmpliada",
+        "compartilhar"
+      ]
+    },
+    {
+      "id": "scrOnline",
+      "elementos": [
+        "seuNome",
+        "seuWhatsApp",
+        "criarSala",
+        "codigoDaSala",
+        "entrar"
+      ]
+    },
+    {
+      "id": "scrSala",
+      "elementos": [
+        "codigo",
+        "convidarWhatsApp",
+        "copiarLink",
+        "listaJogadores",
+        "trocarJogo",
+        "opcoesDoModo",
+        "comecar"
+      ]
+    },
+    {
+      "id": "game",
+      "elementos": [
+        "menu",
+        "chipsJogadores",
+        "verNumeros",
+        "status",
+        "mesa",
+        "caraOuCoroa",
+        "mapaDaBola",
+        "barraForca",
+        "torcida",
+        "reacoes",
+        "falaDoAdversario",
+        "bolaNaMao",
+        "cronometroPartida",
+        "cronometroTacada"
+      ]
+    },
+    {
+      "id": "overlays",
+      "elementos": [
+        "pausa",
+        "temas",
+        "regras",
+        "passarCelular",
+        "fimDeJogo",
+        "enviarPlacar",
+        "placarDaTurma"
+      ]
+    }
   ],
   "armazenamento": {
-    "chaves": { "preferencias": "sinuca.prefs", "jogadores": "sinuca.jogadores", "serie": "sinuca.serie", "cliente": "sinuca.cliente", "historia": "sinuca.historia" }
+    "chaves": {
+      "preferencias": "sinuca.prefs",
+      "jogadores": "sinuca.jogadores",
+      "serie": "sinuca.serie",
+      "cliente": "sinuca.cliente",
+      "historia": "sinuca.historia",
+      "aposta": "sinuca.aposta",
+      "apostaRecorde": "sinuca.apostaRecorde"
+    }
   },
   "esquemas": {
-    "jogador": { "nome": "string", "telefone": "string (só dígitos, com DDI)", "pts": "number", "vivo": "boolean", "nums": "number[] (garrafinha)", "equipe": "0|1 (bola 8)" },
-    "partida": { "modo": "id do modo", "jogadores": "jogador[]", "vez": "índice", "fase": "aim|moving|place|deal|over", "grupos": "[lisas|listradas|null, …]", "tacadas": "number" },
-    "resultado": { "data": "ISO", "duracao": "segundos", "modo": "string", "vencedores": "string[]", "ranking": "[{nome, pts, extra}]" },
-    "serie": { "jogadores": "{ [nome]: { vitorias, jogos, pontos } }", "historico": "resultado[]" },
-    "efeito": { "x": "-1 (esquerda) a 1 (direita)", "y": "-1 (puxada) a 1 (seguimento)" },
+    "jogador": {
+      "nome": "string",
+      "telefone": "string (só dígitos, com DDI)",
+      "pts": "number",
+      "vivo": "boolean",
+      "nums": "number[] (garrafinha)",
+      "equipe": "0|1 (bola 8)"
+    },
+    "partida": {
+      "modo": "id do modo",
+      "jogadores": "jogador[]",
+      "vez": "índice",
+      "fase": "aim|moving|place|deal|over",
+      "grupos": "[lisas|listradas|null, …]",
+      "tacadas": "number"
+    },
+    "resultado": {
+      "data": "ISO",
+      "duracao": "segundos",
+      "modo": "string",
+      "vencedores": "string[]",
+      "ranking": "[{nome, pts, extra}]"
+    },
+    "serie": {
+      "jogadores": "{ [nome]: { vitorias, jogos, pontos } }",
+      "historico": "resultado[]"
+    },
+    "efeito": {
+      "x": "-1 (esquerda) a 1 (direita)",
+      "y": "-1 (puxada) a 1 (seguimento)"
+    },
     "mensagensOnline": {
       "convidadoParaAnfitriao": {
         "hello": "{ nome, tel, cid } ao conectar; cid identifica o aparelho para reconectar no mesmo lugar",
@@ -1545,7 +2000,140 @@ input{font:inherit}
         "closed": "anfitrião fechou a sala"
       }
     }
-  }
+  },
+  "cenas": {
+    "fonte": "Ilustrações Twemoji (Twitter, CC BY 4.0), pasta cenas/",
+    "porTema": {
+      "boteco": {
+        "nome": "Balcão do boteco",
+        "enfeites": [
+          "1f37a",
+          "1f4fb",
+          "1f4a1"
+        ]
+      },
+      "adega": {
+        "nome": "Bar de tijolinho",
+        "enfeites": [
+          "1f377",
+          "1f56f",
+          "1f3b7"
+        ]
+      },
+      "quiosque": {
+        "nome": "Quiosque na praia",
+        "enfeites": [
+          "1f334",
+          "1fa97",
+          "1f965"
+        ]
+      },
+      "neon": {
+        "nome": "Salão neon",
+        "enfeites": [
+          "1f3c6",
+          "1f4f8",
+          "1f389"
+        ]
+      },
+      "torneio": {
+        "nome": "Arena da final",
+        "enfeites": [
+          "1f451",
+          "1f3df",
+          "1f3ba"
+        ]
+      },
+      "grafite": {
+        "nome": "Garagem",
+        "enfeites": [
+          "1f3b1"
+        ]
+      }
+    }
+  },
+  "apostas": {
+    "titulo": "Noite de Apostas",
+    "lore": "Toda sexta, quando o Seu Zé baixa a porta, o bairro joga valendo fichas. Você chega com algumas fichas no bolso e escolhe contra quem apostar, mesa após mesa. Quanto mais forte o adversário, maior o prêmio. Se as fichas acabarem, a noite acaba. Se aguentar até a última mesa, o Mestre Sete Tacos aceita a aposta final.",
+    "fichasIniciais": 100,
+    "rodadas": 7,
+    "apostaMinima": 10,
+    "oddBase": 1.3,
+    "oddDivisor": 70,
+    "modos": [
+      "bola8",
+      "bola8",
+      "bolaDaVez",
+      "garrafinha"
+    ],
+    "vantagens": [
+      {
+        "id": "giz",
+        "icone": "🟦",
+        "nome": "Giz azul",
+        "descricao": "A linha guia fica duas vezes mais longa."
+      },
+      {
+        "id": "cerveja",
+        "icone": "🍺",
+        "nome": "Rodada por conta",
+        "descricao": "Os adversários erram 40% mais.",
+        "valor": 0.4
+      },
+      {
+        "id": "moeda",
+        "icone": "🪙",
+        "nome": "Moeda viciada",
+        "descricao": "Você sempre começa a partida."
+      },
+      {
+        "id": "seguro",
+        "icone": "🛟",
+        "nome": "Seguro do Zé",
+        "descricao": "Perdendo, você paga só metade da aposta."
+      },
+      {
+        "id": "juros",
+        "icone": "📒",
+        "nome": "Caderninho",
+        "descricao": "Ganha 20% a mais em cada vitória.",
+        "valor": 0.2
+      },
+      {
+        "id": "fiado",
+        "icone": "🤝",
+        "nome": "Fiado",
+        "descricao": "Uma derrota não custa nada. Some depois de usar.",
+        "repete": true
+      }
+    ]
+  },
+  "creditos": [
+    {
+      "o": "Rostos dos personagens",
+      "autor": "This Person Does Not Exist (StyleGAN2), via repositório gecid-aia/ai-faces",
+      "licenca": "CC BY-SA 2.0",
+      "link": "https://github.com/gecid-aia/ai-faces"
+    },
+    {
+      "o": "Ilustrações dos cenários",
+      "autor": "Twemoji, Twitter",
+      "licenca": "CC BY 4.0",
+      "link": "https://github.com/jdecked/twemoji"
+    },
+    {
+      "o": "Trilhas sonoras",
+      "autor": "Sinuca dos Amigos",
+      "licenca": "CC0 1.0",
+      "link": "https://creativecommons.org/publicdomain/zero/1.0/deed.pt_BR"
+    },
+    {
+      "o": "Conexão online",
+      "autor": "PeerJS",
+      "licenca": "MIT",
+      "link": "https://peerjs.com"
+    }
+  ]
 }
 </script>
 
@@ -1587,6 +2175,9 @@ function applyTheme(id, temp){
   const rs = document.documentElement.style;
   for (const k in VARMAP) rs.setProperty(VARMAP[k], t.cores[k]);
   document.querySelector('meta[name=theme-color]').content = t.cores.fundo;
+  const cn = (CFG.cenas.porTema[t.id] || { enfeites: [] });
+  document.body.dataset.cena = t.id;
+  const ce = document.getElementById('cena'); if (ce) ce.innerHTML = cn.enfeites.map((e, i) => `<img class="e${i}" src="cenas/${e}.svg" alt="">`).join('');
   if (!temp) store.set(K.preferencias, prefs);
 }
 applyTheme(prefs.tema);
@@ -1626,7 +2217,7 @@ function themeModal(back){
 }
 function rulesModal(only, back){
   const list = only ? [MODECFG[only]] : CFG.modos;
-  openOv(`<h3>Regras</h3><div class="scroll rules">${list.map(m => `<h4>${m.icone} ${esc(m.nome)}</h4><ul>${m.regras.map(r => `<li>${esc(r)}</li>`).join('')}</ul>`).join('')}</div><button class="btn" id="ruOk">Fechar</button>`);
+  openOv(`<h3>Regras</h3><div class="scroll rules">${list.map(m => `<h4>${m.icone} ${esc(m.nome)}</h4><ul>${m.regras.map(r => `<li>${esc(r)}</li>`).join('')}</ul>`).join('')}${only ? '' : `<h4>Créditos</h4><div class="creds">${CFG.creditos.map(c => `<span>${esc(c.o)}: ${esc(c.autor)}, <a href="${esc(c.link)}" target="_blank" rel="noopener">${esc(c.licenca)}</a></span>`).join('')}</div>`}</div><button class="btn" id="ruOk">Fechar</button>`);
   $('#ruOk').onclick = () => back ? back() : closeOv();
 }
 
@@ -1850,6 +2441,7 @@ function newGame(opts = {}){
   show('game'); G.phase = 'coin'; hud(); spinUI(); clockUI(true);
   if (NET){ NET.lobby.forEach((p, i) => { if (G.players[i]) G.players[i].off = !p.online; }); sendState(); }
   if (G.players.length === 1) return afterStart();
+  if (hasPerk('moeda')){ G.cur = G.hs; return afterStart(); }
   startPicker();
 }
 
@@ -2012,10 +2604,10 @@ function pauseMenu(){
     <div class="row"><button class="btn" id="pmTheme">Temas</button><button class="btn" id="pmRules">Regras</button></div>
     <button class="btn" id="pmOri">Mesa: ${CFG.orientacao.opcoes.find(o => o.id === prefs.orientacao).nome}</button>
     <div class="row"><button class="btn" id="pmSound">Som: ${prefs.som ? 'ligado' : 'desligado'}</button><button class="btn" id="pmMus">Música</button></div>
-    <div class="row"><button class="btn" id="pmCrowd">Torcida: ${crowdOn() ? 'ligada' : 'desligada'}</button>${isHost() ? '<button class="btn" id="pmRestart">Reiniciar</button>' : ''}</div>
+    <div class="row"><button class="btn" id="pmCrowd">Torcida: ${crowdOn() ? 'ligada' : 'desligada'}</button>${isHost() && !(G && G.story && G.story.run) ? '<button class="btn" id="pmRestart">Reiniciar</button>' : ''}</div>
     ${NET ? `<p class="note" style="margin:0;text-align:center">Sala ${esc(NET.code)}. O jogo continua enquanto este menu está aberto.</p>` : ''}
     ${NET && NET.role === 'host' ? '<button class="btn" id="pmLobby">Voltar para a sala</button>' : ''}
-    <button class="btn ghost" id="pmExit">${NET ? (NET.role === 'host' ? 'Fechar a sala' : 'Sair da sala') : G && G.story ? 'Voltar ao mapa' : 'Sair para o menu'}</button>`);
+    <button class="btn ghost" id="pmExit">${NET ? (NET.role === 'host' ? 'Fechar a sala' : 'Sair da sala') : G && G.story ? (G.story.run ? 'Desistir (perde a aposta)' : 'Voltar ao mapa') : 'Sair para o menu'}</button>`);
   $('#pmBack').onclick = closeOv;
   $('#pmTheme').onclick = () => themeModal(pauseMenu);
   $('#pmRules').onclick = () => rulesModal(G.modo, pauseMenu);
@@ -2025,7 +2617,7 @@ function pauseMenu(){
   $('#pmCrowd').onclick = () => { prefs.torcida = !crowdOn(); store.set(K.preferencias, prefs); crowdApply(); pauseMenu(); };
   if ($('#pmRestart')) $('#pmRestart').onclick = () => { closeOv(); NET ? hostStartGame() : G && G.story ? storyStart(G.story.idx) : newGame(); };
   if ($('#pmLobby')) $('#pmLobby').onclick = hostToLobby;
-  $('#pmExit').onclick = () => { if (G && G.story) return storyExit(true); if (!NET){ closeOv(); G = null; show('home'); return; } confirmLeave(pauseMenu); };
+  $('#pmExit').onclick = () => { if (G && G.story && G.story.run){ G.phase = 'over'; return apostaResultado({ winners: [1 - G.hs] }); } if (G && G.story) return storyExit(true); if (!NET){ closeOv(); G = null; show('home'); return; } confirmLeave(pauseMenu); };
 }
 
 /* ================= SOUND ================= */
@@ -2416,10 +3008,10 @@ function drawAim(){
   ctx.beginPath(); ctx.arc(gx, gy, R, 0, 7); ctx.stroke();
   if (a.ball){
     const nx = (a.ball.x - gx) / (2 * R), ny = (a.ball.y - gy) / (2 * R), dot = a.dx * nx + a.dy * ny;
-    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(a.ball.x, a.ball.y); ctx.lineTo(a.ball.x + nx * 110 * dot, a.ball.y + ny * 110 * dot); ctx.stroke();
+    ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(a.ball.x, a.ball.y); ctx.lineTo(a.ball.x + nx * 110 * dot * (hasPerk('giz') ? 2 : 1), a.ball.y + ny * 110 * dot * (hasPerk('giz') ? 2 : 1)); ctx.stroke();
     const k = G.spin.y * CFG.efeito.seguimento, tx = a.dx - dot * nx + a.dx * k, ty = a.dy - dot * ny + a.dy * k;
     ctx.globalAlpha = .45; ctx.lineWidth = 2; ctx.setLineDash([3, 5]);
-    ctx.beginPath(); ctx.moveTo(gx, gy); ctx.lineTo(gx + tx * 90, gy + ty * 90); ctx.stroke(); ctx.setLineDash([]);
+    ctx.beginPath(); ctx.moveTo(gx, gy); ctx.lineTo(gx + tx * 90 * (hasPerk('giz') ? 2 : 1), gy + ty * 90 * (hasPerk('giz') ? 2 : 1)); ctx.stroke(); ctx.setLineDash([]);
   }
   ctx.globalAlpha = 1;
   // cue stick
@@ -2941,6 +3533,7 @@ const ME_VIS = () => ({ pele: '#d9a273', cabelo: '#2a1d16', corte: 'curto', cami
 
 /* avatar: SVG original, viewBox 100x100. o = { bg, sil, id } */
 function avatarSVG(v, o = {}){
+  if (v.foto) return `<img class="face${o.sil ? ' sil' : ''}" src="${v.foto}" alt="" loading="lazy" draggable="false">`;
   const S = o.sil ? '#0d0d0d' : null, c = k => S || k;
   const skin = c(v.pele), skinD = c(shade(v.pele, -0.18)), hair = c(v.cabelo || '#222'), shirt = c(v.camisa || '#555');
   const uid = o.id || ('a' + Math.random().toString(36).slice(2, 7));
@@ -3085,9 +3678,9 @@ async function figCanvas(ch, st){
   x.fillStyle = ch.visual.fundo; x.fillRect(48, 110, Wc - 96, 520);
   x.strokeStyle = 'rgba(255,255,255,.18)'; x.lineWidth = 22;
   for (let k = -600; k < 900; k += 60){ x.beginPath(); x.moveTo(48 + k, 110); x.lineTo(48 + k + 520, 630); x.stroke(); }
-  const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(avatarSVG(ch.visual, { id: 'cv' }));
+  const img = new Image(); img.src = ch.visual.foto || ('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(avatarSVG(ch.visual, { id: 'cv' })));
   await new Promise(r => { img.onload = r; img.onerror = r; });
-  try { x.drawImage(img, 90, 150, Wc - 180, Wc - 180); } catch(e){}
+  try { if (ch.visual.foto){ const aw = Wc - 96, ah = 520, sc = Math.max(aw / img.width, ah / img.height), w = img.width * sc, h = img.height * sc; x.drawImage(img, 48 + (aw - w) / 2, 110 + (ah - h) / 2, w, h); } else x.drawImage(img, 90, 150, Wc - 180, Wc - 180); } catch(e){}
   if (st === 'brilhante'){ const h = x.createLinearGradient(48, 110, Wc - 48, 630); ['rgba(255,0,150,.18)', 'rgba(0,220,255,.18)', 'rgba(255,240,0,.18)', 'rgba(120,255,120,.18)'].forEach((c2, i) => h.addColorStop(i / 3, c2)); x.fillStyle = h; x.fillRect(48, 110, Wc - 96, 520); }
   x.restore();
   // topo
@@ -3271,6 +3864,7 @@ function aiChoose(){
   let sig = CPUC.erroMinRad + Math.pow(1 - A.mira / 100, 1.5) * CPUC.erroMaxRad;
   if (crit) sig *= 1 + (1 - A.nervos / 100);
   if (AI.ctx.brk) sig = Math.min(sig, 0.01);
+  if (hasPerk('cerveja')) sig *= 1 + PERK.cerveja.valor;
   j.aim += gauss() * sig;
   j.power = clamp(j.power * (1 + gauss() * (1 - A.forca / 100) * 0.12), 0.08, 1);
   if (A.forca > 85 && !AI.ctx.brk) j.power = clamp(j.power * 1.25, 0.1, 1);
@@ -3391,6 +3985,7 @@ function cpuTalk(kind, force){
   t.classList.add('show'); clearTimeout(talkT); talkT = setTimeout(() => t.classList.remove('show'), 2800);
 }
 function storyFinish(res){
+  if (G.story.run) return apostaResultado(res);
   const cap = G.story, ch = CHAR[cap.personagem], human = humanSeat();
   const won = res.winners.includes(human) && !(res.winners.length > 1);
   const got = [won, won && !G.storyFouls, won && G.humanShots <= cap.par];
@@ -3592,7 +4187,7 @@ function sendReact(e){
 $('#reactBtn').onclick = ev => { ev.stopPropagation(); $('#reactPop').classList.toggle('on'); };
 $('#reactPop').innerHTML = TOR.reacoes.map(e => `<button data-e="${e}" aria-label="Reagir ${e}">${e}</button>`).join('');
 $('#reactPop').querySelectorAll('button').forEach(b => b.onclick = ev => { ev.stopPropagation(); sendReact(b.dataset.e); $('#reactPop').classList.remove('on'); });
-document.addEventListener('pointerdown', ev => { if (!ev.target.closest('#reactPop,#reactBtn')) $('#reactPop').classList.remove('on'); });
+document.addEventListener('pointerdown', ev => { if (!(ev.target.closest && ev.target.closest('#reactPop,#reactBtn'))) $('#reactPop').classList.remove('on'); });
 function crowdApply(){
   $('#crowd').hidden = !crowdOn(); $('#reactBtn').hidden = !crowdOn();
   if (crowdOn()) requestAnimationFrame(crowdResize);
@@ -3603,7 +4198,7 @@ crowdApply();
 const MUSC = CFG.musica;
 if (prefs.musica === undefined) prefs.musica = MUSC.ativa;
 if (prefs.musVol === undefined) prefs.musVol = MUSC.volume;
-if (!prefs.musModo) prefs.musModo = MUSC.modo;
+if (!prefs.musModo || prefs.musModo === 'todas') prefs.musModo = MUSC.modo;
 const MUS = { playing: false, cur: null, ctxTrack: null, timer: 0, next: 0, step: 0, bar: 0, bus: null, el: null, mel: null, played: 0, local: null };
 const allTracks = () => MUSC.faixas.concat(MUSC.arquivos || [], MUS.local ? [MUS.local] : []);
 const trackById = id => allTracks().find(t => t.id === id);
@@ -3779,7 +4374,7 @@ function musSchedule(){
     MUS.next += tr.sd; MUS.step = (st + 1) % 16;
     if (MUS.step === 0){
       MUS.bar++; MUS.played++;
-      if (prefs.musModo === 'todas' && !MUS.ctxTrack && MUS.played >= MUSC.barrasPorFaixa){ setTimeout(() => musNext(), 0); return; }
+      if (prefs.musModo !== 'repetir' && MUS.played >= MUSC.barrasPorFaixa){ setTimeout(() => musNext(), 0); return; }
     }
   }
 }
@@ -3789,7 +4384,7 @@ function musStop(){
   if (MUS.bus){ const old = MUS.bus; try { old.gain.setTargetAtTime(0.0001, AC.currentTime, .15); } catch(e){} setTimeout(() => { try { old.disconnect(); } catch(e){} }, 900); MUS.bus = null; }
 }
 function musPlay(id){
-  id = id || MUS.ctxTrack || prefs.musFaixa || MUSC.faixas[0].id;
+  id = id || (prefs.musModo === 'repetir' && prefs.musFaixa) || randomTrack();
   let ac; try { ac = audio(); } catch(e){ return; }
   musStop();
   if (!prefs.musica) return;
@@ -3797,7 +4392,7 @@ function musPlay(id){
   const meta = trackById(id) || MUSC.faixas[0];
   MUS.cur = meta.id; MUS.played = 0; MUS.playing = true;
   if (meta.url){
-    const el = new Audio(meta.url); el.volume = Math.min(1, prefs.musVol); el.loop = prefs.musModo !== 'todas' || !!MUS.ctxTrack;
+    const el = new Audio(meta.url); el.volume = Math.min(1, prefs.musVol); el.loop = prefs.musModo === 'repetir';
     el.onended = () => musNext(); el.play().catch(() => { MUS.playing = false; }); MUS.el = el;
   } else {
     const tr = TRACKS[meta.id]; if (!tr){ MUS.playing = false; return; }
@@ -3808,11 +4403,9 @@ function musPlay(id){
   }
   musUI();
 }
-function musNext(){
-  const list = allTracks(), i = list.findIndex(t => t.id === MUS.cur);
-  const nx = list[(i + 1) % list.length]; prefs.musFaixa = nx.id; store.set(K.preferencias, prefs); musPlay(nx.id);
-}
-function musContext(id){ MUS.ctxTrack = id; if (prefs.musica) musPlay(); }
+function randomTrack(){ const list = allTracks().filter(t => t.id !== MUS.cur); return (list[Math.random() * list.length | 0] || allTracks()[0]).id; }
+function musNext(){ musPlay(randomTrack()); }
+function musContext(){ if (prefs.musica && !MUS.playing) musPlay(); }
 function musVolume(v){ prefs.musVol = v; store.set(K.preferencias, prefs); if (MUS.bus && AC) MUS.bus.gain.setTargetAtTime(v * 0.55, AC.currentTime, .05); if (MUS.el) MUS.el.volume = Math.min(1, v); }
 function musUI(){ const b = $('#hMus'); if (b){ b.classList.toggle('on', !!prefs.musica); b.setAttribute('aria-label', prefs.musica ? 'Música ligada' : 'Música desligada'); } }
 function musicModal(back){
@@ -3820,14 +4413,14 @@ function musicModal(back){
   openOv(`<h3>Música</h3>
     <div class="scroll mlist">${list.map(t => `<button class="mtrack${t.id === MUS.cur && MUS.playing ? ' on' : ''}" data-id="${esc(t.id)}"><b>${t.id === MUS.cur && MUS.playing ? '♪ ' : ''}${esc(t.titulo)}</b><small>${esc(t.estilo || 'Arquivo')}, ${esc(t.autor || 'desconhecido')}, ${t.link ? `<a href="${esc(t.link)}" target="_blank" rel="noopener">${esc(t.licenca || 'licença')}</a>` : esc(t.licenca || 'licença não informada')}</small></button>`).join('')}</div>
     <label class="vol"><span>Volume</span><input type="range" id="muVol" min="0" max="1" step="0.05" value="${prefs.musVol}"></label>
-    <div class="row"><button class="btn" id="muOn">Música: ${prefs.musica ? 'ligada' : 'desligada'}</button><button class="btn" id="muMode">${prefs.musModo === 'todas' ? 'Tocar todas' : 'Repetir a faixa'}</button></div>
+    <div class="row"><button class="btn" id="muOn">Música: ${prefs.musica ? 'ligada' : 'desligada'}</button><button class="btn" id="muMode">${prefs.musModo === 'repetir' ? 'Repetir a faixa' : 'Aleatório'}</button></div>
     <label class="btn ghost small" style="cursor:pointer">Tocar música do celular<input type="file" accept="audio/*" id="muFile" hidden></label>
     <p class="note" style="margin:0">As trilhas do jogo são originais e estão em domínio público (CC0). Músicas Creative Commons podem ser adicionadas na configuração.</p>
     <button class="btn" id="muBack">Fechar</button>`);
-  ovCard.querySelectorAll('.mtrack').forEach(b => b.onclick = e => { if (e.target.closest('a')) return; prefs.musica = true; prefs.musFaixa = b.dataset.id; MUS.ctxTrack = null; store.set(K.preferencias, prefs); musPlay(b.dataset.id); musicModal(back); });
+  ovCard.querySelectorAll('.mtrack').forEach(b => b.onclick = e => { if (e.target.closest('a')) return; prefs.musica = true; prefs.musFaixa = b.dataset.id; store.set(K.preferencias, prefs); musPlay(b.dataset.id); musicModal(back); });
   $('#muVol').oninput = e => musVolume(+e.target.value);
   $('#muOn').onclick = () => { prefs.musica = !prefs.musica; store.set(K.preferencias, prefs); prefs.musica ? musPlay() : musStop(); musUI(); musicModal(back); };
-  $('#muMode').onclick = () => { prefs.musModo = prefs.musModo === 'todas' ? 'repetir' : 'todas'; store.set(K.preferencias, prefs); if (MUS.el) MUS.el.loop = prefs.musModo !== 'todas'; musicModal(back); };
+  $('#muMode').onclick = () => { prefs.musModo = prefs.musModo === 'repetir' ? 'aleatorio' : 'repetir'; store.set(K.preferencias, prefs); if (MUS.el) MUS.el.loop = prefs.musModo === 'repetir'; musicModal(back); };
   $('#muFile').onchange = e => { const f = e.target.files[0]; if (!f) return; if (MUS.local) URL.revokeObjectURL(MUS.local.url);
     MUS.local = { id: 'local', titulo: f.name.replace(/\.[^.]+$/, ''), estilo: 'Do seu celular', autor: 'você', licenca: 'só neste aparelho', url: URL.createObjectURL(f) };
     prefs.musica = true; MUS.ctxTrack = null; musPlay('local'); musicModal(back); };
@@ -3836,6 +4429,118 @@ function musicModal(back){
 $('#hMus').onclick = () => musicModal();
 musUI();
 
+/* ================= NOITE DE APOSTAS (roguelike) ================= */
+const AP = CFG.apostas;
+const PERK = Object.fromEntries(AP.vantagens.map(v => [v.id, v]));
+let RUN = store.get(K.aposta, null);
+let APREC = store.get(K.apostaRecorde, { melhor: 0, noites: 0, vitorias: 0 });
+const saveRun = () => store.set(K.aposta, RUN);
+const hasPerk = id => !!(G && G.story && G.story.run && RUN && RUN.perks.includes(id));
+const pickN = (arr, n) => shuffle(arr.slice()).slice(0, n);
+
+$('#hAposta').onclick = () => { leaveNet(); setup.online = false; apostaHome(); };
+function apostaHome(){
+  if (!prefs.meuNome) return askName(apostaHome);
+  if (RUN && RUN.vivo) return apostaRodada();
+  openOv(`<h3>${esc(AP.titulo)}</h3>
+    <p style="margin:0">${esc(AP.lore)}</p>
+    <div class="goals"><span class="on"><i>🪙</i> Você começa com ${AP.fichasIniciais} fichas</span><span class="on"><i>🎯</i> ${AP.rodadas} mesas, o Mestre espera na última</span><span class="on"><i>🃏</i> Depois de cada vitória, escolha uma vantagem</span><span class="on"><i>💀</i> Ficou sem fichas, a noite acaba</span></div>
+    <p class="muted" style="margin:0">Recorde: ${APREC.melhor} fichas. Noites jogadas: ${APREC.noites}. Noites vencidas: ${APREC.vitorias}.</p>
+    <p class="note" style="margin:0">As fichas são do jogo e não valem dinheiro.</p>
+    <div class="row"><button class="btn" id="apX">Voltar</button><button class="btn primary" id="apGo">Começar a noite</button></div>`, 'story');
+  $('#apX').onclick = closeOv;
+  $('#apGo').onclick = () => { RUN = { vivo: true, fichas: AP.fichasIniciais, rodada: 1, perks: [], vidas: 0, hist: [] }; APREC.noites++; store.set(K.apostaRecorde, APREC); saveRun(); apostaRodada(); };
+}
+function oddsOf(ch){ return Math.round((AP.oddBase + ch.atributos.mira / AP.oddDivisor) * 10) / 10; }
+function apostaOpcoes(){
+  if (RUN.ops && RUN.ops.r === RUN.rodada) return RUN.ops.list;
+  const r = RUN.rodada, last = r === AP.rodadas;
+  let list;
+  if (last) list = [{ id: 'mestre', modo: 'bola8' }];
+  else {
+    const lo = Math.max(1, Math.round((r - 1) * 9 / AP.rodadas)), hi = Math.min(9, lo + 3);
+    list = pickN(CHARS.filter(c => c.num >= lo && c.num <= hi && c.id !== 'mestre'), 3).map(c => ({ id: c.id, modo: pickN(AP.modos, 1)[0] }));
+  }
+  RUN.ops = { r, list }; saveRun(); return list;
+}
+function apostaRodada(){
+  const ops = apostaOpcoes(), last = RUN.rodada === AP.rodadas;
+  RUN.bet = Math.min(RUN.fichas, Math.max(AP.apostaMinima, Math.round(RUN.fichas * 0.25)));
+  RUN.sel = 0;
+  const draw = () => {
+    const o = ops[RUN.sel], ch = CHAR[o.id], od = oddsOf(ch), ganho = Math.round(RUN.bet * (od - 1) * (hasPerkRun('juros') ? 1 + PERK.juros.valor : 1));
+    openOv(`<h3>Mesa ${RUN.rodada} de ${AP.rodadas}${last ? ': aposta final' : ''}</h3>
+      <div class="runbar"><span>🪙 <b>${RUN.fichas}</b> fichas</span><span>${RUN.perks.map(p => `<i title="${esc(PERK[p].nome)}">${PERK[p].icone}</i>`).join('') || 'sem vantagens'}</span></div>
+      <div class="oplist">${ops.map((x, i) => { const c = CHAR[x.id], m = MODECFG[x.modo]; return `<button class="opp${i === RUN.sel ? ' on' : ''}" data-i="${i}"><span class="cav">${avatarSVG(c.visual, { bg: true })}</span><span class="cinfo"><b>${esc(c.curto)}</b><small>${esc(m.icone + ' ' + m.nome)}, ${esc(c.local)}</small></span><em>${oddsOf(c).toFixed(1)}x</em></button>`; }).join('')}</div>
+      <div class="betbox"><span>Aposta</span><div class="stepper"><button class="iconbtn" id="bMin">−</button><b>${RUN.bet}</b><button class="iconbtn" id="bMax">+</button></div><button class="btn small" id="bAll">Tudo</button></div>
+      <p class="muted" style="margin:0">Se ganhar de ${esc(ch.curto)}: +${ganho} fichas. Se perder: −${hasPerkRun('seguro') ? Math.ceil(RUN.bet / 2) : RUN.bet}.</p>
+      <div class="row"><button class="btn ghost" id="apQuit">Desistir</button><button class="btn primary" id="apPlay">Apostar e jogar</button></div>`, 'story');
+    ovCard.querySelectorAll('.opp').forEach(b => b.onclick = () => { RUN.sel = +b.dataset.i; draw(); });
+    const step = Math.max(5, Math.round(RUN.fichas / 20 / 5) * 5);
+    $('#bMin').onclick = () => { RUN.bet = Math.max(Math.min(AP.apostaMinima, RUN.fichas), RUN.bet - step); draw(); };
+    $('#bMax').onclick = () => { RUN.bet = Math.min(RUN.fichas, RUN.bet + step); draw(); };
+    $('#bAll').onclick = () => { RUN.bet = RUN.fichas; draw(); };
+    $('#apQuit').onclick = () => apostaFim(false, true);
+    $('#apPlay').onclick = () => apostaJogar(ops[RUN.sel]);
+  };
+  draw();
+}
+const hasPerkRun = id => !!(RUN && RUN.perks.includes(id));
+function apostaJogar(o){
+  const ch = CHAR[o.id], L = LOCAL[capOf(o.id).local];
+  RUN.jogo = { id: o.id, modo: o.modo, bet: RUN.bet, odds: oddsOf(ch) }; saveRun();
+  closeOv();
+  setup.online = false; setup.modo = o.modo; setup.numeros = 3; setup.inicio = 0;
+  setup.jogadores = [{ nome: meName(), telefone: '' }, { nome: ch.curto, telefone: '', cpu: ch.id }];
+  applyTheme(L.tema, true); musContext(L.musica);
+  newGame({ story: { run: true, idx: -1, personagem: o.id, local: L.id, modo: o.modo, par: 99, vitoria: '', derrota: '' } });
+}
+function apostaResultado(res){
+  const j = RUN.jogo, ch = CHAR[j.id], won = res.winners.includes(G.hs) && res.winners.length === 1;
+  let delta;
+  if (won){ delta = Math.round(j.bet * (j.odds - 1) * (hasPerkRun('juros') ? 1 + PERK.juros.valor : 1)); RUN.fichas += delta; }
+  else if (RUN.perks.includes('fiado')){ delta = 0; RUN.perks.splice(RUN.perks.indexOf('fiado'), 1); }
+  else { delta = -(hasPerkRun('seguro') ? Math.ceil(j.bet / 2) : j.bet); RUN.fichas += delta; }
+  RUN.hist.push({ id: j.id, won, delta }); RUN.jogo = null;
+  const quebrou = RUN.fichas < Math.min(AP.apostaMinima, 1) || RUN.fichas <= 0;
+  const fala = (ch.falas[won ? 'erro' : 'acerto'] || [''])[0];
+  if (won && !figState(ch.id)){ HPROG.figs[ch.id] = 'normal'; saveProg(); }
+  openOv(`<h3>${won ? 'Ganhou a aposta!' : 'Perdeu a aposta'}</h3>
+    <div class="vs small"><div class="vsP talk"><span class="cav">${avatarSVG(ch.visual, { bg: true })}</span></div><div class="bubble r" style="flex:1;margin:0">${esc(fala)}</div></div>
+    <div class="runbar big"><span>${delta >= 0 ? '+' : ''}${delta} fichas${!won && delta === 0 ? ' (o fiado pagou)' : ''}</span><span>🪙 <b>${RUN.fichas}</b></span></div>
+    <button class="btn primary" id="arGo">${quebrou ? 'Ver o fim da noite' : won && RUN.rodada === AP.rodadas ? 'Fechar a noite' : 'Continuar'}</button>`, 'story');
+  $('#arGo').onclick = () => {
+    if (quebrou) return apostaFim(false);
+    if (won && RUN.rodada === AP.rodadas) return apostaFim(true);
+    if (won){ RUN.rodada++; RUN.ops = null; saveRun(); return apostaVantagem(); }
+    saveRun(); apostaRodada();
+  };
+  saveRun();
+}
+function apostaVantagem(){
+  const ops = pickN(AP.vantagens.filter(v => !RUN.perks.includes(v.id) || v.repete), 3);
+  openOv(`<h3>Escolha uma vantagem</h3><p class="muted" style="margin:0">Vale até o fim da noite.</p>
+    <div class="oplist">${ops.map(v => `<button class="opp perk" data-id="${v.id}"><span class="pk">${v.icone}</span><span class="cinfo"><b>${esc(v.nome)}</b><small>${esc(v.descricao)}</small></span></button>`).join('')}</div>`, 'story');
+  ovCard.querySelectorAll('.perk').forEach(b => b.onclick = () => { RUN.perks.push(b.dataset.id); saveRun(); apostaRodada(); });
+}
+function apostaFim(venceu, desistiu){
+  const f = RUN ? RUN.fichas : 0;
+  if (venceu) APREC.vitorias++;
+  if (f > APREC.melhor) APREC.melhor = f;
+  store.set(K.apostaRecorde, APREC);
+  const hist = RUN ? RUN.hist : [];
+  RUN = null; store.set(K.aposta, null);
+  G = null; AI = null; applyTheme(prefs.tema); musContext(null); show('home');
+  openOv(`<h3>${venceu ? 'Rei da noite!' : desistiu ? 'Você saiu da mesa' : 'Quebrou!'}</h3>
+    <p style="margin:0">${venceu ? `Você venceu o Mestre e saiu com ${f} fichas.` : desistiu ? `Você levou ${f} fichas para casa.` : 'As fichas acabaram. O bairro já está comentando.'}</p>
+    <div class="goals">${hist.map(h => `<span class="${h.won ? 'on' : ''}"><i>${h.won ? '★' : '✕'}</i> ${esc(CHAR[h.id].curto)}: ${h.delta >= 0 ? '+' : ''}${h.delta}</span>`).join('') || '<span>Nenhuma partida.</span>'}</div>
+    <p class="muted" style="margin:0">Recorde: ${APREC.melhor} fichas.</p>
+    <div class="row"><button class="btn" id="afX">Fechar</button><button class="btn primary" id="afNew">Nova noite</button></div>`, 'story');
+  $('#afX').onclick = closeOv; $('#afNew').onclick = () => { closeOv(); apostaHome(); };
+}
+
+if (RUN && RUN.jogo){ RUN.fichas -= RUN.jogo.bet; RUN.hist.push({ id: RUN.jogo.id, won: false, delta: -RUN.jogo.bet }); RUN.jogo = null; if (RUN.fichas <= 0) RUN = null; store.set(K.aposta, RUN); }
+applyTheme(prefs.tema);
 if (qs.get('sala')) openOnline();
 
 })();
